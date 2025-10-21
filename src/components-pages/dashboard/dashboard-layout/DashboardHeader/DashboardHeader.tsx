@@ -9,7 +9,7 @@ const DashboardHeader = () => {
 
         <div className={s.headerWrapper}>
           <Link href="/">
-            <img src="/img/header/logo.svg" alt="logo" width={208} className={s.logo}/>
+            <img src="/img/header/logo.svg" alt="logo" width={208} height={36} className={s.logo}/>
           </Link>
           <div className={s.buttons}>
             <div className={s.messageButtonWrapper}>
