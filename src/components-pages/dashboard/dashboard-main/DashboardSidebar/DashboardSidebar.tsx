@@ -6,7 +6,6 @@ import Separator from "@/components-ui/Separator/Separator";
 import Link from "next/link";
 import {useState} from "react";
 
-
 const DashboardSidebar = () => {
 
   const [ratingsOpen, setRatingsOpen] = useState(false);
@@ -82,7 +81,6 @@ const DashboardSidebar = () => {
         </>
       }
 
-
       <Separator className={s.topSeparator}></Separator>
 
       <li className={s.menuItem}>
@@ -96,7 +94,6 @@ const DashboardSidebar = () => {
           Выход
         </div>
       </li>
-
     </ul>
   );
 };

@@ -1,0 +1,12 @@
+@use '@/assets/styles/mixins' as *;
+
+.topUserInfo {
+  display: flex;
+  gap: 16px;
+  max-width: 100%;
+
+  @include m {
+   flex-direction: column;
+  }
+
+}

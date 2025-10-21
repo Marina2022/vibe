@@ -6,7 +6,6 @@ const DashboardHeader = () => {
   return (
     <header className={s.header}>
       <div className="container">
-
         <div className={s.headerWrapper}>
           <Link href="/">
             <img src="/img/header/logo.svg" alt="logo" width={208} height={36} className={s.logo}/>

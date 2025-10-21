@@ -8,7 +8,6 @@ const Page = () => {
       <div className={s.dashboardPageWrapper}>
         <DashboardSidebar />
         <DashboardContent />
-
       </div>
     </div>
   );

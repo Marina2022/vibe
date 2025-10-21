@@ -1,0 +1,46 @@
+@use '@/assets/styles/mixins' as *;
+
+.tableUserInfo {
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+}
+
+.row1 {
+  background: var(--black);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+
+  @include m {
+    font-size: 12px;
+  }
+}
+
+.row2 {
+  background: #fff;
+  font-weight: 600;
+  font-size: 18px;
+
+  @include m {
+    font-size: 14px;
+  }
+}
+
+.cell {
+  padding: 20px 24px;
+  width: 100%;
+
+  @include m {
+    padding: 15px 16px;
+  }
+
+}
+.centerCell {
+  border-left: 1px solid #F2F6F6;
+  border-right: 1px solid #F2F6F6;
+}
+

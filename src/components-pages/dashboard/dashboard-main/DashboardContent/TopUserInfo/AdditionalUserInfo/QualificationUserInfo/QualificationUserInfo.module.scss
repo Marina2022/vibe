@@ -1,0 +1,24 @@
+@use '@/assets/styles/mixins' as *;
+
+.qualificationUserInfo {
+  background: #fff;
+  border-radius: 24px;
+  padding: 32px;
+
+  @include m {
+    padding: 24px 16px;
+  }
+}
+
+.title {
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 4px;
+
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--grey-text);
+}

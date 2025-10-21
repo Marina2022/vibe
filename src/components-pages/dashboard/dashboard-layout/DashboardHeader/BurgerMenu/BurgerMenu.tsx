@@ -17,7 +17,6 @@ const BurgerMenu = () => {
         </svg>
       }
 
-
       {
         !isOpen &&  <svg className={s.menuIcon} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M24 4H0V6H24V4Z" fill="#252526"/>
@@ -26,7 +25,6 @@ const BurgerMenu = () => {
             <path d="M24 14H0V16H24V14Z" fill="#252526"/>
         </svg>
       }
-
     </button>
   );
 };

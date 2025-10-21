@@ -8,9 +8,9 @@ type BadgeProps = {
 
 const Badge = ({ height = 28, children  }: BadgeProps) => {
   return (
-    <div style={{ height, borderRadius: height === 28 ? 32 : 8 }} className={s.badge}>
+    <span style={{ height, borderRadius: height === 28 ? 32 : 8 }} className={s.badge}>
       {children}
-    </div>
+    </span>
   );
 };
 

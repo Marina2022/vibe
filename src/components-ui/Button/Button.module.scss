@@ -1,0 +1,33 @@
+@use '@/assets/styles/mixins' as *;
+
+.button {
+  height: 60px;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--lime);
+  border-radius: 24px;
+
+  @media (hover: hover) {
+    &:hover {
+      background: #ACE52C;
+    }
+  }
+
+  &:active {
+    background: #ACE52C;
+    opacity: .8;
+
+  }
+
+  &:disabled {
+    background: #F8F9FA;
+    color: #ACE52CCC;
+  }
+
+  @include m {
+    width: 100%;
+  }
+}
