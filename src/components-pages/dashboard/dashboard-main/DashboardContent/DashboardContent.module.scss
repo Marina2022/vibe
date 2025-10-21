@@ -5,3 +5,10 @@
   max-width: 988px;
   margin-inline: auto;
 }
+
+.menuItem {
+  padding: 18px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

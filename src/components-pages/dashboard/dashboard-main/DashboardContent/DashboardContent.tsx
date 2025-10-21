@@ -2,7 +2,7 @@ import s from './DashboardContent.module.scss';
 
 const DashboardContent = () => {
   return (
-    <div className={s.dashboardContent} style={{border: 'red 1px solid'}}>
+    <div className={s.dashboardContent} >
       DashboardContent
     </div>
   );

@@ -1,6 +1,6 @@
 import s from './dashboard-page.module.scss';
-import DashboardSidebar from "@/pages-components/dashboard/dashboard-main/DashboardSidebar/DashboardSidebar";
-import DashboardContent from "@/pages-components/dashboard/dashboard-main/DashboardContent/DashboardContent";
+import DashboardSidebar from "@/components-pages/dashboard/dashboard-main/DashboardSidebar/DashboardSidebar";
+import DashboardContent from "@/components-pages/dashboard/dashboard-main/DashboardContent/DashboardContent";
 
 const Page = () => {
   return (

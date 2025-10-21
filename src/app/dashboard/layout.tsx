@@ -1,5 +1,5 @@
-import DashboardHeader from "@/pages-components/dashboard/dashboard-layout/DashboardHeader/DashboardHeader";
-import DashboardFooter from "@/pages-components/dashboard/dashboard-layout/DashboardFooter/DashboardFooter";
+import DashboardHeader from "@/components-pages/dashboard/dashboard-layout/DashboardHeader/DashboardHeader";
+import DashboardFooter from "@/components-pages/dashboard/dashboard-layout/DashboardFooter/DashboardFooter";
 
 export default function Layout({
                                  children,

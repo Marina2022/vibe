@@ -37,6 +37,8 @@ button {
     font-family: inherit;
     cursor: pointer;
     user-select: none;
+    font-size: inherit;
+    font-weight: inherit;
 }
 
 a {
@@ -71,14 +73,11 @@ a {
 }
 
 :root {
-    //--border: rgb(21 21 23 /.2);
-    //--title: rgb(21 21 23);
-    //--text: rgb(21 21 23 /.88);
-
     --black: #252526;
     --lime: #B8E05F;
     --pink: #F555A8;
     --grey-text: rgba(0 0 0/.4);
+    --light-green: #EDFFC4;
 }
 
 

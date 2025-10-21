@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import s from './DashboardHeader.module.scss';
-import BurgerMenu from "@/pages-components/dashboard/dashboard-layout/DashboardHeader/BurgerMenu/BurgerMenu";
+import BurgerMenu from "@/components-pages/dashboard/dashboard-layout/DashboardHeader/BurgerMenu/BurgerMenu";
 
 const DashboardHeader = () => {
   return (
