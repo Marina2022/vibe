@@ -1,0 +1,84 @@
+@use '@/assets/styles/mixins' as *;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+h1, h2, h3, ul, ol, li {
+    margin: 0;
+}
+
+img {
+    display: block;
+}
+
+html {
+    //overflow-x: hidden;
+    margin: 0;
+}
+
+body {
+    font-family: 'manrope', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--black);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    cursor: pointer;
+    user-select: none;
+}
+
+a {
+    text-decoration: none;
+    font-family: inherit;
+}
+
+.container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1340px;
+
+    @include t {
+        max-width: 100%;
+        padding-inline: 20px;
+    }
+
+    @include m {
+        max-width: unset;
+
+    }
+}
+
+.header {
+    font-family: 'testSignifier', sans-serif;
+    font-size: 24px;
+}
+
+.text {
+    font-family: 'SuisseIntl', serif;
+    font-size: 24px;
+}
+
+:root {
+    //--border: rgb(21 21 23 /.2);
+    //--title: rgb(21 21 23);
+    //--text: rgb(21 21 23 /.88);
+
+    --black: #252526;
+    --lime: #B8E05F;
+    --pink: #F555A8;
+    --grey-text: rgba(0 0 0/.4);
+}
+
+

@@ -1,0 +1,7 @@
+@use '@/assets/styles/mixins' as *;
+
+.dashboardContent {
+  flex: 1;
+  max-width: 988px;
+  margin-inline: auto;
+}

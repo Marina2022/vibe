@@ -19,6 +19,10 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
     ],
+    rules: {
+      // Отключаем правило для <img> глобально
+      "@next/next/no-img-element": "off",
+    },
   },
 ];
 

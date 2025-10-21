@@ -1,0 +1,59 @@
+@use '@/assets/styles/mixins' as *;
+
+.header {
+  //border-bottom: 1px solid #E5E5E5;
+}
+
+.headerWrapper {
+  padding-top: 24px;
+  padding-bottom: 32px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include m {
+    padding-top: 20px;
+    padding-bottom: 44px;
+    padding-inline: 3px;
+  }
+}
+
+.logo {
+  width: 208px;
+  height: auto;
+
+  @include t {
+    width: 160px;
+  }
+
+  @include m {
+    width: 123px;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 24px;
+  align-items: flex-end;
+}
+
+.messageButtonWrapper {
+  position: relative;
+}
+
+.messageBadge {
+  position: absolute;
+  top: -6px;
+  right: 0px;
+  background: var(--lime);
+  border-radius: 50%;
+  height: 14px;
+  min-width: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 8px;
+  font-weight: 500;
+}
