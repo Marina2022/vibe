@@ -19,5 +19,5 @@ export const getLastMonths = (count = 6) => {
     months.push({ label, value });
   }
 
-  return months.reverse(); // по возрастанию
+  return months; // по возрастанию
 };
