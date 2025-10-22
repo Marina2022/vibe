@@ -10,8 +10,7 @@ const UserCardBlock = () => {
   const backgroundStyle = s.userCardBackground;
 
   const monthOptions = getLastMonths(6);
-
-  const [selectedMonth, setSelectedMonth] = useState(monthOptions[monthOptions.length-1]);
+  const [selectedMonth, setSelectedMonth] = useState(monthOptions[0]);
 
 
   return (

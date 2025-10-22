@@ -1,6 +1,14 @@
+'use client'
+
 import s from './Achievements.module.scss';
+import MonthDropdown from "@/components-ui/MonthDropdown/MonthDropdown";
+import {getLastMonths} from "@/utils/lk-utils/common-lk-utils";
+import {useState} from "react";
 
 const Achievements = () => {
+
+  const monthOptions = getLastMonths(6);
+  const [selectedMonth, setSelectedMonth] = useState(monthOptions[0]);
 
     const achivements = {
       personal: [
@@ -62,7 +70,9 @@ const Achievements = () => {
       <div className={s.achievements}>
         <div className={s.topBlock}>
           <h2 className={s.title}>Достижения</h2>
-          <div>Сентябрь</div>
+          <div>
+            <MonthDropdown leftAlign={false} selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} monthOptions={monthOptions} triggerClassName={s.trigger} />
+          </div>
         </div>
 
         <h3 className={s.subtitle}>Личные</h3>

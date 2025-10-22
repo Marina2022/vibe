@@ -59,13 +59,14 @@ const MonthDropdown = ({
         <span className={s.monthName}>{selectedMonth.label}</span>
 
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1.5L7.5 6.5L14 1.5" stroke="white" strokeWidth="2"/>
+          <path d="M1 1.5L7.5 6.5L14 1.5" strokeWidth="2"/>
         </svg>
 
       </div>
 
       {dropdownOpen && (
         <div
+          style={{left: leftAlign ? 0 : 'unset', right: leftAlign ? 'unset': 0 }}
           className={`${s.dropdownListWrapper} ${
             leftAlign ? s.leftAlign : s.rightAlign
           }`}
