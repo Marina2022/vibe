@@ -83,7 +83,7 @@ const NextQualification = () => {
 
       <div className={s.expandButtonBlock} onClick={() => setIsShow(prev => !prev)}>
         <button>
-          <svg className={isShow ? s.upsidedown : undefined} width="18" height="10" viewBox="0 0 18 10" fill="none"
+          <svg className={isShow ? s.upsidedown : ''} width="18" height="10" viewBox="0 0 18 10" fill="none"
                xmlns="http://www.w3.org/2000/svg">
             <path opacity="0.3" d="M16.5 1L9 8L1.5 0.999999" stroke="#252526" strokeWidth="2"/>
           </svg>

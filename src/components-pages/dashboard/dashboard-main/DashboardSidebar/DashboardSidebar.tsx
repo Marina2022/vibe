@@ -57,10 +57,11 @@ const DashboardSidebar = () => {
 
       <li className={s.menuItem} onClick={handleRatingClick} style={{cursor: 'pointer'}}>
         Рейтинги
-        <svg className={ratingsOpen ? s.upsidedown : undefined} width="17" height="10" viewBox="0 0 17 10" fill="none"
-             xmlns="http://www.w3.org/2000/svg">
-          <path opacity="0.3" d="M1 8.5L8.5 1.5L16 8.5" stroke="black" strokeWidth="2"/>
+
+        <svg className={ratingsOpen ? s.upsidedown : ''} width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path opacity="0.3" d="M16 1.5L8.5 8.5L1 1.5" stroke="#252526" strokeWidth="2"/>
         </svg>
+
       </li>
 
 
