@@ -39,6 +39,11 @@ button {
     user-select: none;
     font-size: inherit;
     font-weight: inherit;
+
+    appearance: none;
+    -webkit-appearance: none;
+    color: inherit;
+    -webkit-text-fill-color: inherit;
 }
 
 a {

@@ -1,0 +1,118 @@
+@use '@/assets/styles/mixins' as *;
+
+.achievements {
+  background: #fff;
+  border-radius: 24px;
+  padding: 32px;
+  padding-bottom: 0;
+
+  @include m {
+    padding: 24px 16px;
+    padding-bottom: 0;
+  }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 33px;
+}
+
+.topBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-weight: 600;
+  line-height: 24px;
+  margin-bottom: 16px;
+}
+
+.row {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(292px, 1fr));
+  margin-bottom: 32px;
+
+  @include m {
+    grid-template-columns: 1fr;
+    margin-bottom: 24px;
+  }
+}
+
+.card {
+  border-radius: 24px;
+  padding: 24px;
+}
+
+.cardPersonal {
+  background: rgba(205, 193, 222, 0.2);
+}
+
+.cardTeam {
+  background: rgba(245, 85, 168, 0.2);
+}
+
+.cardLeader {
+  background: rgba(253, 110, 48, 0.2);
+}
+
+.cardTitle {
+  font-family: UNCAGE;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 38px;
+  position: relative;
+  top: 3px;
+}
+
+.cardTop {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 32px;
+
+  @include m {
+    margin-bottom: 16px;
+  }
+}
+
+.badge {
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.personalBadge {
+  background: rgba(205, 193, 222, 1);
+}
+
+.teamBadge {
+  background: rgba(245, 85, 168, 1);
+  color: #fff;
+}
+
+.leaderBadge {
+  background: rgba(253, 110, 48, 1);
+  color: #fff;
+}
+
+.cardDescription {
+  font-weight: 600;
+  line-height: 24px;
+  width: 80%;
+
+  @include xs {
+    width: 100%;
+  }
+}
+

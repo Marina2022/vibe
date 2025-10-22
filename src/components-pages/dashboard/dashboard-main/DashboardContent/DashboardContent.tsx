@@ -2,6 +2,7 @@ import s from './DashboardContent.module.scss';
 import TopUserInfo from "@/components-pages/dashboard/dashboard-main/DashboardContent/TopUserInfo/TopUserInfo";
 import NextQualification
   from "@/components-pages/dashboard/dashboard-main/DashboardContent/NextQualification/NextQualification";
+import Achievements from "@/components-pages/dashboard/dashboard-main/DashboardContent/Achievements/Achievements";
 
 const DashboardContent = () => {
   return (
@@ -9,6 +10,7 @@ const DashboardContent = () => {
 
       <TopUserInfo />
       <NextQualification/>
+      <Achievements/>
 
     </div>
   );
