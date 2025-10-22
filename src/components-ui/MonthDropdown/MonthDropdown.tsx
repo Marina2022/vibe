@@ -1,7 +1,7 @@
 'use client';
 
 import s from './MonthDropdown.module.scss';
-import { useState, useEffect, useRef } from "react";
+import {useEffect, useRef, useState} from "react";
 
 type MonthOption = {
   label: string;
@@ -14,6 +14,7 @@ type MonthDropdownProps = {
   setSelectedMonth: (month: MonthOption) => void;
   monthOptions: MonthOption[];
   leftAlign?: boolean;
+  listOffset?: number;
 };
 
 const MonthDropdown = ({
@@ -22,6 +23,7 @@ const MonthDropdown = ({
                          selectedMonth,
                          setSelectedMonth,
                          monthOptions,
+                         listOffset = 40
                        }: MonthDropdownProps) => {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -66,7 +68,7 @@ const MonthDropdown = ({
 
       {dropdownOpen && (
         <div
-          style={{left: leftAlign ? 0 : 'unset', right: leftAlign ? 'unset': 0 }}
+          style={{left: leftAlign ? 0 : 'unset', right: leftAlign ? 'unset' : 0, top: listOffset}}
           className={`${s.dropdownListWrapper} ${
             leftAlign ? s.leftAlign : s.rightAlign
           }`}

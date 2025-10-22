@@ -71,7 +71,7 @@ const Achievements = () => {
         <div className={s.topBlock}>
           <h2 className={s.title}>Достижения</h2>
           <div>
-            <MonthDropdown leftAlign={false} selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} monthOptions={monthOptions} triggerClassName={s.trigger} />
+            <MonthDropdown listOffset={50} leftAlign={false} selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} monthOptions={monthOptions} triggerClassName={s.trigger} />
           </div>
         </div>
 

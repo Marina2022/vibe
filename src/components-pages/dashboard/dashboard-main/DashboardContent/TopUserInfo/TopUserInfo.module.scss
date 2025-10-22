@@ -4,9 +4,9 @@
   display: flex;
   gap: 16px;
   max-width: 100%;
-  padding-inline: 16px;
 
   @include m {
+    padding-inline: 16px;
    flex-direction: column;
   }
 
