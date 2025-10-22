@@ -63,9 +63,8 @@ const DashboardSidebar = () => {
         </svg>
       </li>
 
-      {
-        ratingsOpen && <>
 
+        <div className= {`${s.expandable} ${ratingsOpen ? s.show : s.hide}`} >
           <li className={s.menuItem}>
             <Link href="/dashboard/qualifications-rating">
               Квалификаций
@@ -77,9 +76,10 @@ const DashboardSidebar = () => {
               Рекрутеров
             </Link>
           </li>
+        </div>
 
-        </>
-      }
+
+
 
       <Separator className={s.topSeparator}></Separator>
 
