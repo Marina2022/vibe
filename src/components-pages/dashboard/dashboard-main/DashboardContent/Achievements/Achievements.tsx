@@ -99,7 +99,7 @@ const Achievements = () => {
         <h3 className={s.subtitle}>Лидерские</h3>
         <div className={s.row}>
           {
-            achivements.team.map((item, i) => {
+            achivements.leadership.map((item, i) => {
 
               return <div className={` ${s.card} ${s.cardLeader}`} key={i}>
                 <div className={s.cardTop}>
