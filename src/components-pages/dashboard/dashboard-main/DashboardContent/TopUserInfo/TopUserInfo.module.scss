@@ -5,8 +5,11 @@
   gap: 16px;
   max-width: 100%;
 
-  @include m {
+  @include t {
     padding-inline: 16px;
+  }
+
+  @include m {
    flex-direction: column;
   }
 

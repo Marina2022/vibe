@@ -1,0 +1,89 @@
+@use '@/assets/styles/mixins' as *;
+
+.events {
+  background: #fff;
+  border-radius: 24px;
+  padding: 32px;
+
+  @include m {
+    padding: 24px 16px;
+  }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 33px;
+}
+
+.topBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+
+  @include m {
+    margin-bottom: 24px;
+  }
+}
+
+.link {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--black);
+}
+
+.cards {
+  display: flex;
+  gap: 24px;
+
+  @include m {
+    flex-direction: column;
+  }
+}
+
+.card {
+  height: 225px;
+  width: 100%;
+  max-width: 450px;
+  margin-inline: auto;
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  color: #fff;
+
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.orange {
+  background-image: url('/img/lk/lk-main/event-orange-card.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.green {
+  background-image: url('/img/lk/lk-main/event-green-card.png');
+}
+
+.period {
+  font-weight: 600;
+  line-height: 24px;
+  margin-bottom: 8px;
+}
+
+.cardTitle {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 33px;
+  margin-bottom: 8px;
+}
+
+.bottomPart {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-weight: 500;
+  line-height: 24px;
+}
