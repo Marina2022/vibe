@@ -53,12 +53,11 @@ a {
 
     @include t {
         max-width: 100%;
-        padding-inline: 16px;
+        //padding-inline: 16px;
     }
 
     @include m {
         max-width: unset;
-
     }
 }
 

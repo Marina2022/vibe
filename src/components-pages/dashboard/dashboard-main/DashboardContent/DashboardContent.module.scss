@@ -4,11 +4,12 @@
   flex: 1;
   max-width: 988px;
   margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  @include m {
+    gap: 32px;
+  }
 }
 
-.menuItem {
-  padding: 18px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}

@@ -1,0 +1,11 @@
+@use '@/assets/styles/mixins' as *;
+
+.main {
+  flex: 1;
+  margin-bottom: 124px;
+
+  @include m {
+    margin-bottom: 64px;
+  }
+}
+

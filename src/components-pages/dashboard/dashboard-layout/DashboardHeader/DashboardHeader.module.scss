@@ -8,6 +8,7 @@
   padding-top: 24px;
   padding-bottom: 32px;
 
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,7 +16,7 @@
   @include m {
     padding-top: 20px;
     padding-bottom: 44px;
-    padding-inline: 3px;
+    padding-inline: 19px;
   }
 }
 
