@@ -15,17 +15,17 @@ const Achievements = () => {
         {
           title: 'А1',
           badge: 'Рост',
-          description: 'Квалификация периода'
+          description: 'Квалификация<br />периода',
         },
         {
           title: '84 124 ₽',
           badge: '+32%',
-          description: 'Личный доход за месяц'
+          description: 'Личный доход<br />за месяц'
         },
         {
           title: '450 786 ₽',
           badge: null,
-          description: 'Суммарный доход за всё время'
+          description: 'Суммарный доход<br />за всё время'
         },
       ],
       team:
@@ -33,17 +33,17 @@ const Achievements = () => {
           {
             title: '234',
             badge: '+23 человека',
-            description: 'Количество партнеров в структуре'
+            description: 'Количество партнеров<br />в структуре'
           },
           {
             title: '650 990 ₽',
             badge: '+32%',
-            description: 'Доход команды за месяц'
+            description: 'Доход команды<br />за месяц'
           },
           {
             title: '1 250 990 ₽',
             badge: null,
-            description: 'Доход команды за всё время'
+            description: 'Доход команды<br />за всё время'
           },
         ],
       leadership:
@@ -51,17 +51,17 @@ const Achievements = () => {
           {
             title: '10',
             badge: null,
-            description: 'Количество активированных партнеров за месяц'
+            description: 'Количество активированных<br />партнеров за месяц'
           },
           {
             title: '+13%',
             badge: null,
-            description: 'Процент прироста товарооборота'
+            description: 'Процент прироста<br />товарооборота'
           },
           {
             title: '15',
             badge: null,
-            description: 'Новые квалификации в команде за месяц'
+            description: 'Новые квалификации<br />в команде за месяц'
           }
         ]
     }
@@ -84,7 +84,7 @@ const Achievements = () => {
                   <div className={s.cardTitle}>{item.title}</div>
                   {item.badge && <div className={`${s.badge} ${s.personalBadge}`}>{item.badge}</div>}
                 </div>
-                <div className={s.cardDescription}>{item.description}</div>
+                <div className={s.cardDescription} dangerouslySetInnerHTML={{ __html: item.description }} />
               </div>
             })
           }
@@ -100,7 +100,7 @@ const Achievements = () => {
                   <div className={s.cardTitle}>{item.title}</div>
                   {item.badge && <div className={`${s.badge} ${s.teamBadge}`}>{item.badge}</div>}
                 </div>
-                <div className={s.cardDescription}>{item.description}</div>
+                <div className={s.cardDescription} dangerouslySetInnerHTML={{ __html: item.description }} />
               </div>
             })
           }
@@ -116,7 +116,7 @@ const Achievements = () => {
                   <div className={s.cardTitle}>{item.title}</div>
                   {item.badge && <div className={`${s.badge} ${s.leaderBadge}`}>{item.badge}</div>}
                 </div>
-                <div className={s.cardDescription}>{item.description}</div>
+                <div className={s.cardDescription} dangerouslySetInnerHTML={{ __html: item.description }} />
               </div>
             })
           }
