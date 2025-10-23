@@ -4,6 +4,7 @@ import NextQualification
   from "@/components-pages/dashboard/dashboard-main/DashboardContent/NextQualification/NextQualification";
 import Achievements from "@/components-pages/dashboard/dashboard-main/DashboardContent/Achievements/Achievements";
 import Events from "@/components-pages/dashboard/dashboard-main/DashboardContent/Events/Events";
+import News from "@/components-pages/dashboard/dashboard-main/DashboardContent/News/News";
 
 const DashboardContent = () => {
   return (
@@ -13,6 +14,7 @@ const DashboardContent = () => {
       <NextQualification/>
       <Achievements/>
       <Events />
+      <News/>
 
     </div>
   );

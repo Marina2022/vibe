@@ -1,6 +1,6 @@
 @use '@/assets/styles/mixins' as *;
 
-.events {
+.news {
   background: #fff;
   border-radius: 24px;
   padding: 32px;
@@ -43,27 +43,16 @@
 }
 
 .card {
-  height: 225px;
   width: 100%;
   max-width: 450px;
   margin-inline: auto;
   border-radius: 32px;
-  padding: 24px;
-  display: flex;
-  color: #fff;
-  flex-direction: column;
-  justify-content: flex-end;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+  padding: 32px;
+  background: #F2F6F6;
 
-.orange {
-  background-image: url('/img/lk/lk-main/event-orange-card.png');
-}
-
-.green {
-  background-image: url('/img/lk/lk-main/event-green-card.png');
+  @include m {
+    padding: 24px;
+  }
 }
 
 .period {
@@ -73,16 +62,37 @@
 }
 
 .cardTitle {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 33px;
-  margin-bottom: 8px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-bottom: 15px;
+
+  @include m {
+    margin-bottom: 12px;
+  }
+}
+
+.description {
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 24px;
+
+  @include m {
+    margin-bottom: 12px;
+  }
 }
 
 .bottomPart {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 15px;
+  font-weight: 500;
+  line-height: 24px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(37, 37, 38, .1);
+}
+
+.date {
   font-weight: 500;
   line-height: 24px;
 }
