@@ -71,10 +71,10 @@ const BurgerMenu = () => {
       {isOpen && (
         <ul className={s.burgerMenu}>
           <li className={s.menuItem}>
-            <div className={`${s.innerItem} ${s.noHover}`}>
+            <Link className={s.innerItem} href="/dashboard">
               Виталий Осотов
               <Badge height={20}>ID 1</Badge>
-            </div>
+            </Link>
           </li>
 
           <Separator className={s.topSeparator} />

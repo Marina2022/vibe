@@ -51,11 +51,9 @@
   align-items: center;
   user-select: none;
 
-  @media (hover:hover) {
     &:hover {
       background: var(--light-green);
     }
-  }
 }
 
 .topSeparator {
