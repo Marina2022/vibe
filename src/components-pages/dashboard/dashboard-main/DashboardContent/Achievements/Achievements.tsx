@@ -14,11 +14,11 @@ const Achievements = () => {
       personal: [
         {
           title: 'А1',
-          badge: 'up',
+          badge: 'Рост',
           description: 'Квалификация периода'
         },
         {
-          title: 'А1',
+          title: '84 124 ₽',
           badge: '+32%',
           description: 'Личный доход за месяц'
         },
@@ -49,9 +49,9 @@ const Achievements = () => {
       leadership:
         [
           {
-            title: '15',
+            title: '10',
             badge: null,
-            description: 'Новые квалификации в команде за месяц'
+            description: 'Количество активированных партнеров за месяц'
           },
           {
             title: '+13%',
@@ -59,9 +59,9 @@ const Achievements = () => {
             description: 'Процент прироста товарооборота'
           },
           {
-            title: '10',
+            title: '15',
             badge: null,
-            description: 'Количество новых «Партнеров Плюс»'
+            description: 'Новые квалификации в команде за месяц'
           }
         ]
     }

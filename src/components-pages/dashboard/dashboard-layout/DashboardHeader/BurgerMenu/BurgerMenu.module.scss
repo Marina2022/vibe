@@ -20,7 +20,7 @@
   position: absolute;
   right: 0;
   top: 40px;
-  max-width: calc(100vw - 28px );
+  max-width: 100vw;
   width: 360px;
 
   background: #fff;
@@ -32,7 +32,10 @@
   overflow: auto;
 
   @include m {
-    right: -4px;
+    width: 100vw;
+    position: fixed;
+    top: 80px;
+    right: 0;
     max-height: 91vh;
   }
 }
@@ -40,7 +43,7 @@
 .innerItem {
   color: var(--black);
   width: 100%;
-  padding: 18px 16px;
+  padding: 9px 16px;
   display: flex;
   justify-content: space-between;
   font-weight: 600;
