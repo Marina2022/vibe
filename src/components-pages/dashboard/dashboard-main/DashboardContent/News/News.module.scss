@@ -50,6 +50,15 @@
   padding: 32px;
   background: #F2F6F6;
 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-8px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+  }
+
   @include m {
     padding: 24px;
   }
