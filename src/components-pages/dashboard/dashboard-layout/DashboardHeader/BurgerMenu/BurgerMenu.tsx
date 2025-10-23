@@ -71,7 +71,7 @@ const BurgerMenu = () => {
       {isOpen && (
         <ul className={s.burgerMenu}>
           <li className={s.menuItem}>
-            <Link className={s.innerItem} href="/dashboard">
+            <Link className={s.innerItem} href="/dashboard" onClick={() => setIsOpen(false)} >
               Виталий Осотов
               <Badge height={20}>ID 1</Badge>
             </Link>
@@ -80,7 +80,7 @@ const BurgerMenu = () => {
           <Separator className={s.topSeparator} />
 
           <li className={s.menuItem}>
-            <Link className={s.innerItem} href="/dashboard/structure">
+            <Link className={s.innerItem} href="/dashboard/structure" onClick={() => setIsOpen(false)}>
               <div>
                 Структура
                 <span className={s.greyText}>Downline</span>
@@ -89,7 +89,7 @@ const BurgerMenu = () => {
           </li>
 
           <li className={s.menuItem}>
-            <Link className={s.innerItem} href="/dashboard/income">
+            <Link className={s.innerItem} href="/dashboard/income" onClick={() => setIsOpen(false)}>
               <div>
                 Доход
                 <span className={s.greyText}>Statement</span>
@@ -98,25 +98,25 @@ const BurgerMenu = () => {
           </li>
 
           <li className={s.menuItem}>
-            <Link className={s.innerItem} href="/dashboard/orders">
+            <Link className={s.innerItem} href="/dashboard/orders" onClick={() => setIsOpen(false)}>
               Заказы
             </Link>
           </li>
 
           <li className={s.menuItem}>
-            <Link className={s.innerItem} href="/dashboard/instruments">
+            <Link className={s.innerItem} href="/dashboard/instruments" onClick={() => setIsOpen(false)}>
               Инструменты
             </Link>
           </li>
 
           <li className={s.menuItem}>
-            <Link className={s.innerItem} href="/dashboard/finances">
+            <Link className={s.innerItem} href="/dashboard/finances" onClick={() => setIsOpen(false)}>
               Финансы
             </Link>
           </li>
 
           <li className={s.menuItem} onClick={handleRatingClick} style={{ cursor: 'pointer' }}>
-            <button className={s.innerItem}>
+            <button className={s.innerItem} onClick={() => setIsOpen(false)}>
               Рейтинги
               <svg className={ratingsOpen ? s.upsidedown : ''} width="17" height="10" viewBox="0 0 17 10" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
@@ -127,34 +127,34 @@ const BurgerMenu = () => {
 
           <div className={`${s.expandable} ${ratingsOpen ? s.show : s.hide}`}>
             <li className={s.menuItem}>
-              <Link className={s.innerItem} href="/dashboard/qualifications-rating">
+              <Link className={s.innerItem} href="/dashboard/qualifications-rating" onClick={() => setIsOpen(false)}>
                 Квалификаций
               </Link>
             </li>
 
             <li className={s.menuItem}>
-              <Link className={s.innerItem} href="/dashboard/recruiter-rating">
+              <Link className={s.innerItem} href="/dashboard/recruiter-rating" onClick={() => setIsOpen(false)}>
                 Рекрутеров
               </Link>
             </li>
           </div>
 
           <li className={s.menuItem}>
-            <Link className={s.innerItem} href="/dashboard/settings">
+            <Link className={s.innerItem} href="/dashboard/settings" onClick={() => setIsOpen(false)}>
               Настройки
             </Link>
           </li>
 
           <li className={s.menuItem} onClick={() => alert('выход')}>
-            <button className={s.innerItem}>Выход</button>
+            <button className={s.innerItem} onClick={() => setIsOpen(false)}>Выход</button>
           </li>
 
           <Separator className={s.topSeparator} />
 
           <li className={s.menuItem}>
-            <Link className={`${s.innerItem} ${s.regularWeight}`} href="/">Главная</Link>
-            <Link className={`${s.innerItem} ${s.regularWeight}`} href="/">Магазин</Link>
-            <Link className={`${s.innerItem} ${s.regularWeight}`} href="/">Контакты</Link>
+            <Link className={`${s.innerItem} ${s.regularWeight}`} href="/" onClick={() => setIsOpen(false)}>Главная</Link>
+            <Link className={`${s.innerItem} ${s.regularWeight}`} href="/" onClick={() => setIsOpen(false)}>Магазин</Link>
+            <Link className={`${s.innerItem} ${s.regularWeight}`} href="/" onClick={() => setIsOpen(false)}>Контакты</Link>
           </li>
         </ul>
       )}
