@@ -37,7 +37,6 @@
   }
 }
 
-
 .innerItem {
   color: var(--black);
   width: 100%;
@@ -49,8 +48,10 @@
   align-items: center;
   user-select: none;
 
-  &:hover {
-    background: var(--light-green);
+  @media (hover:hover) {
+    &:hover {
+      background: var(--light-green);
+    }
   }
 }
 
