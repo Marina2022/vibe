@@ -35,14 +35,15 @@ const BurgerMenu = () => {
 
   // 🚫 Запрет скролла только на мобильных устройствах
   useEffect(() => {
-    const isMobile = window.innerWidth < 768;
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
     if (isOpen && isMobile) {
+      // Блокируем прокрутку страницы
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
 
-    // Очистка
     return () => {
       document.body.style.overflow = '';
     };

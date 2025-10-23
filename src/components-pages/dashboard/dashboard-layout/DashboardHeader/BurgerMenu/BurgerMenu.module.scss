@@ -34,7 +34,7 @@
   @include m {
     width: 100vw;
     position: fixed;
-    top: 80px;
+    top: 68px;
     right: 0;
     max-height: 91vh;
   }
@@ -74,6 +74,7 @@
 }
 
 .expandable {
+  padding-left: 16px;
   overflow: hidden;
   max-height: 0;
   opacity: 0;
