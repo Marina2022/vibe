@@ -4,6 +4,11 @@
   display: flex;
   padding-left: 14px;
   user-select: none;
+
+  span {
+    position: relative;
+    top: -1px;
+  }
 }
 
 
