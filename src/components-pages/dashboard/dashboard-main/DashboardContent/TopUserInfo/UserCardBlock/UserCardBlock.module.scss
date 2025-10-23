@@ -114,8 +114,10 @@
 }
 
 .cardLogo {
+  max-width: 26.7%;
   @include m {
-    width: 40%;
+    width: 29%;
+    max-width: 100px;
   }
 }
 
