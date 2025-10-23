@@ -34,7 +34,6 @@ const DashboardFooter = () => {
 
         <div className={s.bottomFooter}>
           <div>Добро пожаловать в VIBE — пространство, где ты важен. Мы рядом. И готовы идти вместе с тобой.</div>
-
           <div className={s.socials}>
             <a href="#" className={s.socialLink}>
               <svg width="29" height="21" viewBox="0 0 29 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,7 +56,6 @@ const DashboardFooter = () => {
 
             </a>
           </div>
-
         </div>
       </div>
     </footer>

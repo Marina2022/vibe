@@ -17,7 +17,7 @@ const DashboardSidebar = () => {
   return (
     <ul className={s.sidebar}>
       <li className={s.menuItem}>
-        <div className={s.innerItem}>
+        <div className={s.innerItem + ' ' + s.noHover}>
           Виталий Осотов
           <Badge height={20}>ID 1</Badge>
         </div>
@@ -69,10 +69,7 @@ const DashboardSidebar = () => {
             <path opacity="0.3" d="M16 1.5L8.5 8.5L1 1.5" stroke="#252526" strokeWidth="2"/>
           </svg>
         </button>
-
       </li>
-
-
       <div className={`${s.expandable} ${ratingsOpen ? s.show : s.hide}`}>
         <li className={s.menuItem}>
           <Link className={s.innerItem} href="/dashboard/qualifications-rating">
@@ -86,7 +83,6 @@ const DashboardSidebar = () => {
           </Link>
         </li>
       </div>
-
 
       <Separator className={s.topSeparator}></Separator>
 

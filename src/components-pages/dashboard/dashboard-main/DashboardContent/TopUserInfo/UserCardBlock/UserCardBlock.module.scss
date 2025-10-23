@@ -79,7 +79,11 @@
   font-weight: 500;
   color: var(--grey-text);
   line-height: 140%;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
+
+  @include m {
+    margin-bottom: 6px;
+  }
 }
 
 .amount {
@@ -120,6 +124,7 @@
   font-size: 14px;
   margin-bottom: 16px;
   opacity: .5;
+  line-height: 38px;
 }
 
 .qualif {

@@ -12,11 +12,6 @@
   }
 }
 
-.menuItem {
-
-
-}
-
 .innerItem {
   color: var(--black);
   width: 100%;
@@ -30,6 +25,12 @@
 
   &:hover {
     background: var(--light-green);
+  }
+}
+
+.noHover {
+  &:hover {
+    background: transparent;
   }
 }
 
