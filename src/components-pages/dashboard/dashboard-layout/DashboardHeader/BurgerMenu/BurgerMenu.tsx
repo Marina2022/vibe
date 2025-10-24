@@ -116,7 +116,7 @@ const BurgerMenu = () => {
           </li>
 
           <li className={s.menuItem} onClick={handleRatingClick} style={{ cursor: 'pointer' }}>
-            <button className={s.innerItem} onClick={() => setIsOpen(false)}>
+            <button className={s.innerItem} >
               Рейтинги
               <svg className={ratingsOpen ? s.upsidedown : ''} width="17" height="10" viewBox="0 0 17 10" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
