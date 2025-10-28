@@ -13,13 +13,6 @@ export default async function Layout({
 
 //  const user = await getUser()
 
-  await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(`Прошло ${5000} миллисекунд`);
-    }, 5000);
-  })
-
-
   return (
     <div style={{background: '#F2F6F6', minHeight: '100vh', display: 'flex', flexDirection: 'column'}}>
       <DashboardHeader />

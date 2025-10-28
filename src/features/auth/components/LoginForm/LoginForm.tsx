@@ -9,6 +9,7 @@ import {useState, useTransition} from 'react';
 import {login} from "@/features/auth/actions/login";
 import {toast} from 'sonner'
 import MiniSpinner from "@/components-ui/miniSpinner/MiniSpinner";
+import Link from "next/link";
 
 type LoginFormValues = {
   login: string;
@@ -71,8 +72,8 @@ const LoginForm = () => {
       </div>
 
       <form className={s.loginForm} onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label className={s.label} htmlFor="login">Данные для входа</label>
+        <div className={s.controlWrapper}>
+          {/*<label className={s.label} htmlFor="login">Данные для входа</label>*/}
           <div className={s.inputWrapper}>
             <input
               id="login"
@@ -80,17 +81,6 @@ const LoginForm = () => {
               className={`${s.input}  ${errors.login ? s.redBorder : ''}`}
               type="text" placeholder="ID / Номер телефона / E-mail"
             />
-
-            {
-              loginValue && (
-                <svg className={s.icon} width="16" height="19" viewBox="0 0 16 19" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="8.00091" cy="5.71966" r="4.71966" stroke="#89AC3D" strokeWidth="2"/>
-                  <path d="M15 19C15 15.6863 12.3137 13 9 13H7C3.68629 13 1 15.6863 1 19" stroke="#89AC3D"
-                        strokeWidth="2"/>
-                </svg>
-              )
-            }
           </div>
 
           {errors.login && (
@@ -98,8 +88,8 @@ const LoginForm = () => {
           )}
         </div>
 
-        <div>
-          <label className={s.label} htmlFor="password">Пароль</label>
+        <div className={s.controlWrapper}>
+          {/*<label className={s.label} htmlFor="password">Пароль</label>*/}
           <div className={s.inputWrapper}>
             <input
               id="password"
@@ -120,7 +110,11 @@ const LoginForm = () => {
           {errors.password && (
             <p className={s.errorMessage}>{errors.password.message}</p>
           )}
+
         </div>
+
+        <Link className={s.forgotPassword} href="/forgot-password">Забыли пароль?</Link>
+
 
         <div className={s.buttons}>
           <Button className={s.loginBtn} disabled={!isValid || isPending}>
