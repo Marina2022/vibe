@@ -4,7 +4,7 @@ import {ReactNode} from "react";
 type BadgeProps = {
   height?: number; // ? означает, что пропс необязательный
   children: ReactNode;
-  className: string;
+  className?: string;
 };
 
 const Badge = ({className='',  height = 28, children  }: BadgeProps) => {
