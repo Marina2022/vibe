@@ -34,7 +34,7 @@ const News = () => {
               <div className={s.description}>{card.description}</div>
               <div className={s.bottomPart}>
                 <div className={s.date}>{card.date}</div>
-                {card.new && <Badge height={20}>New</Badge>}
+                {card.new && <Badge className={s.badge} height={20}>New</Badge>}
               </div>
             </li>
           })
