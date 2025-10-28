@@ -1,13 +1,11 @@
 import React from 'react';
+import MiniSpinner from "@/components-ui/miniSpinner/MiniSpinner";
 
-function Minispinner() {
-  return null;
-}
 
 const Loading = () => {
   return (
-    <div style={{ height: "100%", width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
-      <Minispinner />
+    <div style={{ height: "600px", width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <MiniSpinner big={true} />
     </div>
   );
 };

@@ -1,8 +1,10 @@
 import {ImSpinner2} from "react-icons/im";
 import s from './MiniSpinner.module.scss'
-const MiniSpinner = () => {
+const MiniSpinner = ({big = false}:{big?: boolean}) => {
+
+  console.log(big)
   return (
-      <span className={s.spinner}><ImSpinner2 className={s.svg}/></span>
+      <span><ImSpinner2 className={big ? s.bigSvg : s.svg }/></span>
   );
 };
 

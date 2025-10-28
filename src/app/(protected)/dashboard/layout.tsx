@@ -11,7 +11,13 @@ export default async function Layout({
   children: React.ReactNode;
 }>) {
 
-  const user = await getUser()
+//  const user = await getUser()
+
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`Прошло ${5000} миллисекунд`);
+    }, 5000);
+  })
 
 
   return (
