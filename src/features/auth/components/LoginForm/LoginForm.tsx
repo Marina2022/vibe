@@ -18,7 +18,7 @@ type LoginFormValues = {
 
 const LoginForm = () => {
   const router = useRouter();
-  const {register, handleSubmit, formState: {errors, isValid}, watch} = useForm<LoginFormValues>({mode: 'onChange'});
+  const {register, handleSubmit, formState: {errors, isValid}} = useForm<LoginFormValues>({mode: 'onChange'});
   const [error, setError] = useState('');
   const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
@@ -56,7 +56,6 @@ const LoginForm = () => {
       }
     });
   };
-  const loginValue = watch('login');
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -110,11 +109,9 @@ const LoginForm = () => {
           {errors.password && (
             <p className={s.errorMessage}>{errors.password.message}</p>
           )}
-
         </div>
 
         <Link className={s.forgotPassword} href="/forgot-password">Забыли пароль?</Link>
-
 
         <div className={s.buttons}>
           <Button className={s.loginBtn} disabled={!isValid || isPending}>
