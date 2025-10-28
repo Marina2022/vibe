@@ -11,7 +11,7 @@ const ModalContainer = ({children}: { children: ReactNode }) => {
         <div className={s.modalContainer}>
           {children}
         </div>
-        <div className={s.footer}>ООО "ВАЙБ" г. Новосибирск</div>
+        <div className={s.footer}>ООО &#34;ВАЙБ&#34; г. Новосибирск</div>
       </div>
     </div>
   );
