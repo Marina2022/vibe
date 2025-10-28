@@ -3,16 +3,8 @@
 import Link from 'next/link';
 import s from './DashboardHeader.module.scss';
 import BurgerMenu from "@/components-pages/dashboard/dashboard-layout/DashboardHeader/BurgerMenu/BurgerMenu";
-import {testAction} from "@/features/auth/actions/testAction";
 
 const DashboardHeader = () => {
-
-  const handleTest = async () => {
-    const result = await testAction()
-
-
-    console.log('result = ', result)
-  }
 
   return (
     <header className={s.header}>
@@ -22,7 +14,6 @@ const DashboardHeader = () => {
             <img src="/img/header/logo.svg" alt="logo" width={208} height={36} className={s.logo}/>
           </Link>
 
-          <button onClick={handleTest}>Test</button>
           <div className={s.buttons}>
             <div className={s.messageButtonWrapper}>
               <button>

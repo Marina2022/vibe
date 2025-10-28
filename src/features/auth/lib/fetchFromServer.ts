@@ -29,7 +29,7 @@ export async function fetchFromServerWithAuth(url: string, options: RequestInit 
 
   // если токен истёк, пробуем обновить
 
-  if (res.status === 200 && refreshToken) {
+  if (res.status === 401 && refreshToken) {
     // console.log('Пробуем refresh')
     const refreshed = await refreshTokens(refreshToken)
     console.log('refreshed', refreshed)
