@@ -76,3 +76,14 @@ a {
 }
 
 
+/* Без фокуса — белый фон */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+    -webkit-text-fill-color: theme('colors.gray.900') !important;
+}
+
+/* При фокусе — фон rgba(248, 249, 250, 1) */
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px rgba(248, 249, 250, 1) inset !important;
+    -webkit-text-fill-color: theme('colors.gray.900') !important;
+}

@@ -4,7 +4,7 @@
   display: flex;
   gap: 20px;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 38px;
 }
 
 .backBtn {
@@ -27,12 +27,37 @@
 }
 
 .loginBtn {
-  width: 144px;
+  width: 33%;
   height: 60px;
   border-radius: 60px!important;
+
+  @include m {
+    width: 33% !important;
+  }
+}
+
+.registerBtn {
+  width: 67%;
+  height: 60px;
+  border-radius: 60px!important;
+  border: 2px solid rgba(241, 241, 241, 1);
+  background: transparent!important;
+
+  &:hover {
+    background: var(--black)!important;
+    border: 2px solid var(--black)!important;
+    color: #fff;
+  }
+
+  @include m {
+    width: 67% !important;
+  }
 }
 
 .input {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
   height: 60px;
   display: flex;
   flex-direction: row;
@@ -40,14 +65,88 @@
   align-items: center;
   padding: 16px 24px 16px 24px;
   border-radius: 32px;
-  background: rgba(248, 249, 250, 1);
   outline: none;
   border: none;
   width: 100%;
+
+  &::placeholder {
+    color: rgba(185, 185, 185, 1);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  &:focus {
+    background: rgba(248, 249, 250, 1);
+
+    & + .icon {
+      display: none;
+    }
+  }
+}
+
+.label {
+  color: rgba(137, 138, 138, 1);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+  margin-bottom: 4px;
 }
 
 .loginForm {
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+
+  @include m {
+    font-size: 20px;
+  }
+}
+
+.icon {
+  position: absolute;
+  left: 0;
+  top: 20px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.errorMessage {
+  color: rgba(247, 74, 63, 1);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+}
+
+.redBorder {
+  border: 2px solid rgba(247, 74, 63, 1);
+  background: rgba(248, 249, 250, 1);
+}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.eyeIconBtn {
+  position: absolute;
+  right: 25px;
+  top: 20px;
+}
+
+.eyeIconMuted {
+  opacity: .7;
+}
+
+.passwordInput {
+  font-weight: 400;
 }

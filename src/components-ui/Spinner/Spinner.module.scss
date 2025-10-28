@@ -1,0 +1,9 @@
+@import '@/assets/styles/mixins';
+
+.spinner {
+  width: 100%;
+  height: calc(100vh - 370px);
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}

@@ -5,11 +5,13 @@ const ModalContainer = ({children}: { children: ReactNode }) => {
   return (
     <div>
       <div className={s.underlay}>
-        <div>header</div>
+        <div className={s.header}>
+          <img className={s.logo} src="/img/footer/footerLogo.svg" alt=""/>
+        </div>
         <div className={s.modalContainer}>
           {children}
         </div>
-        <div className={s.footer}>footer</div>
+        <div className={s.footer}>ООО "ВАЙБ" г. Новосибирск</div>
       </div>
     </div>
   );

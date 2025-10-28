@@ -9,10 +9,12 @@
   justify-content: center;
   background: var(--lime);
   border-radius: 24px;
+  transition: all .2s ease-in-out;
 
   @media (hover: hover) {
     &:hover {
       background: #ACE52C;
+      transition: all .1s ease-in-out;
     }
   }
 
@@ -23,7 +25,7 @@
 
   &:disabled {
     background: #F8F9FA;
-    color: #ACE52CCC;
+    color: rgba(37, 37, 38, .5);
   }
 
   @include m {
