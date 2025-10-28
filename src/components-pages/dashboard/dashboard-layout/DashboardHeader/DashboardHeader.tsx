@@ -1,8 +1,12 @@
 import Link from 'next/link';
 import s from './DashboardHeader.module.scss';
 import BurgerMenu from "@/components-pages/dashboard/dashboard-layout/DashboardHeader/BurgerMenu/BurgerMenu";
+import {getUser} from "@/features/auth/lib/getUser";
 
-const DashboardHeader = () => {
+const DashboardHeader = async() => {
+
+  const user = await getUser()
+
   return (
     <header className={s.header}>
       <div className="container">
@@ -10,6 +14,7 @@ const DashboardHeader = () => {
           <Link href="/">
             <img src="/img/header/logo.svg" alt="logo" width={208} height={36} className={s.logo}/>
           </Link>
+          <div>Привет, {user.first_name}</div>
           <div className={s.buttons}>
             <div className={s.messageButtonWrapper}>
               <button>

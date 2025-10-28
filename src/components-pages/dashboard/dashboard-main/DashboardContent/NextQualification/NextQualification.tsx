@@ -34,7 +34,6 @@ const NextQualification = () => {
 
   if (partners.length % 2 !== 0) partners.push({name: '', info: '', value: 0})
 
-
   return (
     <div className={s.nextQualification}>
       <div className={s.titleBlock}>
@@ -59,26 +58,23 @@ const NextQualification = () => {
       </div>
 
       {
-        // isShow && (
-          // <div className={s.bottomProgressBars}>
-            <div className={`${s.bottomProgressBars} ${isShow ? s.show : s.hide}`}>
-            {
-              partners.map((partner, i) => {
-                const isOdd = i % 2 !== 0;
-                return <div className={s.bottomProgressBarsItem} key={i}>
-                  <div className={isOdd ? s.borderLeft : ''}>
+        <div className={`${s.bottomProgressBars} ${isShow ? s.show : s.hide}`}>
+          {
+            partners.map((partner, i) => {
+              const isOdd = i % 2 !== 0;
+              return <div className={s.bottomProgressBarsItem} key={i}>
+                <div className={isOdd ? s.borderLeft : ''}>
 
-                    {
-                      partner.name &&
-                      <ProgressBar title={partner.name} subtitle={partner.info} value={partner.value} disabled={true}/>
-                    }
+                  {
+                    partner.name &&
+                    <ProgressBar title={partner.name} subtitle={partner.info} value={partner.value} disabled={true}/>
+                  }
 
-                  </div>
                 </div>
-              })
-            }
-          </div>
-        // )
+              </div>
+            })
+          }
+        </div>
       }
 
       <div className={s.expandButtonBlock} onClick={() => setIsShow(prev => !prev)}>

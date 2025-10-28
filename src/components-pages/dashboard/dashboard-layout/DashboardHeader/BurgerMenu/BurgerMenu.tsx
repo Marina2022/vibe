@@ -58,13 +58,21 @@ const BurgerMenu = () => {
             <path d="M17.9988 18.4853L1.02822 1.5147" stroke="#252526" strokeWidth="2" />
           </svg>
         ) : (
-          <svg className={s.menuIcon} width="24" height="24" viewBox="0 0 24 24" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
-            <path d="M24 4H0V6H24V4Z" fill="#252526" />
-            <path d="M24.0001 9H8.00012V11H24.0001V9З" fill="#252526" />
-            <path d="M24.0001 19H8.00012V21H24.0001В19З" fill="#252526" />
-            <path d="M24 14H0V16H24В14З" fill="#252526" />
+          // <svg className={s.menuIcon} width="24" height="24" viewBox="0 0 24 24" fill="none"
+          //      xmlns="http://www.w3.org/2000/svg">
+          //   <path d="M24 4H0V6H24V4Z" fill="#252526" />
+          //   <path d="M24.0001 9H8.00012V11H24.0001V9З" fill="#252526" />
+          //   <path d="M24.0001 19H8.00012V21H24.0001В19З" fill="#252526" />
+          //   <path d="M24 14H0V16H24В14З" fill="#252526" />
+          // </svg>
+
+          <svg className={s.menuIcon} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 4H24V6H0V4Z" fill="#252526" />
+            <path d="M8.00012 9H24V11H8.00012V9Z" fill="#252526" />
+            <path d="M8.00012 14H24V16H8.00012V14Z" fill="#252526" />
+            <path d="M8.00012 19H24V21H8.00012V19Z" fill="#252526" />
           </svg>
+
         )}
       </button>
 

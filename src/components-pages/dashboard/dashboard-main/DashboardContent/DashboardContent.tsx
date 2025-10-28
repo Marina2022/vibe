@@ -9,13 +9,11 @@ import News from "@/components-pages/dashboard/dashboard-main/DashboardContent/N
 const DashboardContent = () => {
   return (
     <div className={s.dashboardContent} >
-
       <TopUserInfo />
       <NextQualification/>
       <Achievements/>
       <Events />
       <News/>
-
     </div>
   );
 };

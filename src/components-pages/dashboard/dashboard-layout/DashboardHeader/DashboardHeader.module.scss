@@ -1,14 +1,8 @@
 @use '@/assets/styles/mixins' as *;
 
-.header {
-  //border-bottom: 1px solid #E5E5E5;
-}
-
 .headerWrapper {
   padding-top: 24px;
   padding-bottom: 32px;
-
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,7 +51,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   font-size: 8px;
   font-weight: 500;
 }

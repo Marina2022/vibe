@@ -1,7 +1,6 @@
 @use '@/assets/styles/mixins' as *;
 
 .footer {
-  padding-block: 40px;
   background: #fff;
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
@@ -32,7 +31,7 @@
 }
 
 .helpLink {
-  font-family: UNCAGE;
+  font-family: UNCAGE, sans-serif;
   font-size: 48px;
   font-weight: 400;
   line-height: 58px;
@@ -56,11 +55,15 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-weight: 500;
 
   a {
     color: var(--black);
+
+    &:hover {
+      color: black;
+    }
   }
 }
 
@@ -72,7 +75,7 @@
 .bottomFooter {
   display: flex;
   justify-content: space-between;
-  font-family: UNCAGE;
+  font-family: UNCAGE, sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
@@ -108,5 +111,4 @@
       border: 1px solid rgba(37, 37, 38, 0.3);
     }
   }
-
 }

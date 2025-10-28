@@ -5,6 +5,7 @@ import Badge from "@/components-ui/Badge/Badge";
 import Separator from "@/components-ui/Separator/Separator";
 import Link from "next/link";
 import {useState} from "react";
+import {logout} from "@/features/auth/actions/logout";
 
 const DashboardSidebar = () => {
 
@@ -92,8 +93,8 @@ const DashboardSidebar = () => {
         </Link>
       </li>
 
-      <li className={s.menuItem} onClick={() => alert('выход')}>
-        <button className={s.innerItem}>
+      <li className={s.menuItem} onClick={() => logout()}>
+        <button className={s.innerItem}  >
           Выход
         </button>
       </li>

@@ -29,9 +29,7 @@ const News = () => {
       <ul className={s.cards}>
         {
           cards.map((card, i) => {
-
             return <li key={i} className={s.card}>
-
               <div className={s.cardTitle}>{card.title}</div>
               <div className={s.description}>{card.description}</div>
               <div className={s.bottomPart}>

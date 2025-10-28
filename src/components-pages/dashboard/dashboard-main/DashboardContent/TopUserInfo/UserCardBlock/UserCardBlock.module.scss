@@ -7,13 +7,11 @@
   display: flex;
   flex-direction: column;
 
-
   @include m {
     margin-inline: auto;
     width: 100%;
     max-width: 486px;
   }
-
 }
 
 .userCard {
@@ -61,13 +59,12 @@
   }
 }
 
-
 .userCardBottom {
   padding: 32px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex:1;
+  flex: 1;
 
   @include m {
     padding: 18px;
@@ -134,7 +131,6 @@
   font-size: 14px;
 }
 
-
 .cardAmount {
   margin-top: 6px;
   font-weight: 500;
@@ -176,8 +172,6 @@
 .trigger {
   border: 1px solid rgba(255, 255, 255, 1);
   border-radius: 32px;
-
-  //width: 160px;
   height: 28px;
   display: flex;
   justify-content: center;

@@ -3,7 +3,6 @@ import {Inter, Manrope, Plus_Jakarta_Sans} from "next/font/google";
 import "./globals.scss";
 import localFont from "next/font/local";
 
-
 const uncage = localFont({
   src: [
     {
@@ -53,7 +52,7 @@ const inter = Inter({
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin", "cyrillic-ext"],
-  weight: ["400", "600"], // только нужные веса
+  weight: ["400", "600"],
 });
 
 export const metadata: Metadata = {
@@ -66,6 +65,8 @@ export default function RootLayout({
                                    }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en">
     <body className={`${manrope.variable} ${inter.variable} ${plusJakartaSans.variable} ${uncage.variable} ${sfPro.variable}`}>

@@ -1,4 +1,3 @@
-
 .selectTrigger {
   cursor: pointer;
   display: flex;
@@ -11,12 +10,10 @@
   }
 }
 
-
 .dropdownList {
   background: #fff;
   max-height: 208px;
   overflow: auto;
-
 
   @-moz-document url-prefix() {
     scrollbar-width: thin;

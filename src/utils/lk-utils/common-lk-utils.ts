@@ -15,7 +15,6 @@ export const getLastMonths = (count = 6) => {
 
     // Значение в формате YYYY-MM
     const value = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
-
     months.push({ label, value });
   }
 

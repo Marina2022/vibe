@@ -20,20 +20,16 @@ const Events = () => {
 
   return (
     <div className={s.events}>
-
       <div className={s.topBlock}>
         <h2 className={s.title}>События</h2>
         <Link href='/dashboard/events' className={s.link}>Смотреть все</Link>
       </div>
-
       <ul className={s.cards}>
         {
           cards.map((card, i) => {
             let bgClass = s.orange
             if (card.cover === 'green') bgClass = s.green
-
             return <li key={i} className={`${s.card} ${bgClass}`}>
-
               <div className={s.period}>{card.period}</div>
               <div className={s.cardTitle}>{card.title}</div>
               <div className={s.bottomPart}>

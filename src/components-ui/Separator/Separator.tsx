@@ -1,10 +1,8 @@
 import s from './Separator.module.scss';
 
-const Separator = ({className}:{className:string}) => {
+const Separator = ({className}: { className: string }) => {
   return (
-    <div className={s.separator + ' ' + className}>
-
-    </div>
+    <div className={s.separator + ' ' + className}></div>
   );
 };
 

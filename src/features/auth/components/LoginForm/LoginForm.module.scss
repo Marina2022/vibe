@@ -1,0 +1,53 @@
+@use '@/assets/styles/mixins' as *;
+
+.headerRow {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.backBtn {
+  position: absolute;
+  background: #fff;
+  top: 16px;
+  left: -34px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: #B8E05F;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgba(248, 249, 250, 1);
+
+  @include m {
+    position: static;
+  }
+}
+
+.loginBtn {
+  width: 144px;
+  height: 60px;
+  border-radius: 60px!important;
+}
+
+.input {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 16px 24px 16px 24px;
+  border-radius: 32px;
+  background: rgba(248, 249, 250, 1);
+  outline: none;
+  border: none;
+  width: 100%;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
