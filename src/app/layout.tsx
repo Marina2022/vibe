@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {Inter, Manrope, Plus_Jakarta_Sans} from "next/font/google";
 import "./globals.scss";
 import localFont from "next/font/local";
+import { Toaster } from 'sonner'
 
 const uncage = localFont({
   src: [
@@ -71,6 +72,7 @@ export default function RootLayout({
     <html lang="en">
     <body className={`${manrope.variable} ${inter.variable} ${plusJakartaSans.variable} ${uncage.variable} ${sfPro.variable}`}>
     {children}
+    <Toaster richColors position="bottom-right" />
     </body>
     </html>
   );

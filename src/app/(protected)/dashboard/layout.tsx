@@ -3,6 +3,7 @@ import DashboardFooter from "@/components-pages/dashboard/dashboard-layout/Dashb
 import s from './layout.module.scss'
 import {getUserIdFromToken} from "@/features/auth/lib/getUserFromToken";
 import {logout} from "@/features/auth/actions/logout";
+import {getUser} from "@/features/auth/lib/getUser";
 
 export default async function Layout({
                                  children,
@@ -10,16 +11,7 @@ export default async function Layout({
   children: React.ReactNode;
 }>) {
 
-  const userFromToken = await getUserIdFromToken()
-  const userId =  userFromToken?.iss
-  if (!userFromToken?.iss) {
-    await logout()
-  }
-  const response = await fetch(`${process.env.API_URL}/user/${userId}`, {})
-  if (!response.ok) {
-    await logout()
-  }
-  const user = await response.json()
+  const user = await getUser()
 
 
   return (

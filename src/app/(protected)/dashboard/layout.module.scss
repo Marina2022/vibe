@@ -1,6 +1,7 @@
 @use '@/assets/styles/mixins' as *;
 
 .main {
+  min-height: 100vh;
   flex: 1;
   margin-bottom: 124px;
 

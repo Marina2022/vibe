@@ -1,11 +1,18 @@
+'use client'
+
 import Link from 'next/link';
 import s from './DashboardHeader.module.scss';
 import BurgerMenu from "@/components-pages/dashboard/dashboard-layout/DashboardHeader/BurgerMenu/BurgerMenu";
-import {getUser} from "@/features/auth/lib/getUser";
+import {testAction} from "@/features/auth/actions/testAction";
 
-const DashboardHeader = async() => {
+const DashboardHeader = () => {
 
-  const user = await getUser()
+  const handleTest = async () => {
+    const result = await testAction()
+
+
+    console.log('result = ', result)
+  }
 
   return (
     <header className={s.header}>
@@ -14,7 +21,8 @@ const DashboardHeader = async() => {
           <Link href="/">
             <img src="/img/header/logo.svg" alt="logo" width={208} height={36} className={s.logo}/>
           </Link>
-          <div>Привет, {user.first_name}</div>
+
+          <button onClick={handleTest}>Test</button>
           <div className={s.buttons}>
             <div className={s.messageButtonWrapper}>
               <button>

@@ -8,6 +8,7 @@ import Button from "@/components-ui/Button/Button";
 import {useForm} from 'react-hook-form';
 import {useState, useTransition} from 'react';
 import {login} from "@/features/auth/actions/login";
+import { toast } from 'sonner'
 
 type LoginFormValues = {
   login: string;
@@ -38,7 +39,11 @@ const LoginForm = () => {
 
         const result = await login(data, token);
 
-        console.log('result = ', result)
+        if (result.error) {
+          toast.error(result.error)
+          console.log(result.error)
+        }
+
         if (result?.error) {
           setError(result.error);
           return;
@@ -57,7 +62,6 @@ const LoginForm = () => {
 
   return (
     <ModalContainer>
-
       <div className={s.headerRow}>
         <button className={s.backBtn} onClick={() => router.push('/')}>
           <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">

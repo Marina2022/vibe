@@ -5,6 +5,7 @@ import s from './BurgerMenu.module.scss';
 import Badge from "@/components-ui/Badge/Badge";
 import Separator from "@/components-ui/Separator/Separator";
 import Link from "next/link";
+import {logout} from "@/features/auth/actions/logout";
 
 const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -153,7 +154,7 @@ const BurgerMenu = () => {
             </Link>
           </li>
 
-          <li className={s.menuItem} onClick={() => alert('выход')}>
+          <li className={s.menuItem} onClick={() => logout()}>
             <button className={s.innerItem} onClick={() => setIsOpen(false)}>Выход</button>
           </li>
 

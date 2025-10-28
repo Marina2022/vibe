@@ -9,14 +9,15 @@ export async function middleware(req: NextRequest) {
   const expiresIn = cookieStore.get('expires_in')?.value;
 
 
-  //console.log('Наши куки:', { accessToken, refreshToken, expiresIn });
+
+  console.log('Мидлвара')
 
   const now = Math.floor(Date.now() / 1000);
 
 
-  // Проверяем, валиден ли access token с запасом
+  // Проверяем, валиден ли access token
   if (accessToken && expiresIn && Number(expiresIn) > now ) {
-    console.log('Access token валидный, пропускаем запрос');
+    //console.log('Access token валидный, пропускаем запрос');
     return NextResponse.next();
   }
 
@@ -39,7 +40,7 @@ export async function middleware(req: NextRequest) {
       }
 
       const data = await res.json();
-      console.log('Refresh token сработал, обновляем куки');
+      //console.log('Refresh token сработал, обновляем куки');
 
       cookieStore.set('access_token', data.access_token, {
         httpOnly: true,
@@ -73,7 +74,7 @@ export async function middleware(req: NextRequest) {
   }
 
   // Нет refresh token — редирект на логин
-  console.log('Нет refresh token, редирект на /login');
+  //console.log('Нет refresh token, редирект на /login');
   return NextResponse.redirect(new URL('/login', req.url));
 }
 
