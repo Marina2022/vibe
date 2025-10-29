@@ -1,6 +1,7 @@
 @use '@/assets/styles/mixins' as *;
 
 .button {
+  color: var(--black);
   height: 60px;
   font-size: 16px;
   font-weight: 600;

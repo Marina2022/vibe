@@ -18,7 +18,7 @@ type LoginFormValues = {
 
 const LoginForm = () => {
   const router = useRouter();
-  const {register, handleSubmit, formState: {errors, isValid}, trigger, setValue} = useForm<LoginFormValues>({mode: 'onChange'});
+  const {register, handleSubmit, formState: {errors, isValid}} = useForm<LoginFormValues>({mode: 'onChange'});
   const [error, setError] = useState('');
   const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
@@ -58,31 +58,10 @@ const LoginForm = () => {
   };
   const [showPassword, setShowPassword] = useState(false);
 
-
-  useEffect(() => {
-    // ждём, пока браузер подставит автозаполнение
-    const timer = setTimeout(() => {
-      const loginInput = document.getElementById('login') as HTMLInputElement | null;
-      const passwordInput = document.getElementById('password') as HTMLInputElement | null;
-
-      const loginVal = loginInput?.value?.trim();
-      const passwordVal = passwordInput?.value?.trim();
-
-      // если браузер реально что-то подставил — обновляем форму
-      if (loginVal || passwordVal) {
-        if (loginVal) setValue('login', loginVal);
-        if (passwordVal) setValue('password', passwordVal);
-        trigger(); // теперь можно вызвать валидацию
-      }
-    }, 300);
-
-    return () => clearTimeout(timer);
-  }, [setValue, trigger]);
-
   return (
     <ModalContainer>
       <div className={s.headerRow}>
-        <button className={s.backBtn} onClick={() => router.push('/')}>
+        <button className={s.backBtn} onClick={() => router.back()}>
           <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9.41406 0.707153L1.41406 8.70715L9.41406 16.707" stroke="#252526" strokeOpacity="0.8"
                   strokeWidth="2"/>

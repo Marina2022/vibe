@@ -1,11 +1,12 @@
 import React from 'react';
 import MiniSpinner from "@/components-ui/miniSpinner/MiniSpinner";
+import SpinnerWrapper from "@/components-ui/SpinnerWrapper/SpinnerWrapper";
 
 const Loading = () => {
   return (
-    <div style={{ height: "600px", width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+    <SpinnerWrapper>
       <MiniSpinner big={true} />
-    </div>
+    </SpinnerWrapper>
   );
 };
 

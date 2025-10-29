@@ -1,0 +1,23 @@
+export type UserBySearch = {
+  birthday: string;
+  gender: string;
+  timezone: string;
+  settlement_fias_id: string;
+  pat_name: string;
+  last_name: string;
+  telegram: string;
+  instagram: string;
+  login: string;
+  delete: number;
+  settlement: string;
+  co_statement_link?: string;
+  phone: string;
+  date_create: string;
+  theme: string;
+  id: string;
+  first_name: string;
+  payout_state: string;
+  email: string;
+  zulip_api_key?: string;
+  restore_code: string;
+};

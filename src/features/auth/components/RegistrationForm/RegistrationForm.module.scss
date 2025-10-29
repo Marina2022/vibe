@@ -1,0 +1,41 @@
+@use '@/assets/styles/mixins' as *;
+
+.headerRow {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 38px;
+}
+
+.backBtn {
+  position: absolute;
+  background: #fff;
+  top: 16px;
+  left: -34px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: #B8E05F;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgba(248, 249, 250, 1);
+
+  @include m {
+    position: static;
+  }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+
+  @include m {
+    font-size: 20px;
+  }
+}
+
+.goToMentor {
+  margin-bottom: 20px;
+}
