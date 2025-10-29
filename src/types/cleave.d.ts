@@ -2,14 +2,14 @@ declare module 'cleave.js/react' {
   import { Component } from 'react';
 
   interface CleaveOptions {
-    // Можно описать основные опции, или оставить как any
     prefix?: string;
     delimiters?: string[];
     blocks?: number[];
     numericOnly?: boolean;
     phone?: boolean;
     phoneRegionCode?: string;
-    [key: string]: any;
+    // другие опции могут быть любого типа, безопасно через unknown
+    [key: string]: unknown;
   }
 
   interface CleaveProps {

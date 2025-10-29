@@ -3,7 +3,7 @@ import {User} from "@/features/user/actions/types/User";
 import {UserBySearch} from "@/features/user/actions/types/UserBySearch";
 import {Control, Controller, FieldErrors, UseFormRegister} from "react-hook-form";
 import {RegisterFormValues} from "@/features/auth/components/RegistrationFormBlock/RegistrationFormBlock";
-import s from "@/features/auth/components/RegistrationFormBlock/RegistrationForm/RegistrationForm.module.scss";
+import s from "./RegistrationFormStep2.module.scss";
 import Button from "@/components-ui/Button/Button";
 import Badge from "@/components-ui/Badge/Badge";
 import ModalContainer from "@/features/auth/components/common/ModalContainer/ModalContainer";
@@ -20,13 +20,20 @@ type Props =
     errors: FieldErrors<RegisterFormValues>;
     isValid: boolean;
     control: Control<RegisterFormValues>
+
+    check1isChecked: boolean;
+    setCheck1isChecked: Dispatch<SetStateAction<boolean>>;
+    check2isChecked: boolean;
+    setCheck2isChecked: Dispatch<SetStateAction<boolean>>;
+
   }
 
 
-const RegistrationFormStep2 = ({mentor, setStep, register, errors, isValid, control}: Props) => {
+const RegistrationFormStep2 = ({
+                                 mentor, setStep, register, errors, isValid, control,
+                                 check1isChecked,check2isChecked, setCheck1isChecked, setCheck2isChecked
+}: Props) => {
 
-  const [check1isChecked, setCheck1isChecked] = useState(false);
-  const [check2isChecked, setCheck2isChecked] = useState(false);
 
 
   return (
@@ -40,7 +47,7 @@ const RegistrationFormStep2 = ({mentor, setStep, register, errors, isValid, cont
             </svg>
           </button>
           <h1 className={s.title}>Регистрация</h1>
-          <div className={s.step}>1/3</div>
+          <div className={s.step}>2/3</div>
         </div>
 
         <div className={s.text}>

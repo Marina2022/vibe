@@ -87,6 +87,9 @@ const RegistrationFormBlock = ({refLink, login}: Props) => {
     const [error, setError] = useState('');
     const [isPending, startTransition] = useTransition();
 
+  const [check1isChecked, setCheck1isChecked] = useState(false);
+  const [check2isChecked, setCheck2isChecked] = useState(false);
+
     const allValues = watch()
 
     const onSubmit = (data: RegisterFormValues) => {
@@ -142,11 +145,19 @@ const RegistrationFormBlock = ({refLink, login}: Props) => {
             }
 
             {
-              step === 2 && <RegistrationFormStep2 control={control} mentor={mentor} setStep={setStep} register={register} errors={errors} isValid={isValid}/>
+              step === 2 && <RegistrationFormStep2
+                check1isChecked={check1isChecked}
+                setCheck1isChecked={setCheck1isChecked}
+                check2isChecked={check2isChecked}
+                setCheck2isChecked={setCheck2isChecked}
+                control={control} mentor={mentor} setStep={setStep} register={register} errors={errors} isValid={isValid}/>
             }
 
             {
-              step === 3 && <CheckYouData mentor={mentor} values={allValues} setStep={setStep}/>
+              step === 3 && <CheckYouData
+                mentor={mentor}
+                values={allValues}
+                setStep={setStep}/>
             }
           </form>
 

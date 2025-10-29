@@ -114,6 +114,7 @@
   width: 195px;
   height: 60px;
   border-radius: 60px!important;
+  margin-top: 26px;
 }
 
 
@@ -133,4 +134,46 @@
 .redBorder {
   border: 2px solid rgba(247, 74, 63, 1);
   background: rgba(248, 249, 250, 1);
+}
+
+
+
+.checkboxBlock {
+  display: flex;
+  gap: 8px;
+}
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background: #F8F9FA;
+
+  svg {
+    display: none;
+  }
+}
+
+.checkboxChecked {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background: #B8E05F;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.checkboxText {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #515151;
+
+  a {
+    font-weight: 600;
+    color: var(--black);
+    text-decoration: underline;
+  }
 }
