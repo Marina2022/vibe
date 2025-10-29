@@ -97,14 +97,16 @@ const RegistrationFormBlockModule = ({refLink, login}: Props) => {
 
           const result = await registerUser(data);
 
-          if (result.error) {
-            toast.error(result?.error)
-          }
+          //todo - потом вернуть
 
-          if (result.error) {
-            setError(result.error);
-            return;
-          }
+          // if (result.error) {
+          //   toast.error(result?.error)
+          // }
+          //
+          // if (result.error) {
+          //   setError(result.error);
+          //   return;
+          // }
 
         } catch (e: unknown) {
           if (e instanceof Error) {
