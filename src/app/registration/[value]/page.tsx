@@ -1,5 +1,5 @@
 import React from 'react';
-import RegistrationForm from "@/features/auth/components/RegistrationForm/RegistrationForm";
+import RegistrationFormBlockModule from "@/features/auth/components/RegistrationFormBlock/RegistrationFormBlock.module";
 
 interface PageProps {
   params: { value: string };
@@ -11,7 +11,7 @@ const Page = async ({ params }: PageProps) => {
 
   return (
     <div className='container'>
-      <RegistrationForm refLink={value} />
+      <RegistrationFormBlockModule refLink={value} />
     </div>
   );
 };

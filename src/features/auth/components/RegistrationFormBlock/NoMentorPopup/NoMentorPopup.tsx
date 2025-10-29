@@ -1,6 +1,6 @@
 import React from 'react';
 import ModalContainer from "@/features/auth/components/common/ModalContainer/ModalContainer";
-import s from "@/features/auth/components/RegistrationForm/RegistrationForm.module.scss";
+import s from "./NoMentorPopup.module.scss";
 import Button from "@/components-ui/Button/Button";
 import {useRouter} from "next/navigation";
 

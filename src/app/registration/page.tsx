@@ -1,10 +1,10 @@
 import React from 'react';
-import RegistrationForm from "@/features/auth/components/RegistrationForm/RegistrationForm";
+import RegistrationFormBlockModule from "@/features/auth/components/RegistrationFormBlock/RegistrationFormBlock.module";
 
 const Page = () => {
   return (
     <div>
-      <RegistrationForm />
+      <RegistrationFormBlockModule />
     </div>
   );
 };

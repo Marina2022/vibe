@@ -45,7 +45,6 @@ const LoginForm = () => {
           setError(result.error);
           return;
         }
-        alert('Успешный вход!');
 
       } catch (e: unknown) {
         if (e instanceof Error) {
@@ -72,7 +71,6 @@ const LoginForm = () => {
 
       <form className={s.loginForm} onSubmit={handleSubmit(onSubmit)}>
         <div className={s.controlWrapper}>
-          {/*<label className={s.label} htmlFor="login">Данные для входа</label>*/}
           <div className={s.inputWrapper}>
             <input
               autoComplete="username"
@@ -89,7 +87,6 @@ const LoginForm = () => {
         </div>
 
         <div className={s.controlWrapper}>
-          {/*<label className={s.label} htmlFor="password">Пароль</label>*/}
           <div className={s.inputWrapper}>
             <input
               id="password"
