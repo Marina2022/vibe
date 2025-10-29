@@ -5,7 +5,7 @@ import ModalContainer from "@/features/auth/components/common/ModalContainer/Mod
 import Button from "@/components-ui/Button/Button";
 import {useForm} from 'react-hook-form';
 import {useRouter, useSearchParams} from 'next/navigation';
-import {useState, useTransition} from 'react';
+import {useEffect, useState, useTransition} from 'react';
 import {login} from "@/features/auth/actions/login";
 import {toast} from 'sonner'
 import MiniSpinner from "@/components-ui/miniSpinner/MiniSpinner";
@@ -18,7 +18,7 @@ type LoginFormValues = {
 
 const LoginForm = () => {
   const router = useRouter();
-  const {register, handleSubmit, formState: {errors, isValid}} = useForm<LoginFormValues>({mode: 'onChange'});
+  const {register, handleSubmit, formState: {errors, isValid}, trigger, setValue} = useForm<LoginFormValues>({mode: 'onChange'});
   const [error, setError] = useState('');
   const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
@@ -58,6 +58,20 @@ const LoginForm = () => {
   };
   const [showPassword, setShowPassword] = useState(false);
 
+
+  useEffect(() => {
+    // Дадим браузеру время автозаполнить
+    setTimeout(() => {
+      const loginInput = document.getElementById('login') as HTMLInputElement | null;
+      const passwordInput = document.getElementById('password') as HTMLInputElement | null;
+
+      if (loginInput?.value) setValue('login', loginInput.value, { shouldValidate: true });
+      if (passwordInput?.value) setValue('password', passwordInput.value, { shouldValidate: true });
+
+      trigger(); // обновляем валидацию
+    }, 100);
+  }, [setValue, trigger]);
+
   return (
     <ModalContainer>
       <div className={s.headerRow}>
@@ -75,6 +89,7 @@ const LoginForm = () => {
           {/*<label className={s.label} htmlFor="login">Данные для входа</label>*/}
           <div className={s.inputWrapper}>
             <input
+              autoComplete="username"
               id="login"
               {...register('login', {required: 'Введите логин'})}
               className={`${s.input}  ${errors.login ? s.redBorder : ''}`}
@@ -92,6 +107,7 @@ const LoginForm = () => {
           <div className={s.inputWrapper}>
             <input
               id="password"
+              autoComplete="current-password"
               {...register('password', {required: 'Введите пароль'})}
               className={`${s.input} ${s.passwordInput}  ${errors.password ? s.redBorder : ''}`}
               type={showPassword ? "text" : "password"} placeholder="Пароль"
