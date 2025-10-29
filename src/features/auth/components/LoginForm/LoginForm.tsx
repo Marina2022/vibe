@@ -60,16 +60,23 @@ const LoginForm = () => {
 
 
   useEffect(() => {
-    // Дадим браузеру время автозаполнить
-    setTimeout(() => {
+    // ждём, пока браузер подставит автозаполнение
+    const timer = setTimeout(() => {
       const loginInput = document.getElementById('login') as HTMLInputElement | null;
       const passwordInput = document.getElementById('password') as HTMLInputElement | null;
 
-      if (loginInput?.value) setValue('login', loginInput.value, { shouldValidate: true });
-      if (passwordInput?.value) setValue('password', passwordInput.value, { shouldValidate: true });
+      const loginVal = loginInput?.value?.trim();
+      const passwordVal = passwordInput?.value?.trim();
 
-      trigger(); // обновляем валидацию
-    }, 100);
+      // если браузер реально что-то подставил — обновляем форму
+      if (loginVal || passwordVal) {
+        if (loginVal) setValue('login', loginVal);
+        if (passwordVal) setValue('password', passwordVal);
+        trigger(); // теперь можно вызвать валидацию
+      }
+    }, 300);
+
+    return () => clearTimeout(timer);
   }, [setValue, trigger]);
 
   return (
