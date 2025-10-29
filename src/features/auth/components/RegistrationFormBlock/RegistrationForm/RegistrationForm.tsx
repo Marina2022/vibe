@@ -1,16 +1,15 @@
-import React, {Dispatch, SetStateAction, useState, useTransition} from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import {User} from "@/features/user/actions/types/User";
 import {UserBySearch} from "@/features/user/actions/types/UserBySearch";
 import s from "./RegistrationForm.module.scss";
 import ModalContainer from "@/features/auth/components/common/ModalContainer/ModalContainer";
 import {useRouter} from "next/navigation";
 import Badge from "@/components-ui/Badge/Badge";
-import {FieldErrors, useForm, UseFormRegister} from "react-hook-form";
-import {login} from "@/features/auth/actions/login";
-import {toast} from "sonner";
-import {RegisterFormValues} from "@/features/auth/components/RegistrationFormBlock/RegistrationFormBlock.module";
+import {FieldErrors, UseFormRegister, Controller, Control} from "react-hook-form";
+import {RegisterFormValues} from "@/features/auth/components/RegistrationFormBlock/RegistrationFormBlock";
 import Button from "@/components-ui/Button/Button";
-import MiniSpinner from "@/components-ui/miniSpinner/MiniSpinner";
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css'
 
 type Props =
   {
@@ -19,18 +18,22 @@ type Props =
     register: UseFormRegister<RegisterFormValues>;
     errors: FieldErrors<RegisterFormValues>;
     isValid: boolean;
+    control: Control<RegisterFormValues>
+
   }
 
 
-const RegistrationForm = ({mentor, setStep, register, errors, isValid}: Props) => {
+const RegistrationForm = ({mentor, setStep, register, errors, isValid, control}: Props) => {
 
   const router = useRouter();
+
+  const partialValid = !errors.first_name && !errors.last_name && !errors.pat_name && !errors.birthday;
 
   return (
     <ModalContainer>
       <div className={s.scroll}>
         <div className={s.headerRow}>
-          <button className={s.backBtn} onClick={() => router.back()}>
+          <button type="button" className={s.backBtn} onClick={() => router.back()}>
             <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9.41406 0.707153L1.41406 8.70715L9.41406 16.707" stroke="#252526" strokeOpacity="0.8"
                     strokeWidth="2"/>
@@ -104,50 +107,40 @@ const RegistrationForm = ({mentor, setStep, register, errors, isValid}: Props) =
           )}
         </div>
 
+        {/*Введите дату рождения*/}
         <div className={s.controlWrapper}>
           <div className={s.inputWrapper}>
-            <input
-              {...register('email', {required: 'Введите e-mail'})}
-              className={`${s.input}  ${errors.email ? s.redBorder : ''}`}
-              type="text" placeholder="E-mail"
+
+            <Controller
+              name="birthday"
+              control={control}
+              rules={{required: 'Выберите дату рождения'}}
+              render={({field, fieldState}) => (
+                <>
+                  <DatePicker
+                    selected={field.value ? new Date(field.value) : null}
+                    onChange={(date) => {
+                      if (date) field.onChange(date.toISOString().split('T')[0])
+                      else field.onChange('')
+                    }}
+                    placeholderText="Дата рождения"
+                    dateFormat="dd.MM.yyyy"
+                    showMonthDropdown
+                    showYearDropdown
+                    dropdownMode="select"
+                    className="my-datepicker"
+                    wrapperClassName="datepicker-wrapper"
+                    onKeyDown={(e) => e.preventDefault()}   // блокируем клавиатуру
+                  />
+                  {fieldState.error && (
+                    <p className={s.errorMessage}>{fieldState.error.message}</p>
+                  )}
+                </>
+              )}
             />
           </div>
-
-          {errors.email && (
-            <p className={s.errorMessage}>{errors.email.message}</p>
-          )}
         </div>
 
-        <div className={s.controlWrapper}>
-          <div className={s.inputWrapper}>
-            <input
-              {...register('phone', {required: 'Введите телефон'})}
-              className={`${s.input}  ${errors.phone ? s.redBorder : ''}`}
-              type="text" placeholder="+7 000 000 00 00"
-            />
-          </div>
-
-          {errors.email && (
-            <p className={s.errorMessage}>{errors?.phone?.message}</p>
-          )}
-        </div>
-
-        <div className={s.controlWrapper}>
-          <div className={s.inputWrapper}>
-            <input
-              {...register('city', {required: 'Введите город'})}
-              className={`${s.input}  ${errors.city ? s.redBorder : ''}`}
-              type="text" placeholder="Введите город"
-            />
-          </div>
-
-          {errors.city && (
-            <p className={s.errorMessage}>{errors.city.message}</p>
-          )}
-        </div>
-
-        <div className={s.checkboxBlock}>Принимаю условия Правил дистанционной торговли</div>
-        <div className={s.checkboxBlock}>Согласен с  Политикой конфиденциальности</div>
 
         <Button onClick={() => setStep(2)} type="button" className={s.continueBtn} disabled={!isValid}>
           Продолжить

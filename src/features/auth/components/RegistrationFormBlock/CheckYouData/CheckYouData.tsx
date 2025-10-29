@@ -1,6 +1,6 @@
 import s from './CheckYouData.module.scss'
 import {Dispatch, SetStateAction} from "react";
-import {RegisterFormValues} from "@/features/auth/components/RegistrationFormBlock/RegistrationFormBlock.module";
+import {RegisterFormValues} from "@/features/auth/components/RegistrationFormBlock/RegistrationFormBlock";
 import {User} from "@/features/user/actions/types/User";
 import {UserBySearch} from "@/features/user/actions/types/UserBySearch";
 

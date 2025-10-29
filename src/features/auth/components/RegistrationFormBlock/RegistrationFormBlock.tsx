@@ -14,6 +14,9 @@ import {toast} from "sonner";
 import {registerUser} from "@/features/auth/actions/registerUser";
 import CheckYouData from "@/features/auth/components/RegistrationFormBlock/CheckYouData/CheckYouData";
 import s from './RegistrationFormBlock.module.scss'
+import {allowedDisplayValues} from "next/dist/compiled/@next/font/dist/constants";
+import RegistrationFormStep2
+  from "@/features/auth/components/RegistrationFormBlock/RegistrationFormStep2/RegistrationFormStep2";
 
 interface Props {
   refLink?: string,
@@ -27,12 +30,11 @@ export type RegisterFormValues = {
   email: string;
   phone: string;
   city: string;
+  birthday: Date;
 };
 
 
-const RegistrationFormBlockModule = ({refLink, login}: Props) => {
-
-    console.log({refLink, login})
+const RegistrationFormBlock = ({refLink, login}: Props) => {
 
     const [mentor, setMentor] = useState<User | UserBySearch | string | null>(null)
     const [isLoading, setIsLoading] = useState(false);
@@ -81,7 +83,7 @@ const RegistrationFormBlockModule = ({refLink, login}: Props) => {
     }, [login, refLink]);
 
 
-    const {register, handleSubmit, formState: {errors, isValid}, watch} = useForm<RegisterFormValues>({mode: 'onChange'});
+    const {register, handleSubmit, formState: {errors, isValid}, watch, control} = useForm<RegisterFormValues>({mode: 'onChange'});
     const [error, setError] = useState('');
     const [isPending, startTransition] = useTransition();
 
@@ -130,19 +132,29 @@ const RegistrationFormBlockModule = ({refLink, login}: Props) => {
     if (mentor)
       return (
 
+        <>
+          <div style={{height: 200}}>header</div>
+
           <form onSubmit={handleSubmit(onSubmit)}>
             {
               step === 1 &&
-              <RegistrationForm mentor={mentor} setStep={setStep} register={register} errors={errors} isValid={isValid}/>
+              <RegistrationForm mentor={mentor} setStep={setStep} register={register} errors={errors} isValid={isValid} control={control} />
             }
 
             {
-              step === 2 && <CheckYouData mentor={mentor} values={allValues} setStep={setStep}/>
+              step === 2 && <RegistrationFormStep2 control={control} mentor={mentor} setStep={setStep} register={register} errors={errors} isValid={isValid}/>
+            }
+
+            {
+              step === 3 && <CheckYouData mentor={mentor} values={allValues} setStep={setStep}/>
             }
           </form>
+
+          <div style={{height: 200}}>footer</div>
+        </>
 
       );
   }
 ;
 
-export default RegistrationFormBlockModule;
+export default RegistrationFormBlock;

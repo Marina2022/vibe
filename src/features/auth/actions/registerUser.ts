@@ -1,4 +1,4 @@
-import {RegisterFormValues} from "@/features/auth/components/RegistrationFormBlock/RegistrationFormBlock.module";
+import {RegisterFormValues} from "@/features/auth/components/RegistrationFormBlock/RegistrationFormBlock";
 
 export const registerUser = async(data: RegisterFormValues) => {
 
