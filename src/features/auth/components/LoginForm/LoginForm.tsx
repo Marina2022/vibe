@@ -26,6 +26,8 @@ const LoginForm = () => {
   let token = ''
   token = searchParams.get('token') || ''; // например .../login?token=123
 
+  console.log('token ------------', token)
+
   const onSubmit = (data: LoginFormValues) => {
 
     setError('');

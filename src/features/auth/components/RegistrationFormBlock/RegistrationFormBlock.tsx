@@ -17,6 +17,7 @@ import s from './RegistrationFormBlock.module.scss'
 import {allowedDisplayValues} from "next/dist/compiled/@next/font/dist/constants";
 import RegistrationFormStep2
   from "@/features/auth/components/RegistrationFormBlock/RegistrationFormStep2/RegistrationFormStep2";
+import MessageSentToEmail from "@/features/auth/components/RegistrationFormBlock/MessageSentToEmail/MessageSentToEmail";
 
 interface Props {
   refLink?: string,
@@ -83,12 +84,18 @@ const RegistrationFormBlock = ({refLink, login}: Props) => {
     }, [login, refLink]);
 
 
-    const {register, handleSubmit, formState: {errors, isValid}, watch, control} = useForm<RegisterFormValues>({mode: 'onChange'});
+    const {
+      register,
+      handleSubmit,
+      formState: {errors, isValid},
+      watch,
+      control
+    } = useForm<RegisterFormValues>({mode: 'onChange'});
     const [error, setError] = useState('');
     const [isPending, startTransition] = useTransition();
 
-  const [check1isChecked, setCheck1isChecked] = useState(false);
-  const [check2isChecked, setCheck2isChecked] = useState(false);
+    const [check1isChecked, setCheck1isChecked] = useState(false);
+    const [check2isChecked, setCheck2isChecked] = useState(false);
 
     const allValues = watch()
 
@@ -103,7 +110,10 @@ const RegistrationFormBlock = ({refLink, login}: Props) => {
 
           const result = await registerUser(data, mentor.login);
 
-          console.log('result = ', result)
+          if (!result.error) {
+            setStep(4)
+          }
+
 
           if (result.error) {
             toast.error(result?.error)
@@ -142,7 +152,8 @@ const RegistrationFormBlock = ({refLink, login}: Props) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             {
               step === 1 &&
-              <RegistrationForm mentor={mentor} setStep={setStep} register={register} errors={errors} isValid={isValid} control={control} />
+              <RegistrationForm mentor={mentor} setStep={setStep} register={register} errors={errors} isValid={isValid}
+                                control={control}/>
             }
 
             {
@@ -158,7 +169,13 @@ const RegistrationFormBlock = ({refLink, login}: Props) => {
               step === 3 && <CheckYouData
                 mentor={mentor}
                 values={allValues}
-                setStep={setStep}/>
+                setStep={setStep}
+                isPending={isPending}
+              />
+            }
+
+            {
+              step === 4 && <MessageSentToEmail setStep={setStep} />
             }
           </form>
 

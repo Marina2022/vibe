@@ -4,6 +4,7 @@ import {cookies} from "next/headers";
 import { redirect } from 'next/navigation';
 
 export const login = async (data: { login: string; password: string }, token: string)=>
+
 {
 
   try {
@@ -34,19 +35,28 @@ export const login = async (data: { login: string; password: string }, token: st
       return {error: 'Неверный логин или пароль'};
     }
 
+
     const authResult = await response.json();
 
 
     // flow при авторизации - в процессе регистрации:
 
-    // до установки кук надо проверить токены!
+    if (token) {
+      const response = await fetch(`${process.env.API_URL}/user/${realLogin.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          confirm_email: 1
+        }),
+      });
 
-    // if (token)  // если токен не равен пустой строке
-    // послать запрос на юзера (достать его из access-токена), из user получить значение confirm-кода
-    // сравнить токены из юзера и аргументов. Если не совпадают, то вернуть
-    // return {error: 'Токен не соответствует'};
+      if (!response.ok) {
+        return {error: 'confirm_email не установлен'};
+      }
 
-    // послать put confirm
+    }
 
 
     const cookieStore = await cookies();

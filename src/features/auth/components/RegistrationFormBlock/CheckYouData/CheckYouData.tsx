@@ -6,14 +6,16 @@ import {UserBySearch} from "@/features/user/actions/types/UserBySearch";
 import ModalContainer from "@/features/auth/components/common/ModalContainer/ModalContainer";
 import Badge from "@/components-ui/Badge/Badge";
 import Button from "@/components-ui/Button/Button";
+import MiniSpinner from "@/components-ui/miniSpinner/MiniSpinner";
 
 type Props = {
   values: RegisterFormValues;
   setStep: Dispatch<SetStateAction<number>>;
   mentor: User | UserBySearch;
+  isPending: boolean;
 }
 
-const CheckYouData = ({values, setStep, mentor}: Props) => {
+const CheckYouData = ({values, setStep, mentor, isPending}: Props) => {
 
   const formattedDate = values.birthday.split('-').reverse().join('.');
 
@@ -28,7 +30,7 @@ const CheckYouData = ({values, setStep, mentor}: Props) => {
             </svg>
           </button>
           <h1 className={s.title}>Проверьте данные</h1>
-          <div className={s.step}>3/3</div>
+          <div className={s.step}>3/4</div>
         </div>
       </div>
 
@@ -80,7 +82,7 @@ const CheckYouData = ({values, setStep, mentor}: Props) => {
       <p className={s.bottomText}>Внесите изменения на предыдущих шагах,
         если это необходимо</p>
 
-      <Button className={s.btn}>Создать аккаунт и войти</Button>
+      <Button className={s.btn}>{isPending ? <MiniSpinner/> : "Создать аккаунт и войти"}</Button>
     </ModalContainer>
   );
 };

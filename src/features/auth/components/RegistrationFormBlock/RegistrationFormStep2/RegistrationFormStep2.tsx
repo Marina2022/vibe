@@ -47,7 +47,7 @@ const RegistrationFormStep2 = ({
             </svg>
           </button>
           <h1 className={s.title}>Регистрация</h1>
-          <div className={s.step}>2/3</div>
+          <div className={s.step}>2/4</div>
         </div>
 
         <div className={s.text}>

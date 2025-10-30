@@ -40,7 +40,7 @@ const RegistrationForm = ({mentor, setStep, register, errors, isValid, control}:
             </svg>
           </button>
           <h1 className={s.title}>Регистрация</h1>
-          <div className={s.step}>1/3</div>
+          <div className={s.step}>1/4</div>
         </div>
 
         <div className={s.text}>
