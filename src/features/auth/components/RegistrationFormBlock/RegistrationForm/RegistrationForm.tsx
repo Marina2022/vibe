@@ -130,7 +130,7 @@ const RegistrationForm = ({mentor, setStep, register, errors, isValid, control}:
                     dropdownMode="select"
                     className="my-datepicker"
                     wrapperClassName="datepicker-wrapper"
-                    onKeyDown={(e) => e.preventDefault()}   // блокируем клавиатуру
+                    //onKeyDown={(e) => e.preventDefault()}   // блокируем клавиатуру
                   />
                   {fieldState.error && (
                     <p className={s.errorMessage}>{fieldState.error.message}</p>
@@ -142,7 +142,7 @@ const RegistrationForm = ({mentor, setStep, register, errors, isValid, control}:
         </div>
 
 
-        <Button onClick={() => setStep(2)} type="button" className={s.continueBtn} disabled={!isValid}>
+        <Button onClick={() => setStep(2)} type="button" className={s.continueBtn} disabled={!partialValid}>
           Продолжить
         </Button>
 

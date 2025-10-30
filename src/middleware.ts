@@ -9,9 +9,6 @@ export async function middleware(req: NextRequest) {
   const expiresIn = cookieStore.get('expires_in')?.value;
 
 
-
-  console.log('Мидлвара')
-
   const now = Math.floor(Date.now() / 1000);
 
 

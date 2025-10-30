@@ -14,8 +14,8 @@ export const login = async (data: { login: string; password: string }, token: st
       return {error: 'Неверный логин или пароль'};
     }
 
+    // тут будет объект юзера
     const realLogin = await res.json();
-
 
     const response = await fetch(`${process.env.AUTH_API_URL}/auth`, {
       method: 'POST',
@@ -24,7 +24,7 @@ export const login = async (data: { login: string; password: string }, token: st
       },
       body: JSON.stringify({
         grant_type: 'password',
-        username: realLogin,
+        username: realLogin.login,
         password: data.password,
         client_id: 'primetime',
       }),

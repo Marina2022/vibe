@@ -5,18 +5,17 @@ import {User} from "@/features/user/actions/types/User";
 import {UserBySearch} from "@/features/user/actions/types/UserBySearch";
 import ModalContainer from "@/features/auth/components/common/ModalContainer/ModalContainer";
 import Badge from "@/components-ui/Badge/Badge";
+import Button from "@/components-ui/Button/Button";
 
-type Props =
-  {
-    values: RegisterFormValues;
-    setStep: Dispatch<SetStateAction<number>>;
-    mentor: User | UserBySearch;
-
-  }
+type Props = {
+  values: RegisterFormValues;
+  setStep: Dispatch<SetStateAction<number>>;
+  mentor: User | UserBySearch;
+}
 
 const CheckYouData = ({values, setStep, mentor}: Props) => {
 
-  console.log('values ===', values)
+  const formattedDate = values.birthday.split('-').reverse().join('.');
 
   return (
     <ModalContainer>
@@ -28,7 +27,7 @@ const CheckYouData = ({values, setStep, mentor}: Props) => {
                     strokeWidth="2"/>
             </svg>
           </button>
-          <h1 className={s.title}>Регистрация</h1>
+          <h1 className={s.title}>Проверьте данные</h1>
           <div className={s.step}>3/3</div>
         </div>
       </div>
@@ -50,6 +49,38 @@ const CheckYouData = ({values, setStep, mentor}: Props) => {
         </div>
         <Badge className={s.idBadge}>ID {mentor.login}</Badge>
       </div>
+
+      <h2 className={s.subtitle}>Данные партнера</h2>
+
+      <div className={s.row}>
+        <span className={s.label}>ФИО</span>
+        {values.first_name} {values.last_name}
+      </div>
+
+      <div className={s.row}>
+        <span className={s.label}>Дата рождения</span>
+        {formattedDate}
+      </div>
+
+      <div className={s.row}>
+        <span className={s.label}>Email</span>
+        {values.email}
+      </div>
+
+      <div className={s.row}>
+        <span className={s.label}>Телефон</span>
+        {values.phone}
+      </div>
+
+      <div className={s.row}>
+        <span className={s.label}>Город</span>
+        {values.city}
+      </div>
+
+      <p className={s.bottomText}>Внесите изменения на предыдущих шагах,
+        если это необходимо</p>
+
+      <Button className={s.btn}>Создать аккаунт и войти</Button>
     </ModalContainer>
   );
 };

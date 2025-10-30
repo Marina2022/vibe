@@ -30,7 +30,7 @@ export type RegisterFormValues = {
   email: string;
   phone: string;
   city: string;
-  birthday: Date;
+  birthday: string;
 };
 
 
@@ -94,24 +94,25 @@ const RegistrationFormBlock = ({refLink, login}: Props) => {
 
     const onSubmit = (data: RegisterFormValues) => {
 
-      console.log('onSubmit')
 
       setError('');
       startTransition(async () => {
         try {
 
-          const result = await registerUser(data);
+          if (typeof mentor === 'string' || !mentor) return
 
-          //todo - потом вернуть
+          const result = await registerUser(data, mentor.login);
 
-          // if (result.error) {
-          //   toast.error(result?.error)
-          // }
-          //
-          // if (result.error) {
-          //   setError(result.error);
-          //   return;
-          // }
+          console.log('result = ', result)
+
+          if (result.error) {
+            toast.error(result?.error)
+          }
+
+          if (result.error) {
+            setError(result.error);
+            return;
+          }
 
         } catch (e: unknown) {
           if (e instanceof Error) {
@@ -120,8 +121,8 @@ const RegistrationFormBlock = ({refLink, login}: Props) => {
             setError('Неизвестная ошибка');
           }
         }
-      });
-    };
+      })
+    }
 
 
     if (isLoading) return (

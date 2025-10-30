@@ -58,11 +58,12 @@
   gap: 8px;
   align-items: center;
   margin-bottom: 24px;
+  font-weight: 600;
 }
 
 .idBadge {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 24px;
 }
 
@@ -88,7 +89,7 @@
 
 .input {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 24px;
   height: 60px;
   display: flex;
@@ -101,6 +102,7 @@
   border: none;
   width: 100%;
   background: rgba(248, 249, 250, 1);
+  font-family: 'Manrope', sans-serif;
 
   &::placeholder {
     color: rgba(185, 185, 185, 1);
@@ -130,13 +132,10 @@
   line-height: 24px;
 }
 
-
 .redBorder {
   border: 2px solid rgba(247, 74, 63, 1);
   background: rgba(248, 249, 250, 1);
 }
-
-
 
 .checkboxBlock {
   display: flex;

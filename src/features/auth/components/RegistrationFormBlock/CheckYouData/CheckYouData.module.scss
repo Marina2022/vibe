@@ -57,12 +57,13 @@
   display: flex;
   gap: 8px;
   align-items: center;
-  margin-bottom: 24px;
+  font-weight: 600;
+  margin-bottom: 26px;
 }
 
 .idBadge {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 24px;
 }
 
@@ -81,4 +82,32 @@
 .scroll {
   max-height: 90vh;
   overflow-y: auto;
+}
+
+.subtitle {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+  line-height: 24px;
+}
+
+
+.label {
+  color: var(--grey-text);
+}
+
+.bottomText {
+  margin-top: 16px;
+  color: var(--grey-text);
+  max-width: 340px;
+  margin-bottom: 24px;
+}
+
+.btn{
+  width: 289px;
 }

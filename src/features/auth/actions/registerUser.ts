@@ -1,43 +1,52 @@
+'use server'
+
 import {RegisterFormValues} from "@/features/auth/components/RegistrationFormBlock/RegistrationFormBlock";
 
-export const registerUser = async(data: RegisterFormValues) => {
+export const registerUser = async (data: RegisterFormValues, parentLogin: string) => {
 
-  console.log('пришло на сервер с формы регистрации', data)
+  const str = data.phone;
+  const phoneNoSpaces = str.replace(/\s+/g, '');
 
-  // try {
-  //
-  //   const res = await fetch(`${process.env.API_URL}/user/search/${data.login}`)
-  //
-  //   if (!res.ok) {
-  //     return {error: 'Неверный логин или пароль'};
-  //   }
-  //
-  //   const realLogin = await res.json();
-  //
-  //
-  //   const response = await fetch(`${process.env.AUTH_API_URL}/auth`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       grant_type: 'password',
-  //       username: realLogin,
-  //       password: realLogin,
-  //       client_id: 'primetime',
-  //     }),
-  //   });
-  //
-  //   if (!response.ok) {
-  //     return {error: 'Неверный логин или пароль'};
-  //   }
-  //
-  //   const authResult = await response.json();
-  //
-  //
-  //
-  // } catch (err) {
-  //   console.error('Ошибка loginAction:', err);
-  //   return { error: err instanceof Error ? err.message : 'Неизвестная ошибка' };
-  // }
+  try {
+    const response = await fetch(`${process.env.API_URL}/user`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          first_name: data.first_name,
+          last_name: data.last_name,
+          pat_name: data.pat_name,
+          login: "",
+          password: "",
+          gender: "",
+          email: data.email,
+          settlement: data.city,
+          settlement_fias_id: "",
+          instagram: "",
+          telegram: "",
+          parent: parentLogin,
+          state: "user",
+          vibe: 1,
+        phone: phoneNoSpaces
+        }
+      ),
+    });
+
+    const result = await response.json().catch(() => null);
+
+    if (!response.ok) {
+      // сервер может прислать ошибку в разных полях: detail, message, error
+      const errorMessage =
+        result?.detail || result?.message || result?.error || 'Ошибка при регистрации';
+      return { error: errorMessage };
+    }
+
+    return { data: result };
+
+
+  } catch (err) {
+    console.error('Ошибка registerAction:', err);
+    return {error: err instanceof Error ? err.message : 'Неизвестная ошибка'};
+  }
 }
