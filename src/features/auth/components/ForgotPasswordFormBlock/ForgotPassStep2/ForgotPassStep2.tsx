@@ -14,6 +14,7 @@ const ForgotPassStep2 = ({setStep, data, currentUser}: { currentUser: UserBySear
 
   const router = useRouter();
   const [emptyError, setEmptyError] = useState(false);
+  const [wrongCodeError, setWrongCodeError] = useState(false);
   const [code, setCode] = useState('');
 
 
@@ -57,8 +58,11 @@ const ForgotPassStep2 = ({setStep, data, currentUser}: { currentUser: UserBySear
 
         if (otp === result.data.restore_code) {
           setStep(3);
+
         } else {
+          setWrongCodeError(true)
           toast.error('Неверный код')
+          return
         }
 
 
@@ -73,7 +77,7 @@ const ForgotPassStep2 = ({setStep, data, currentUser}: { currentUser: UserBySear
     })
 
 
-    setStep(3);
+    //setStep(3);
   }
 
   if(!currentUser) return null
@@ -106,18 +110,21 @@ const ForgotPassStep2 = ({setStep, data, currentUser}: { currentUser: UserBySear
 
           <OtpInput
             value={otp}
-            onChange={setOtp}
+            onChange={(value)=> {
+              setOtp(value)
+              setWrongCodeError(false)
+            }}
             numInputs={6}
 
             placeholder={'000000'}
-            inputStyle={s.otpInput}
+            inputStyle={`${s.otpInput} ${wrongCodeError ? s.redBorder : ''} `   }
             containerStyle={s.containerStyle}
             renderInput={renderInputWithValidation}
           />
         </div>
 
-        {emptyError && (
-          <p className={s.errorMessage}>Введите даные</p>
+        {wrongCodeError && (
+          <p className={s.errorMessage}>Неверный код</p>
         )}
 
         <p className={s.again}>Отправить код повторно можно будет через </p>
