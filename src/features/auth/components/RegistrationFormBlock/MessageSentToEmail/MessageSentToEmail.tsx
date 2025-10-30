@@ -4,7 +4,7 @@ import React, {Dispatch, SetStateAction} from "react";
 
 const MessageSentToEmail = ({setStep}:{setStep: Dispatch<SetStateAction<number>>;}) => {
   return (
-    <ModalContainer>
+    <ModalContainer header={false}>
       <div className={s.scroll}>
         <div className={s.headerRow}>
           <button type="button" className={s.backBtn} onClick={() => setStep(3)}>

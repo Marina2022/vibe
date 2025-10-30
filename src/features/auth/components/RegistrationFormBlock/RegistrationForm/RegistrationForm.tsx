@@ -30,7 +30,7 @@ const RegistrationForm = ({mentor, setStep, register, errors, isValid, control}:
   const partialValid = !errors.first_name && !errors.last_name && !errors.pat_name && !errors.birthday;
 
   return (
-    <ModalContainer>
+    <ModalContainer header={false}>
       <div className={s.scroll}>
         <div className={s.headerRow}>
           <button type="button" className={s.backBtn} onClick={() => router.back()}>

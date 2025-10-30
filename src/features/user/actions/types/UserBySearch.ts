@@ -20,4 +20,5 @@ export type UserBySearch = {
   email: string;
   zulip_api_key?: string;
   restore_code: string;
+
 };

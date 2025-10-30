@@ -13,8 +13,6 @@ import {useForm} from "react-hook-form";
 import {toast} from "sonner";
 import {registerUser} from "@/features/auth/actions/registerUser";
 import CheckYouData from "@/features/auth/components/RegistrationFormBlock/CheckYouData/CheckYouData";
-import s from './RegistrationFormBlock.module.scss'
-import {allowedDisplayValues} from "next/dist/compiled/@next/font/dist/constants";
 import RegistrationFormStep2
   from "@/features/auth/components/RegistrationFormBlock/RegistrationFormStep2/RegistrationFormStep2";
 import MessageSentToEmail from "@/features/auth/components/RegistrationFormBlock/MessageSentToEmail/MessageSentToEmail";
@@ -90,7 +88,7 @@ const RegistrationFormBlock = ({refLink, login}: Props) => {
       formState: {errors, isValid},
       watch,
       control
-    } = useForm<RegisterFormValues>({mode: 'onChange'});
+    } = useForm<RegisterFormValues>({mode: 'onSubmit'});
     const [error, setError] = useState('');
     const [isPending, startTransition] = useTransition();
 
@@ -147,8 +145,6 @@ const RegistrationFormBlock = ({refLink, login}: Props) => {
       return (
 
         <>
-          <div style={{height: 200}}>header</div>
-
           <form onSubmit={handleSubmit(onSubmit)}>
             {
               step === 1 &&
@@ -179,7 +175,7 @@ const RegistrationFormBlock = ({refLink, login}: Props) => {
             }
           </form>
 
-          <div style={{height: 200}}>footer</div>
+
         </>
 
       );

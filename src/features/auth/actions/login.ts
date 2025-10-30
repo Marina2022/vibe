@@ -3,7 +3,7 @@
 import {cookies} from "next/headers";
 import { redirect } from 'next/navigation';
 
-export const login = async (data: { login: string; password: string }, token: string)=>
+export const login = async (data: { login: string; password: string }, token?: string )=>
 
 {
 

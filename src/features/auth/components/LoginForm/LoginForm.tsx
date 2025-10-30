@@ -4,7 +4,7 @@ import s from './LoginForm.module.scss';
 import ModalContainer from "@/features/auth/components/common/ModalContainer/ModalContainer";
 import Button from "@/components-ui/Button/Button";
 import {useForm} from 'react-hook-form';
-import {useRouter, useSearchParams} from 'next/navigation';
+import {useParams, useRouter, useSearchParams} from 'next/navigation';
 import {useEffect, useState, useTransition} from 'react';
 import {login} from "@/features/auth/actions/login";
 import {toast} from 'sonner'
@@ -18,15 +18,19 @@ type LoginFormValues = {
 
 const LoginForm = () => {
   const router = useRouter();
-  const {register, handleSubmit, formState: {errors, isValid}} = useForm<LoginFormValues>({mode: 'onChange'});
+  const {register, handleSubmit, formState: {errors, isValid}} = useForm<LoginFormValues>({mode: 'onSubmit'});
   const [error, setError] = useState('');
   const [isPending, startTransition] = useTransition();
-  const searchParams = useSearchParams();
 
   let token = ''
-  token = searchParams.get('token') || ''; // например .../login?token=123
 
-  console.log('token ------------', token)
+  const params = useParams()
+
+
+  token = Array.isArray(params.code)
+    ? params.code[0]
+    : params.code ?? '';
+
 
   const onSubmit = (data: LoginFormValues) => {
 

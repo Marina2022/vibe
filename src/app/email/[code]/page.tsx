@@ -1,11 +1,10 @@
 import React, {Suspense} from 'react';
-import LoginForm from "@/features/auth/components/LoginForm/LoginForm";
-import MiniSpinner from "@/components-ui/miniSpinner/MiniSpinner";
 import SpinnerWrapper from "@/components-ui/SpinnerWrapper/SpinnerWrapper";
+import MiniSpinner from "@/components-ui/miniSpinner/MiniSpinner";
+import LoginForm from "@/features/auth/components/LoginForm/LoginForm";
 
 const Page = () => {
   return (
-
     <Suspense fallback={<SpinnerWrapper><MiniSpinner big={true} /></SpinnerWrapper> }>
       <LoginForm/>
     </Suspense>
