@@ -17,6 +17,8 @@ const Achievements = ({initialCurrentPeriod, periods}: Props) => {
   const [selectedMonth, setSelectedMonth] = useState(0);
   const [currentPeriod, setCurrentPeriod] = useState(initialCurrentPeriod);
 
+  //  стейт на Данные для подгрузки (для ачивок), начальное значение - грузится с сервера
+
     const achivements = {
       personal: [
         {

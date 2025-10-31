@@ -4,6 +4,7 @@ import {Dispatch, SetStateAction, useState} from "react";
 import {User} from "@/features/user/types/User";
 import { PeriodStatByUser } from '@/features/user/types/PeriodStatByUser';
 import {StatsPeriods} from "@/features/user/types/StatsPeriods";
+import {qualCardColor} from "@/features/user/consts";
 
 type Props = {
   user: User;
@@ -18,7 +19,19 @@ const UserCardBlock = ({user, currentPeriod, selectedMonth, setSelectedMonth, pe
   // console.log('currentPeriod *******', currentPeriod)
   // console.log('user *******', user)
 
-  const backgroundStyle = s.userCardBackground;
+
+  const color = qualCardColor[currentPeriod.qual_name]
+  console.log('color *******', color)
+  let coloredStyle
+
+  if (color === 'purple') coloredStyle = s.purple
+  if (color === 'pink') coloredStyle = s.pink
+  if (color === 'orange') coloredStyle = s.orange
+  if (color === 'green') coloredStyle = s.green
+  if (color === 'blue') coloredStyle = s.blue
+
+
+    const backgroundStyle = `${s.userCardBackground} ${coloredStyle}`;
 
   return (
     <div className={s.userCardBlock}>

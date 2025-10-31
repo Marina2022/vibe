@@ -32,11 +32,29 @@
 }
 
 .userCardBackground {
-  background-image: url(/img/lk/lk-main/card.png);
   background-position: center;
   border-radius: 24px;
 }
 
+.purple {
+  background-image: url(/img/lk/lk-main/purpleCard.png);
+}
+
+.pink {
+  background-image: url(/img/lk/lk-main/pinkCard.png);
+}
+
+.orange {
+  background-image: url(/img/lk/lk-main/orangeCard.png);
+}
+
+.green {
+  background-image: url(/img/lk/lk-main/greenCard.png);
+}
+
+.blue {
+  background-image: url(/img/lk/lk-main/blueCard.png);
+}
 .cardTopBlock {
   display: flex;
   justify-content: space-between;

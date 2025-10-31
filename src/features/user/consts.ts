@@ -34,3 +34,22 @@ export const qualInfoList = [
   { name: 'Mentor II', nlo: 3000, active: 8, branch: 5, branch_go: 60000 },
   { name: 'Global Mentor', nlo: 3000, active: 8, branch: 5, branch_go: 100000 },
 ];
+
+
+export const qualCardColor: Record<string, string> = {
+  'Beginner I': 'purple',
+  'Beginner II': 'purple',
+  'Beginner Max': 'purple',
+  'Ambassador I': 'pink',
+  'Ambassador II': 'pink',
+  'Ambassador Pro': 'pink',
+  'Master I': 'orange',
+  'Master II': 'orange',
+  'Grand Master': 'orange',
+  'Leader I': 'green',
+  'Leader II': 'green',
+  'Premier Leader': 'green',
+  'Mentor I': 'blue',
+  'Mentor II': 'blue',
+  'Global Mentor': 'blue'
+};
