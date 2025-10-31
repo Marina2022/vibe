@@ -5,7 +5,7 @@ import {useRouter} from "next/navigation";
 import Button from "@/components-ui/Button/Button";
 import {searchUser} from "@/features/auth/actions/searchUser";
 import {toast} from "sonner";
-import {UserBySearch} from "@/features/user/actions/types/UserBySearch";
+import {UserBySearch} from "@/features/user/types/UserBySearch";
 import MiniSpinner from "@/components-ui/miniSpinner/MiniSpinner";
 import {sendCode} from "@/features/auth/actions/sendCode";
 

@@ -3,10 +3,10 @@
 import {useEffect, useState, useTransition} from "react";
 import {getUserById} from "@/features/user/actions/getUserById";
 import {getUserBySearch} from "@/features/user/actions/getUserBySearch";
-import {UserBySearch} from "@/features/user/actions/types/UserBySearch";
+import {UserBySearch} from "@/features/user/types/UserBySearch";
 import MiniSpinner from "@/components-ui/miniSpinner/MiniSpinner";
 import SpinnerWrapper from "@/components-ui/SpinnerWrapper/SpinnerWrapper";
-import {User} from "@/features/user/actions/types/User";
+import {User} from "@/features/user/types/User";
 import NoMentorPopup from "@/features/auth/components/RegistrationFormBlock/NoMentorPopup/NoMentorPopup";
 import RegistrationForm from "@/features/auth/components/RegistrationFormBlock/RegistrationForm/RegistrationForm";
 import {useForm} from "react-hook-form";

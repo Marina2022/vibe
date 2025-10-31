@@ -1,8 +1,8 @@
 import s from './CheckYouData.module.scss'
 import React, {Dispatch, SetStateAction} from "react";
 import {RegisterFormValues} from "@/features/auth/components/RegistrationFormBlock/RegistrationFormBlock";
-import {User} from "@/features/user/actions/types/User";
-import {UserBySearch} from "@/features/user/actions/types/UserBySearch";
+import {User} from "@/features/user/types/User";
+import {UserBySearch} from "@/features/user/types/UserBySearch";
 import ModalContainer from "@/features/auth/components/common/ModalContainer/ModalContainer";
 import Badge from "@/components-ui/Badge/Badge";
 import Button from "@/components-ui/Button/Button";

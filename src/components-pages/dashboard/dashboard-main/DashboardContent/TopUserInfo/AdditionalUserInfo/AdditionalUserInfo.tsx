@@ -6,18 +6,17 @@ import TableUserInfo
 import StatusUserInfo
   from "@/components-pages/dashboard/dashboard-main/DashboardContent/TopUserInfo/AdditionalUserInfo/StatusUserInfo/StatusUserInfo";
 import Button from "@/components-ui/Button/Button";
-import {getUser} from "@/features/auth/lib/getUser";
 
-const AdditionalUserInfo = async() => {
+import {PeriodStatByUser} from "@/features/user/types/PeriodStatByUser";
+import {User} from "@/features/user/types/User";
 
-  const user = await getUser()
-  console.log(user)
+const AdditionalUserInfo = ({currentPeriod, user}:{currentPeriod: PeriodStatByUser, user: User}) => {
 
   return (
     <div className={s.additionalUserInfo}>
-      <QualificationUserInfo />
-      <TableUserInfo />
-      <StatusUserInfo />
+      <QualificationUserInfo currentPeriod={currentPeriod} />
+      <TableUserInfo currentPeriod={currentPeriod} />
+      <StatusUserInfo currentPeriod={currentPeriod} />
       <div className={s.buttons}>
         <Button href={`/registration/${user.login}/mentor`} className={s.btn}>Зарегистрировать</Button>
         <Button href="/dashboard/ref-links" className={s.btn}>Реферальные ссылки</Button>

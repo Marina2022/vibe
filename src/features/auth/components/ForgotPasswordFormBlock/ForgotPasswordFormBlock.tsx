@@ -1,7 +1,7 @@
 'use client'
 
 import {useState} from "react";
-import {UserBySearch} from "@/features/user/actions/types/UserBySearch";
+import {UserBySearch} from "@/features/user/types/UserBySearch";
 import ForgotPassStep1 from "@/features/auth/components/ForgotPasswordFormBlock/ForgotPassStep1/ForgotPassStep1";
 import ForgotPassStep2 from "@/features/auth/components/ForgotPasswordFormBlock/ForgotPassStep2/ForgotPassStep2";
 import ForgotPassStep3 from "@/features/auth/components/ForgotPasswordFormBlock/ForgotPassStep3/ForgotPassStep3";

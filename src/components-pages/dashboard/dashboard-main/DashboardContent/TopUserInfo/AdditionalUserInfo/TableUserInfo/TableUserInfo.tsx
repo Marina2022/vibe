@@ -1,6 +1,7 @@
 import s from './TableUserInfo.module.scss';
+import {PeriodStatByUser} from "@/features/user/types/PeriodStatByUser";
 
-const TableUserInfo = () => {
+const TableUserInfo = ({currentPeriod}:{currentPeriod:PeriodStatByUser}) => {
   return (
     <div className={s.tableUserInfo}>
 
@@ -11,9 +12,9 @@ const TableUserInfo = () => {
       </div>
 
       <div className={s.row + ' ' + s.row2}>
-        <div className={s.cell}>45 PV</div>
-        <div className={s.cell + ' ' + s.centerCell}>400 PV</div>
-        <div className={s.cell}>500 PV</div>
+        <div className={s.cell}>{currentPeriod.lo} PV</div>
+        <div className={s.cell + ' ' + s.centerCell}>{currentPeriod.nlo} PV</div>
+        <div className={s.cell}>{currentPeriod.go} PV</div>
       </div>
 
     </div>

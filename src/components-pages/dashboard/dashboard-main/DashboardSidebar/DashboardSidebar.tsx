@@ -6,8 +6,9 @@ import Separator from "@/components-ui/Separator/Separator";
 import Link from "next/link";
 import {useState} from "react";
 import {logout} from "@/features/auth/actions/logout";
+import {User} from "@/features/user/types/User";
 
-const DashboardSidebar = () => {
+const DashboardSidebar = ({user}:{user: User}) => {
 
   const [ratingsOpen, setRatingsOpen] = useState(false);
 
@@ -19,8 +20,8 @@ const DashboardSidebar = () => {
     <ul className={s.sidebar}>
       <li className={s.menuItem}>
         <Link className={s.innerItem} href="/dashboard">
-          Виталий Осотов
-          <Badge height={20}>ID 1</Badge>
+          {user.first_name} {user.last_name}
+          <Badge height={20}>ID {user.login}</Badge>
         </Link>
       </li>
 

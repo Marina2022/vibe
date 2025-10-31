@@ -1,6 +1,6 @@
 import React, {Dispatch, SetStateAction} from 'react';
-import {User} from "@/features/user/actions/types/User";
-import {UserBySearch} from "@/features/user/actions/types/UserBySearch";
+import {User} from "@/features/user/types/User";
+import {UserBySearch} from "@/features/user/types/UserBySearch";
 import s from "./RegistrationForm.module.scss";
 import ModalContainer from "@/features/auth/components/common/ModalContainer/ModalContainer";
 import {useRouter} from "next/navigation";

@@ -1,15 +1,24 @@
-'use client'
-
 import s from './UserCardBlock.module.scss';
 import MonthDropdown from "@/components-ui/MonthDropdown/MonthDropdown";
-import {useState} from "react";
-import {getLastMonths} from "@/utils/lk-utils/common-lk-utils";
+import {Dispatch, SetStateAction, useState} from "react";
+import {User} from "@/features/user/types/User";
+import { PeriodStatByUser } from '@/features/user/types/PeriodStatByUser';
+import {StatsPeriods} from "@/features/user/types/StatsPeriods";
 
-const UserCardBlock = () => {
+type Props = {
+  user: User;
+  currentPeriod: PeriodStatByUser;
+  selectedMonth: number;
+  setSelectedMonth: Dispatch<SetStateAction<number>>;
+  periods: StatsPeriods;
+}
+
+const UserCardBlock = ({user, currentPeriod, selectedMonth, setSelectedMonth, periods}:Props) => {
+
+  console.log('currentPeriod *******', currentPeriod)
+  console.log('user *******', user)
 
   const backgroundStyle = s.userCardBackground;
-  const monthOptions = getLastMonths(6);
-  const [selectedMonth, setSelectedMonth] = useState(monthOptions[0]);
 
   return (
     <div className={s.userCardBlock}>
@@ -17,8 +26,8 @@ const UserCardBlock = () => {
 
         <div className={s.cardTopBlock}>
           <div className={s.cardLeftTop}>
-            <div className={s.userName}>Иванов Иван</div>
-            <MonthDropdown selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} monthOptions={monthOptions} triggerClassName={s.trigger} />
+            <div className={s.userName}>{user.first_name} {user.last_name}</div>
+            <MonthDropdown selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} monthOptions={periods} triggerClassName={s.trigger} />
           </div>
           <img className={s.cardLogo} src="/img/lk/lk-main/card-logo.svg" alt="logo"/>
         </div>
@@ -28,21 +37,22 @@ const UserCardBlock = () => {
               Денежный счет
             </div>
             <div className={s.cardAmount}>
-              15 990 ₽
+              {user.account_gift.balance.toLocaleString('ru-RU')} ₽
             </div>
           </div>
-          <div className={s.qualif}>Beginner  I</div>
+          <div className={s.qualif}>{currentPeriod.qual_name}</div>
         </div>
       </div>
       <div className={s.userCardBottom}>
         <div>
           <div className={s.subtitle}>Подарочный счет</div>
-          <div className={s.amount}>4 990 ₽</div>
+          <div className={s.amount}>{user.account_bonus.balance.toLocaleString('ru-RU')} ₽</div>
         </div>
         <div className={s.vibes}>
           <img className={s.vibesIcon} src="/img/lk/lk-main/v-icon.png" alt="vibes icon"/>
           <div>
-            <div className={s.vibesNumber}>290,4</div>
+            <div className={s.vibesNumber}>
+              {currentPeriod.premium + currentPeriod.premium_gift}</div>
             <div className={s.vibesText}>vibes</div>
           </div>
         </div>

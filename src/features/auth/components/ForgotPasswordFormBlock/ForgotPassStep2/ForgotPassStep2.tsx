@@ -4,7 +4,7 @@ import {useRouter} from "next/navigation";
 import ModalContainer from "@/features/auth/components/common/ModalContainer/ModalContainer";
 import Button from "@/components-ui/Button/Button";
 import OtpInput from 'react-otp-input';
-import {UserBySearch} from "@/features/user/actions/types/UserBySearch";
+import {UserBySearch} from "@/features/user/types/UserBySearch";
 import Badge from "@/components-ui/Badge/Badge";
 import {searchUser} from "@/features/auth/actions/searchUser";
 import {toast} from "sonner";

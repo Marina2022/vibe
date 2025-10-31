@@ -1,6 +1,6 @@
 import React, {Dispatch, SetStateAction, useState} from 'react';
-import {User} from "@/features/user/actions/types/User";
-import {UserBySearch} from "@/features/user/actions/types/UserBySearch";
+import {User} from "@/features/user/types/User";
+import {UserBySearch} from "@/features/user/types/UserBySearch";
 import {Control, Controller, FieldErrors, UseFormClearErrors, UseFormRegister, UseFormTrigger} from "react-hook-form";
 import {RegisterFormValues} from "@/features/auth/components/RegistrationFormBlock/RegistrationFormBlock";
 import s from "./RegistrationFormStep2.module.scss";

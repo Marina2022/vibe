@@ -2,17 +2,14 @@
 
 import s from './MonthDropdown.module.scss';
 import {useEffect, useRef, useState} from "react";
-
-type MonthOption = {
-  label: string;
-  value: string;
-};
+import {StatsPeriods} from "@/features/user/types/StatsPeriods";
+import {formatDropdownDate} from "@/utils/lk-utils/common-lk-utils";
 
 type MonthDropdownProps = {
   triggerClassName?: string;
-  selectedMonth: MonthOption;
-  setSelectedMonth: (month: MonthOption) => void;
-  monthOptions: MonthOption[];
+  selectedMonth: number;
+  setSelectedMonth: (month: number) => void;
+  monthOptions: StatsPeriods;
   leftAlign?: boolean;
   listOffset?: number;
 };
@@ -28,6 +25,7 @@ const MonthDropdown = ({
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
 
   // Закрытие при клике вне дропдауна
   useEffect(() => {
@@ -58,7 +56,7 @@ const MonthDropdown = ({
   return (
     <div className={s.dropdownWrapper} ref={dropdownRef}>
       <div className={`${s.selectTrigger} ${triggerClassName || ''}`} onClick={() => setDropdownOpen(!dropdownOpen)}>
-        <span className={s.monthName}>{selectedMonth.label}</span>
+        <span className={s.monthName}>{formatDropdownDate(monthOptions[selectedMonth].name)}</span>
         <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1 1.5L7.5 6.5L14 1.5" strokeWidth="2"/>
         </svg>
@@ -72,16 +70,16 @@ const MonthDropdown = ({
           }`}
         >
           <ul className={s.dropdownList}>
-            {monthOptions.map((option) => (
+            {monthOptions.map((option, i) => (
               <li
                 className={s.dropdownItem}
-                key={option.value}
+                key={formatDropdownDate(option.name)}
                 onClick={() => {
-                  setSelectedMonth(option);
+                  setSelectedMonth(i);
                   setDropdownOpen(false);
                 }}
               >
-                {option.label}
+                {formatDropdownDate(option.name)}
               </li>
             ))}
           </ul>

@@ -106,6 +106,7 @@
   max-height: 0;
   opacity: 0;
   transition: all 0.4s ease;
+  margin-inline: 32px;
 
   @include m {
     margin-inline: 16px;
@@ -115,10 +116,15 @@
 .bottomProgressBarsItem {
   width: 50%;
   border-top: 1px solid rgba(37, 37, 38, .1);
-  padding: 24px 32px;
+  padding: 24px 32px 24px 0px;
 
   &:nth-child(2n) {
-    padding-left: 0px;
+    padding: 24px 0px 24px 32px;
+
+    @include m {
+      width: 100%;
+      padding-inline: 0;
+    }
   }
 
   @include m {
@@ -138,11 +144,11 @@
 }
 
 .show {
-  max-height: 300px;
+  max-height: 410px;
   opacity: 1;
 
   @include m {
-    max-height: 700px;
+    max-height: 662px;
   }
 }
 

@@ -1,7 +1,7 @@
 import s from './ForgotPassStep3.module.scss';
 import React, {Dispatch, SetStateAction, useState, useTransition} from "react";
 import ModalContainer from "@/features/auth/components/common/ModalContainer/ModalContainer";
-import {UserBySearch} from "@/features/user/actions/types/UserBySearch";
+import {UserBySearch} from "@/features/user/types/UserBySearch";
 import Badge from "@/components-ui/Badge/Badge";
 import Button from "@/components-ui/Button/Button";
 import {toast} from "sonner";
@@ -57,7 +57,6 @@ const ForgotPassStep3 = ({setStep, data, currentUser}: {
       setPass1Error('Пароль должен быть не короче 6 и не длиннее 24 символов')
       return
     }
-
 
     if (password1 !== password2) {
       setPass2Error('Пароли не совпадают')

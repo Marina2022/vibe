@@ -6,9 +6,7 @@ import { redirect } from 'next/navigation';
 export const login = async (data: { login: string; password: string }, token?: string )=>
 
 {
-
   try {
-
     const res = await fetch(`${process.env.API_URL}/user/search/${data.login}`)
 
     if (!res.ok) {
@@ -35,12 +33,9 @@ export const login = async (data: { login: string; password: string }, token?: s
       return {error: 'Неверный логин или пароль'};
     }
 
-
     const authResult = await response.json();
 
-
     // flow при авторизации - в процессе регистрации:
-
     if (token) {
       const response = await fetch(`${process.env.API_URL}/user/${realLogin.id}`, {
         method: 'PUT',
@@ -55,9 +50,7 @@ export const login = async (data: { login: string; password: string }, token?: s
       if (!response.ok) {
         return {error: 'confirm_email не установлен'};
       }
-
     }
-
 
     const cookieStore = await cookies();
 
@@ -87,7 +80,6 @@ export const login = async (data: { login: string; password: string }, token?: s
       secure: process.env.NODE_ENV === 'production',
       maxAge: authResult.expires_in, // берем как есть
     });
-
 
   } catch (err) {
     console.error('Ошибка loginAction:', err);
