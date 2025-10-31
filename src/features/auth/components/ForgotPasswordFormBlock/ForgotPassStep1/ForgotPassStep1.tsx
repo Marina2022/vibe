@@ -43,19 +43,10 @@ const ForgotPassStep1 = ({setStep, setData, data, setCurrentUser}: Props) => {
           return
         }
 
-        console.log('search result = ', result)
         // сетаем юзера на уровне выше
         setCurrentUser(result.data)
 
         const sendResult = await sendCode(result.data.id)
-
-        if (sendResult.error) {
-          // toast.error(sendResult.error)
-          // в ошибку уходит запрос, хотя код и отправляется, не надо делать toast
-          //return
-        }
-
-        console.log('sendResult = ', sendResult)
 
         setStep(2);
 
@@ -81,11 +72,8 @@ const ForgotPassStep1 = ({setStep, setData, data, setCurrentUser}: Props) => {
           </button>
           <h1 className={s.title}>Восстановление пароля</h1>
         </div>
-
-        {/*<label className={s.label} htmlFor="data">Данные для входа</label>*/}
         <div className={s.controlWrapper}>
           <div className={s.inputWrapper}>
-
             <input
               onChange={(e) => {
                 setNotFoundError(false);
@@ -105,7 +93,6 @@ const ForgotPassStep1 = ({setStep, setData, data, setCurrentUser}: Props) => {
           {notFoundError && (
             <p className={s.errorMessage}>Такого аккаунта не существует</p>
           )}
-
         </div>
 
         <Button

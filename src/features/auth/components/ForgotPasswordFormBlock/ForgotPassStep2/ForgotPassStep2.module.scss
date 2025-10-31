@@ -40,8 +40,6 @@
 
 .controlWrapper {
   position: relative;
-  //height: 89px;
-  //margin-bottom: 24px;
 }
 
 .errorMessage {
@@ -49,11 +47,8 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 19px;
-  //padding-left: 12px;
-  //position: absolute;
   bottom: 6px;
 }
-
 
 .input {
   font-size: 16px;
@@ -72,7 +67,6 @@
   background: rgba(248, 249, 250, 1);
   font-family: 'Manrope', sans-serif;
 
-
   &::placeholder {
     color: rgba(185, 185, 185, 1);
     font-size: 16px;
@@ -87,7 +81,6 @@
   border-radius: 60px !important;
 }
 
-
 .redBorder {
   border: 2px solid rgba(247, 74, 63, 1);
   background: rgba(248, 249, 250, 1);
@@ -98,13 +91,13 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 19px;
+  display: block;
   margin-bottom: 4px;
 }
 
 .restoreBtn {
   width: 201px;
 }
-
 
 .otpInput {
   background: #F8F9FA;
@@ -120,13 +113,11 @@
   flex: 1;
   font-weight: 500;
 
-
   &::placeholder {
     color: rgba(19, 20, 21, .5);
     font-weight: 500;
     font-size: 20px;
   }
-
 }
 
 .containerStyle {
@@ -144,6 +135,9 @@
 .again {
   margin-bottom: 28px;
   margin-top: 8px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--grey-text);
 }
 
 .userInfo {
@@ -170,16 +164,31 @@
     background: var(--black) !important;
     border: 2px solid var(--black) !important;
     color: #fff;
-
   }
 
   @include m {
     width: 67% !important;
-
   }
 }
 
 .redBorder {
   border: 2px solid rgba(247, 74, 63, 1) ;
   background: rgba(248, 249, 250, 1) ;
+}
+
+.time {
+  color: var(--lime);
+}
+
+.sendAgain {
+  margin-bottom: 28px;
+  margin-top: 8px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--grey-text);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--black);
+  }
 }

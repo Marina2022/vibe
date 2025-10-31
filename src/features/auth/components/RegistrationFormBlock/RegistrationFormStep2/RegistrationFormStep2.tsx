@@ -14,6 +14,7 @@ import 'cleave.js/dist/addons/cleave-phone.ru'
 
 type Props =
   {
+    trigger: UseFormTrigger<RegisterFormValues>;
     mentor: User | UserBySearch;
     setStep: Dispatch<SetStateAction<number>>;
     register: UseFormRegister<RegisterFormValues>;
@@ -26,7 +27,7 @@ type Props =
     check2isChecked: boolean;
     setCheck2isChecked: Dispatch<SetStateAction<boolean>>;
     clearErrors: UseFormClearErrors<RegisterFormValues>;
-    trigger: UseFormTrigger<RegisterFormValues>;
+
   }
 
 

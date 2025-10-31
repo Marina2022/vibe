@@ -161,8 +161,7 @@ const RegistrationFormBlock = ({refLink, login}: Props) => {
 
             {
               step === 2 && <RegistrationFormStep2
-              trigger={trigger}
-
+                trigger={trigger}
                 clearErrors={clearErrors}
                 check1isChecked={check1isChecked}
                 setCheck1isChecked={setCheck1isChecked}
@@ -181,7 +180,7 @@ const RegistrationFormBlock = ({refLink, login}: Props) => {
             }
 
             {
-              step === 4 && <MessageSentToEmail setStep={setStep} />
+              step === 4 && <MessageSentToEmail setStep={setStep}/>
             }
           </form>
 

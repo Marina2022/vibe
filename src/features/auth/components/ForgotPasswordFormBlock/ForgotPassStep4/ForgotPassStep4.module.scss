@@ -1,0 +1,24 @@
+@use '@/assets/styles/mixins' as *;
+
+.headerRow {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  margin-bottom: 24px;
+
+  @include m {
+    font-size: 20px;
+  }
+}
+
+.btn {
+  width: 150px;
+  margin-top: 0;
+}

@@ -1,5 +1,5 @@
 import s from './ForgotPassStep2.module.scss';
-import React, {ChangeEvent, Dispatch, SetStateAction, startTransition, useState} from "react";
+import React, {ChangeEvent, Dispatch, SetStateAction, useState, useTransition} from "react";
 import {useRouter} from "next/navigation";
 import ModalContainer from "@/features/auth/components/common/ModalContainer/ModalContainer";
 import Button from "@/components-ui/Button/Button";
@@ -8,23 +8,27 @@ import {UserBySearch} from "@/features/user/actions/types/UserBySearch";
 import Badge from "@/components-ui/Badge/Badge";
 import {searchUser} from "@/features/auth/actions/searchUser";
 import {toast} from "sonner";
+import Timer from "@/components-ui/Timer/Timer";
+import {sendCode} from "@/features/auth/actions/sendCode";
 
 
-const ForgotPassStep2 = ({setStep, data, currentUser}: { currentUser: UserBySearch | null,  setStep: Dispatch<SetStateAction<number>>, data: string }) => {
+const ForgotPassStep2 = ({setStep, data, currentUser}: {
+  currentUser: UserBySearch | null,
+  setStep: Dispatch<SetStateAction<number>>,
+  data: string
+}) => {
 
   const router = useRouter();
   const [emptyError, setEmptyError] = useState(false);
   const [wrongCodeError, setWrongCodeError] = useState(false);
-  const [code, setCode] = useState('');
-
 
   const [otp, setOtp] = useState('');
 
+  const [showTimer, setShowTimer] = useState(true)
 
   const renderInputWithValidation = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      setEmptyError(false)
-      const { value } = e.target;
+      const {value} = e.target;
 
       // Проверяем, является ли введенный символ цифрой
       if (value === '' || /^[0-9]$/.test(value)) {
@@ -34,18 +38,21 @@ const ForgotPassStep2 = ({setStep, data, currentUser}: { currentUser: UserBySear
       // Если нет, просто игнорируем ввод, фокус не меняется
     };
 
-    return <input {...props} onChange={handleChange} />;
+    return <input {...props} onChange={handleChange}/>;
   };
 
+  const [isPending, startTransition] = useTransition();
 
   const handleConfirm = () => {
+
+    if (!otp) {
+      setEmptyError(true)
+      return
+    }
+
     startTransition(async () => {
       try {
-
-
         const result = await searchUser(data)
-
-        console.log('Последний юзер = ', result.data)
 
         if (result.error === 'User not found') {
           toast('Пользователь не нашелся почему-то')
@@ -54,7 +61,6 @@ const ForgotPassStep2 = ({setStep, data, currentUser}: { currentUser: UserBySear
           toast.error(result.error)
           return
         }
-        console.log('search result = ', result)
 
         if (otp === result.data.restore_code) {
           setStep(3);
@@ -65,7 +71,22 @@ const ForgotPassStep2 = ({setStep, data, currentUser}: { currentUser: UserBySear
           return
         }
 
+      } catch (e: unknown) {
+        if (e instanceof Error) {
+          toast.error(e.message);
+        } else {
+          toast.error('Неизвестная ошибка');
+        }
+      }
+    })
+  }
 
+  const handleSendAgain = () => {
+
+    startTransition(async () => {
+      try {
+        if (currentUser) await sendCode(currentUser.id)
+        setShowTimer(true)
 
       } catch (e: unknown) {
         if (e instanceof Error) {
@@ -75,12 +96,9 @@ const ForgotPassStep2 = ({setStep, data, currentUser}: { currentUser: UserBySear
         }
       }
     })
-
-
-    //setStep(3);
   }
 
-  if(!currentUser) return null
+  if (!currentUser) return null
 
   return (
     <ModalContainer>
@@ -98,11 +116,9 @@ const ForgotPassStep2 = ({setStep, data, currentUser}: { currentUser: UserBySear
 
         <div className={s.userInfo}>
           <div>
-          {currentUser.first_name} {currentUser.last_name}
+            {currentUser.first_name} {currentUser.last_name}
           </div>
-
           <Badge className={s.badge}>ID {currentUser.login}</Badge>
-
         </div>
 
         <label className={s.label} htmlFor="code">Код подтверждения</label>
@@ -110,14 +126,14 @@ const ForgotPassStep2 = ({setStep, data, currentUser}: { currentUser: UserBySear
 
           <OtpInput
             value={otp}
-            onChange={(value)=> {
+            onChange={(value) => {
               setOtp(value)
               setWrongCodeError(false)
+              setEmptyError(false)
             }}
             numInputs={6}
-
             placeholder={'000000'}
-            inputStyle={`${s.otpInput} ${wrongCodeError ? s.redBorder : ''} `   }
+            inputStyle={`${s.otpInput} ${wrongCodeError || emptyError ? s.redBorder : ''} `}
             containerStyle={s.containerStyle}
             renderInput={renderInputWithValidation}
           />
@@ -127,11 +143,28 @@ const ForgotPassStep2 = ({setStep, data, currentUser}: { currentUser: UserBySear
           <p className={s.errorMessage}>Неверный код</p>
         )}
 
-        <p className={s.again}>Отправить код повторно можно будет через </p>
+        {emptyError && (
+          <p className={s.errorMessage}>Введите код</p>
+        )}
+
+        {
+          showTimer && (
+            <div className={s.again}>Отправить код повторно можно будет через&nbsp;
+              <span className={s.time}>
+                <Timer secondsNumber={120} onComplete={() => setShowTimer(false)}/>
+              </span></div>
+          )
+        }
+
+        {
+          !showTimer && (
+            <div onClick={handleSendAgain} className={s.sendAgain}>Отправить код повторно</div>
+          )
+        }
 
         <div className={s.btns}>
-        <Button disabled={!otp} onClick={handleConfirm} className={s.restoreBtn}>Подтвердить</Button>
-        <Button className={s.cancelBtn} onClick={()=>router.back()} >Отменить</Button>
+          <Button onClick={handleConfirm} className={s.restoreBtn}>Подтвердить</Button>
+          <Button className={s.cancelBtn} onClick={() => router.back()}>Отменить</Button>
         </div>
       </div>
     </ModalContainer>
