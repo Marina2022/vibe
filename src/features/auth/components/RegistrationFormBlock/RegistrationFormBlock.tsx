@@ -87,8 +87,11 @@ const RegistrationFormBlock = ({refLink, login}: Props) => {
       handleSubmit,
       formState: {errors, isValid},
       watch,
-      control
+      control,
+      clearErrors,
+      trigger,
     } = useForm<RegisterFormValues>({mode: 'onSubmit'});
+
     const [error, setError] = useState('');
     const [isPending, startTransition] = useTransition();
 
@@ -148,12 +151,19 @@ const RegistrationFormBlock = ({refLink, login}: Props) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             {
               step === 1 &&
-              <RegistrationForm mentor={mentor} setStep={setStep} register={register} errors={errors} isValid={isValid}
+              <RegistrationForm mentor={mentor}
+                                watch={watch}
+                                trigger={trigger}
+                                clearErrors={clearErrors}
+                                setStep={setStep} register={register} errors={errors} isValid={isValid}
                                 control={control}/>
             }
 
             {
               step === 2 && <RegistrationFormStep2
+              trigger={trigger}
+
+                clearErrors={clearErrors}
                 check1isChecked={check1isChecked}
                 setCheck1isChecked={setCheck1isChecked}
                 check2isChecked={check2isChecked}

@@ -18,7 +18,7 @@ type LoginFormValues = {
 
 const LoginForm = () => {
   const router = useRouter();
-  const {register, handleSubmit, formState: {errors, isValid}} = useForm<LoginFormValues>({mode: 'onSubmit'});
+  const {register, handleSubmit, formState: {errors, isValid}, clearErrors} = useForm<LoginFormValues>({mode: 'onSubmit'});
   const [error, setError] = useState('');
   const [isPending, startTransition] = useTransition();
 
@@ -82,6 +82,9 @@ const LoginForm = () => {
               autoComplete="username"
               id="login"
               {...register('login', {required: 'Введите логин'})}
+              onChange={(e) => {
+                clearErrors('login'); // убираем ошибку при вводе
+              }}
               className={`${s.input}  ${errors.login ? s.redBorder : ''}`}
               type="text" placeholder="ID / Номер телефона / E-mail"
             />
@@ -98,6 +101,9 @@ const LoginForm = () => {
               id="password"
               autoComplete="current-password"
               {...register('password', {required: 'Введите пароль'})}
+              onChange={(e) => {
+                clearErrors('password'); // убираем ошибку при вводе
+              }}
               className={`${s.input} ${s.passwordInput}  ${errors.password ? s.redBorder : ''}`}
               type={showPassword ? "text" : "password"} placeholder="Пароль"
             />
@@ -119,7 +125,11 @@ const LoginForm = () => {
         <Link className={s.forgotPassword} href="/forgot-password">Забыли пароль?</Link>
 
         <div className={s.buttons}>
-          <Button className={s.loginBtn} disabled={!isValid || isPending}>
+          <Button
+            className={s.loginBtn}
+            // disabled={!isValid || isPending}
+              disabled={isPending}
+          >
             {isPending ? <MiniSpinner/> : 'Войти'}
           </Button>
           <Button onClick={() => router.push('/registration')} className={s.registerBtn} type="button">

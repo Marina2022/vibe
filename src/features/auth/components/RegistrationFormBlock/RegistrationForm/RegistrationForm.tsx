@@ -5,7 +5,15 @@ import s from "./RegistrationForm.module.scss";
 import ModalContainer from "@/features/auth/components/common/ModalContainer/ModalContainer";
 import {useRouter} from "next/navigation";
 import Badge from "@/components-ui/Badge/Badge";
-import {FieldErrors, UseFormRegister, Controller, Control} from "react-hook-form";
+import {
+  FieldErrors,
+  UseFormRegister,
+  Controller,
+  Control,
+  UseFormClearErrors,
+  UseFormTrigger,
+  UseFormWatch
+} from "react-hook-form";
 import {RegisterFormValues} from "@/features/auth/components/RegistrationFormBlock/RegistrationFormBlock";
 import Button from "@/components-ui/Button/Button";
 import DatePicker from "react-datepicker";
@@ -19,11 +27,16 @@ type Props =
     errors: FieldErrors<RegisterFormValues>;
     isValid: boolean;
     control: Control<RegisterFormValues>
+    clearErrors: UseFormClearErrors<RegisterFormValues>;
+    trigger: UseFormTrigger<RegisterFormValues>;
+    watch: UseFormWatch<RegisterFormValues>
 
   }
 
 
-const RegistrationForm = ({mentor, setStep, register, errors, isValid, control}: Props) => {
+
+
+const RegistrationForm = ({watch, trigger, mentor, setStep, register, errors, isValid, control, clearErrors}: Props) => {
 
   const router = useRouter();
 
@@ -66,8 +79,12 @@ const RegistrationForm = ({mentor, setStep, register, errors, isValid, control}:
           <div className={s.inputWrapper}>
             <input
               {...register('last_name', {required: 'Введите фамилию'})}
+              onChange={(e) => {
+                clearErrors('last_name'); // убираем ошибку при вводе
+              }}
               className={`${s.input}  ${errors.last_name ? s.redBorder : ''}`}
               type="text" placeholder="Введите фамилию"
+
             />
           </div>
 
@@ -81,6 +98,9 @@ const RegistrationForm = ({mentor, setStep, register, errors, isValid, control}:
           <div className={s.inputWrapper}>
             <input
               {...register('first_name', {required: 'Введите имя'})}
+              onChange={(e) => {
+                clearErrors('first_name'); // убираем ошибку при вводе
+              }}
               className={`${s.input}  ${errors.first_name ? s.redBorder : ''}`}
               type="text" placeholder="Введите имя"
             />
@@ -97,6 +117,9 @@ const RegistrationForm = ({mentor, setStep, register, errors, isValid, control}:
           <div className={s.inputWrapper}>
             <input
               {...register('pat_name', {required: 'Введите отчество'})}
+              onChange={(e) => {
+                clearErrors('pat_name'); // убираем ошибку при вводе
+              }}
               className={`${s.input}  ${errors.pat_name ? s.redBorder : ''}`}
               type="text" placeholder="Введите отчество"
             />
@@ -128,8 +151,9 @@ const RegistrationForm = ({mentor, setStep, register, errors, isValid, control}:
                     showMonthDropdown
                     showYearDropdown
                     dropdownMode="select"
-                    className="my-datepicker"
+                    className={ fieldState.error ? "my-datepicker-error" : "my-datepicker" }
                     wrapperClassName="datepicker-wrapper"
+
                     //onKeyDown={(e) => e.preventDefault()}   // блокируем клавиатуру
                   />
                   {fieldState.error && (
@@ -142,7 +166,16 @@ const RegistrationForm = ({mentor, setStep, register, errors, isValid, control}:
         </div>
 
 
-        <Button onClick={() => setStep(2)} type="button" className={s.continueBtn} disabled={!partialValid}>
+        <Button
+          onClick={async() => {
+            await trigger(['first_name', 'last_name', 'birthday', 'pat_name']);
+
+            if (!watch('first_name') || !watch('last_name') || !watch('birthday') || !watch('pat_name') ) return
+
+            setStep(2)
+          }}
+
+          type="button" className={s.continueBtn} >
           Продолжить
         </Button>
 

@@ -1,7 +1,7 @@
 import React, {Dispatch, SetStateAction, useState} from 'react';
 import {User} from "@/features/user/actions/types/User";
 import {UserBySearch} from "@/features/user/actions/types/UserBySearch";
-import {Control, Controller, FieldErrors, UseFormRegister} from "react-hook-form";
+import {Control, Controller, FieldErrors, UseFormClearErrors, UseFormRegister, UseFormTrigger} from "react-hook-form";
 import {RegisterFormValues} from "@/features/auth/components/RegistrationFormBlock/RegistrationFormBlock";
 import s from "./RegistrationFormStep2.module.scss";
 import Button from "@/components-ui/Button/Button";
@@ -25,16 +25,25 @@ type Props =
     setCheck1isChecked: Dispatch<SetStateAction<boolean>>;
     check2isChecked: boolean;
     setCheck2isChecked: Dispatch<SetStateAction<boolean>>;
-
+    clearErrors: UseFormClearErrors<RegisterFormValues>;
+    trigger: UseFormTrigger<RegisterFormValues>;
   }
 
 
 const RegistrationFormStep2 = ({
+                                 clearErrors,
+                                 trigger,
                                  mentor, setStep, register, errors, isValid, control,
                                  check1isChecked,check2isChecked, setCheck1isChecked, setCheck2isChecked
 }: Props) => {
 
 
+  const [check1Error, setCheck1Error] = useState(false)
+  const [check2Error, setCheck2Error] = useState(false)
+
+  console.log(check1Error)
+
+  console.log({check1isChecked, check2isChecked})
 
   return (
     <ModalContainer header={false}>
@@ -78,6 +87,9 @@ const RegistrationFormStep2 = ({
                   message: 'Некорректный e-mail',
                 },
               })}
+              onChange={(e) => {
+                clearErrors('email'); // убираем ошибку при вводе
+              }}
               className={`${s.input}  ${errors.email ? s.redBorder : ''}`}
               type="text" placeholder="E-mail"
             />
@@ -111,7 +123,11 @@ const RegistrationFormStep2 = ({
                   }}
                   className={`${s.input} ${errors.phone ? s.redBorder : ''}`}
                   placeholder="+7 000 000 00 00"
-                  onChange={(e) => field.onChange(e.target.value)} // сохраняем "чистое" значение без маски
+
+                  onChange={(e) => {
+                    field.onChange(e.target.value)
+                    clearErrors('phone')
+                  }} // сохраняем "чистое" значение без маски
                 />
               )}
             />
@@ -126,6 +142,9 @@ const RegistrationFormStep2 = ({
           <div className={s.inputWrapper}>
             <input
               {...register('city', {required: 'Введите город'})}
+              onChange={(e) => {
+                clearErrors('city'); // убираем ошибку при вводе
+              }}
               className={`${s.input}  ${errors.city ? s.redBorder : ''}`}
               type="text" placeholder="Введите город"
             />
@@ -137,7 +156,7 @@ const RegistrationFormStep2 = ({
         </div>
 
         <div className={s.checkboxBlock} onClick={() => setCheck1isChecked(prev=>!prev)} >
-          <div className={check1isChecked ? s.checkboxChecked : s.checkbox}>
+          <div className={check1isChecked ? s.checkboxChecked : check1Error ? `${s.checkbox} ${s.redBorder}` : s.checkbox}>
             <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="#252526" strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="black" strokeOpacity="0.2" strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
@@ -149,7 +168,8 @@ const RegistrationFormStep2 = ({
         </div>
 
         <div className={s.checkboxBlock} onClick={() => setCheck2isChecked(prev=>!prev)}>
-          <div className={check2isChecked ? s.checkboxChecked : s.checkbox}>
+
+            <div className={check2isChecked ? s.checkboxChecked : check2Error ? `${s.checkbox} ${s.redBorder}` : s.checkbox}>
             <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="#252526" strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="black" strokeOpacity="0.2" strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
@@ -160,7 +180,36 @@ const RegistrationFormStep2 = ({
           <div className={s.checkboxText}>Согласен с <a href="">Политикой конфиденциальности</a></div>
         </div>
 
-        <Button onClick={() => setStep(3)} type="button" className={s.continueBtn} disabled={!isValid || !check1isChecked || !check2isChecked }>
+        <Button onClick={
+          () => {
+            if (!isValid) {
+              trigger()
+
+              if (!check1isChecked ) {
+                setCheck1Error(true)
+              }
+
+              if (!check2isChecked ) {
+                setCheck2Error(true)
+              }
+              return
+            }
+
+            if (!check1isChecked ) {
+              setCheck1Error(true)
+              return
+            }
+
+            if (!check2isChecked ) {
+              setCheck2Error(true)
+              return
+            }
+
+
+            setStep(3)
+          }
+
+        } type="button" className={s.continueBtn} >
           Продолжить
         </Button>
       </div>

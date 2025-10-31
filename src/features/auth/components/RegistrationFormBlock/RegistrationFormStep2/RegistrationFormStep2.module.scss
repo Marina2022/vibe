@@ -82,10 +82,7 @@
   bottom: 6px;
 }
 
-.redBorder {
-  border: 2px solid rgba(247, 74, 63, 1);
-  background: rgba(248, 249, 250, 1);
-}
+
 
 .input {
   font-size: 16px;
@@ -175,4 +172,9 @@
     color: var(--black);
     text-decoration: underline;
   }
+}
+
+.redBorder {
+  border: 2px solid rgba(247, 74, 63, 1);
+  background: rgba(248, 249, 250, 1);
 }
