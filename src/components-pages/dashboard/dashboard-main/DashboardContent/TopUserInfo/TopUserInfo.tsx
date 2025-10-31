@@ -21,7 +21,6 @@ type Props = {
 
 const TopUserInfo = ({selectedMonth, setSelectedMonth, currentPeriod, user, periods}: Props) => {
 
-
   return (
     <div className={s.topUserInfo}>
       <UserCardBlock periods={periods} selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} user={user} currentPeriod={currentPeriod} />

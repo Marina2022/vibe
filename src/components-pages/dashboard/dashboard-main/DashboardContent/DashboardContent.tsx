@@ -12,6 +12,7 @@ import {StatsPeriods} from "@/features/user/types/StatsPeriods";
 import {useEffect, useState} from "react";
 import {getUserStatByPeriod} from "@/features/user/actions/getUserStatByPeriod";
 import {StatByPeriodId} from "@/features/user/types/StatByPeriodId";
+import Achievements from "@/components-pages/dashboard/dashboard-main/DashboardContent/Achievements/Achievements";
 
 type Props = {
   initialCurrentPeriod: PeriodStatByUser;
@@ -51,9 +52,10 @@ const DashboardContent = ({statsByPeriod, initialCurrentPeriod, periods, user}: 
         setSelectedMonth={setSelectedMonth}
         currentPeriod={currentPeriod}
       />
-      <NextQualification currentPeriod={currentPeriod} statsByPeriod={statsByPeriod} />
 
-      {/*<Achievements/>*/}
+      <NextQualification currentPeriod={initialCurrentPeriod} statsByPeriod={statsByPeriod} />
+
+      <Achievements initialCurrentPeriod={initialCurrentPeriod} periods={periods} />
       <Events/>
       <News/>
     </div>

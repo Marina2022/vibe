@@ -2,13 +2,20 @@
 
 import s from './Achievements.module.scss';
 import MonthDropdown from "@/components-ui/MonthDropdown/MonthDropdown";
-import {getLastMonths} from "@/utils/lk-utils/common-lk-utils";
 import {useState} from "react";
+import {StatByPeriodId} from "@/features/user/types/StatByPeriodId";
+import {PeriodStatByUser} from "@/features/user/types/PeriodStatByUser";
+import {StatsPeriods} from "@/features/user/types/StatsPeriods";
 
-const Achievements = () => {
+type Props = {
+  initialCurrentPeriod: PeriodStatByUser;
+  periods: StatsPeriods;
+}
 
-  const monthOptions = getLastMonths(6);
-  const [selectedMonth, setSelectedMonth] = useState(monthOptions[0]);
+const Achievements = ({initialCurrentPeriod, periods}: Props) => {
+
+  const [selectedMonth, setSelectedMonth] = useState(0);
+  const [currentPeriod, setCurrentPeriod] = useState(initialCurrentPeriod);
 
     const achivements = {
       personal: [
@@ -71,7 +78,7 @@ const Achievements = () => {
         <div className={s.topBlock}>
           <h2 className={s.title}>Достижения</h2>
           <div>
-            <MonthDropdown listOffset={50} leftAlign={false} selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} monthOptions={monthOptions} triggerClassName={s.trigger} />
+            <MonthDropdown listOffset={50} leftAlign={false} selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} monthOptions={periods} triggerClassName={s.trigger} />
           </div>
         </div>
 

@@ -15,8 +15,8 @@ type Props = {
 
 const UserCardBlock = ({user, currentPeriod, selectedMonth, setSelectedMonth, periods}:Props) => {
 
-  console.log('currentPeriod *******', currentPeriod)
-  console.log('user *******', user)
+  // console.log('currentPeriod *******', currentPeriod)
+  // console.log('user *******', user)
 
   const backgroundStyle = s.userCardBackground;
 
