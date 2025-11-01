@@ -124,7 +124,7 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
         newPartnerBadge = `+${formatPeopleCount(newPartner - newPartnerPrev)} `
       }
       if (newPartner < newPartnerPrev) {
-        newPartnerBadge = `-${formatPeopleCount(newPartnerPrev - newPartner)} человека`
+        newPartnerBadge = `-${formatPeopleCount(newPartnerPrev - newPartner)}`
       }
     }
 
@@ -136,12 +136,12 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
           description: 'Квалификация<br />периода',
         },
         {
-          title: `${ personalIncome  ? personalIncome.toLocaleString('ru-RU')  : 0 } ₽` ,
+          title: `${ personalIncome  ? Math.round(personalIncome).toLocaleString('ru-RU')  : 0 } ₽` ,
           badge: personalIncomeBadge,
           description: 'Личный доход<br />за месяц'
         },
         {
-          title: `${ statsByStatIdCurrent?.income_total ? statsByStatIdCurrent?.income_total?.toLocaleString('ru-RU') : 0} ₽`,
+          title: `${ statsByStatIdCurrent?.income_total ? Math.round(statsByStatIdCurrent?.income_total).toLocaleString('ru-RU') : 0} ₽`,
           badge: null,
           description: 'Суммарный доход<br />за всё время'
         },
@@ -149,17 +149,17 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
       team:
         [
           {
-            title: statsByStatIdCurrent?.total_count_partner ? statsByStatIdCurrent?.total_count_partner : 0,
+            title: statsByStatIdCurrent?.total_count_partner ? Math.round(statsByStatIdCurrent.total_count_partner) : 0,
             badge: totalCountPartnerBadge,
             description: 'Количество партнеров<br />в структуре'
           },
           {
-            title: `${ incomeStructureByPeriod ? incomeStructureByPeriod?.toLocaleString('ru-RU') : 0} ₽`,
+            title: `${ incomeStructureByPeriod ? Math.round(incomeStructureByPeriod).toLocaleString('ru-RU') : 0} ₽`,
             badge: incomeStructureByPeriodBadge,
             description: 'Доход команды<br />за месяц'
           },
           {
-            title: `${ statsByStatIdCurrent?.income_structure ? statsByStatIdCurrent?.income_structure?.toLocaleString('ru-RU') : 0} ₽`,
+            title: `${ statsByStatIdCurrent?.income_structure ? Math.round(statsByStatIdCurrent.income_structure).toLocaleString('ru-RU') : 0} ₽`,
             badge: null,
             description: 'Доход команды<br />за всё время'
           },
@@ -168,11 +168,11 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
         [
           {
             title: newPartner ? newPartner : 0,
-            badge: newPartnerBadge,
+            badge: null,
             description: 'Количество активированных<br />партнеров за месяц'
           },
           {
-            title: `${statsByStatIdCurrent?.percent_diff_go ? statsByStatIdCurrent?.percent_diff_go : '0%'}`,
+            title: `${  statsByStatIdCurrent?.percent_diff_go ?  statsByStatIdCurrent?.percent_diff_go : '0%'}`,
             badge: null,
             description: 'Процент прироста<br />товарооборота'
           },

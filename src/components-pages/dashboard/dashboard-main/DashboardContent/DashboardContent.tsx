@@ -31,16 +31,24 @@ const DashboardContent = ({news, events, statsByStatIdPrevValue, statsByStatId, 
   const [selectedMonth, setSelectedMonth] = useState(0);
   const [currentPeriod, setCurrentPeriod] = useState(initialCurrentPeriod);
 
+
+  console.log('currentPeriod ===', currentPeriod)
+
   useEffect(() => {
 
     const getCurrentPeriodData = async () => {
 
-      const data = await getUserStatByPeriod(periods[selectedMonth].id, user.id)
+      try {
+        const data = await getUserStatByPeriod(periods[selectedMonth].id, user.id)
 
-      const values = Object.values(data);
-      const periodData = values[0] as PeriodStatByUser;
+        const values = Object.values(data);
+        const periodData = values[0] as PeriodStatByUser;
 
-      setCurrentPeriod(periodData)
+        setCurrentPeriod(periodData)
+        if (data.error) throw new Error(data.error)
+      } catch (err) {
+        console.log(err)
+      }
     }
 
      getCurrentPeriodData()
@@ -59,7 +67,7 @@ const DashboardContent = ({news, events, statsByStatIdPrevValue, statsByStatId, 
         currentPeriod={currentPeriod}
       />
 
-      <NextQualification currentPeriod={initialCurrentPeriod} statsByStatId={statsByStatId} />
+      <NextQualification currentPeriod={currentPeriod} statsByStatId={statsByStatId} />
 
       <Achievements statsByStatIdPrevValue={statsByStatIdPrevValue} statsByStatId={statsByStatId} periods={periods} user={user} />
       <Events events={events}/>

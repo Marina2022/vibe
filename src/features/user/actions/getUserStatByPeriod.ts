@@ -10,6 +10,9 @@ export const getUserStatByPeriod = async (periodId: string, userId: string) => {
     }
 
     const currentPeriod = await res.json();
+
+    if (currentPeriod.length === 0) return {error: 'Нет данных по этому периоду'};
+
     return currentPeriod;
 
   } catch (err) {

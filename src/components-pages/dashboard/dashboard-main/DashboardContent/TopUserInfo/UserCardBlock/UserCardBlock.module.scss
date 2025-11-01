@@ -117,7 +117,7 @@
   height: 60px;
   background: #F8F9FA;
   border-radius: 16px;
-  width: 130px;
+  min-width: 130px;
   padding: 8px 12px;
   display: flex;
   align-items: center;
@@ -172,7 +172,7 @@
 
 .vibesNumber {
   font-weight: 600;
-  font-size: 20px;
+  font-size:16px;
   line-height: 20px;
 
   @include m {

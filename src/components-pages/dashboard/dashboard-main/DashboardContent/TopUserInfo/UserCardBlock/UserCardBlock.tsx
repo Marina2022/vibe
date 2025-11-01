@@ -62,7 +62,8 @@ const UserCardBlock = ({user, currentPeriod, selectedMonth, setSelectedMonth, pe
           <img className={s.vibesIcon} src="/img/lk/lk-main/v-icon.png" alt="vibes icon"/>
           <div>
             <div className={s.vibesNumber}>
-              {currentPeriod.premium + currentPeriod.premium_gift}</div>
+              {Math.round(currentPeriod.premium + currentPeriod.premium_gift).toLocaleString('Ru-ru')}
+            </div>
             <div className={s.vibesText}>vibes</div>
           </div>
         </div>
