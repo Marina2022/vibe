@@ -9,7 +9,6 @@ import {nextQualList, qualInfoList} from "@/features/user/consts";
 import {StatByStatId} from "@/features/user/types/StatByStatId";
 
 
-
 type Props = {
   currentPeriod: PeriodStatByUser;
   statsByStatId: StatByStatId;
@@ -22,8 +21,6 @@ const NextQualification = ({currentPeriod, statsByStatId}:Props) => {
 
   const nextQual = qualInfoList.find(item => item.name === nextQualList[currentPeriod.qual_name]);
   if (!nextQual) throw new Error('Не найдена следующая квалификация')
-
-
 
 
   // todo надо потестировать на ненулевых данных

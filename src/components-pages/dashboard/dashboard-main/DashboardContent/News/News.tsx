@@ -1,8 +1,10 @@
 import s from './News.module.scss';
 import Link from "next/link";
 import Badge from "@/components-ui/Badge/Badge";
+import {NewsItem} from "@/features/news/types/NewsItem";
+import {formatDateForNews} from "@/features/news/news-utils";
 
-const News = () => {
+const News = ({news}:{news: NewsItem[]}) => {
 
   const cards = [
     {
@@ -28,12 +30,15 @@ const News = () => {
 
       <ul className={s.cards}>
         {
-          cards.map((card, i) => {
+          news.map((card, i) => {
             return <li key={i} className={s.card}>
-              <div className={s.cardTitle}>{card.title}</div>
-              <div className={s.description}>{card.description}</div>
+              <div className={s.cardTitle}>{card.header}</div>
+              <div
+                dangerouslySetInnerHTML={{__html: card.announce}}
+                className={s.description}
+              ></div>
               <div className={s.bottomPart}>
-                <div className={s.date}>{card.date}</div>
+                <div className={s.date}>{formatDateForNews(card.date)}</div>
                 {card.new && <Badge className={s.badge} height={20}>New</Badge>}
               </div>
             </li>

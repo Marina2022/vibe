@@ -34,8 +34,9 @@
 }
 
 .cards {
-  display: flex;
+  display: grid;
   gap: 24px;
+  grid-template-columns: 1fr 1fr;
 
   @include m {
     flex-direction: column;

@@ -34,8 +34,9 @@
 }
 
 .cards {
-  display: flex;
+  display: grid;
   gap: 24px;
+  grid-template-columns: 1fr 1fr;
 
   @include m {
     flex-direction: column;
@@ -93,4 +94,14 @@
   gap: 15px;
   font-weight: 500;
   line-height: 24px;
+}
+
+.badge {
+  margin-bottom: auto;
+  display: inline-flex;
+  background: #fff;
+  color: var(--black);
+  font-size: 12px;
+  align-self: flex-start;
+  font-weight: 500;
 }

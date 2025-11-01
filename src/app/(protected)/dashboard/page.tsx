@@ -4,7 +4,8 @@ import DashboardContent from "@/components-pages/dashboard/dashboard-main/Dashbo
 import {getUser} from "@/features/auth/lib/getUser";
 import {getPeriods} from "@/features/user/actions/getPeriods";
 import {PeriodStatByUser} from "@/features/user/types/PeriodStatByUser";
-import {logout} from "@/features/auth/actions/logout";
+import {getEvents} from "@/features/event/actions/getEvents";
+import {getNews} from "@/features/news/actions/getNews";
 
 const Page = async () => {
 
@@ -24,23 +25,30 @@ const Page = async () => {
   const valuesPrevValue = Object.values(initialCurrentPeriodPrevValue);
   const periodDataPrevValue = valuesPrevValue[0] as PeriodStatByUser;
 
-
   const resp3 = await fetch(`${process.env.API_URL}/period-stat/${periodData.id}`);
   const statsByStatId = await resp3.json();
 
-  let statsByStatIdPrevValue=null
+  let statsByStatIdPrevValue = null
   if (periodDataPrevValue) {
     const resp3PrevValue = await fetch(`${process.env.API_URL}/period-stat/${periodDataPrevValue.id}`);
     statsByStatIdPrevValue = await resp3PrevValue.json();
   }
 
+  const events = await getEvents()
+  const news = await getNews()
+
+
 
   return (
     <div className="container">
       <div className={s.dashboardPageWrapper}>
-        <DashboardSidebar user={user} />
+        <DashboardSidebar user={user}/>
 
-        <DashboardContent statsByStatIdPrevValue={statsByStatIdPrevValue} statsByStatId={statsByStatId} initialCurrentPeriod={periodData} user={user} periods={periods} />
+        <DashboardContent statsByStatIdPrevValue={statsByStatIdPrevValue} statsByStatId={statsByStatId}
+                          initialCurrentPeriod={periodData} user={user} periods={periods}
+                          events={events} news={news}
+
+        />
       </div>
     </div>
   );
