@@ -47,7 +47,7 @@ const UserCardBlock = ({user, currentPeriod, selectedMonth, setSelectedMonth, pe
               Денежный счет
             </div>
             <div className={s.cardAmount}>
-              {user.account_gift.balance.toLocaleString('ru-RU')} ₽
+              {Math.round(currentPeriod.premium * 100).toLocaleString('ru-RU')} ₽
             </div>
           </div>
           <div className={s.qualif}>{currentPeriod.qual_name}</div>
@@ -56,7 +56,7 @@ const UserCardBlock = ({user, currentPeriod, selectedMonth, setSelectedMonth, pe
       <div className={s.userCardBottom}>
         <div>
           <div className={s.subtitle}>Подарочный счет</div>
-          <div className={s.amount}>{user.account_bonus.balance.toLocaleString('ru-RU')} ₽</div>
+          <div className={s.amount}>{Math.round(currentPeriod.premium_gift * 100).toLocaleString('ru-RU')} ₽</div>
         </div>
         <div className={s.vibes}>
           <img className={s.vibesIcon} src="/img/lk/lk-main/v-icon.png" alt="vibes icon"/>
