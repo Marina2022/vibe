@@ -12,7 +12,7 @@ const TableUserInfo = ({currentPeriod}:{currentPeriod:PeriodStatByUser}) => {
       </div>
 
       <div className={s.row + ' ' + s.row2}>
-        <div className={s.cell}>{currentPeriod.lo} PV</div>
+        <div className={s.cell}>{Math.round(currentPeriod.lo)} PV</div>
         <div className={s.cell + ' ' + s.centerCell}>{Math.round(currentPeriod.nlo).toLocaleString('Ru-ru')} PV</div>
         <div className={s.cell}>{Math.round(currentPeriod.go).toLocaleString('Ru-ru')} PV</div>
       </div>
