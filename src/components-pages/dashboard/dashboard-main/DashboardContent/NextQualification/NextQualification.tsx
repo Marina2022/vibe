@@ -71,7 +71,7 @@ const NextQualification = ({currentPeriod, statsByStatId}:Props) => {
           </div>
 
           <div className={s.secondBar}>
-            <ProgressBar title="Накопительный объем, PV"  subtitle= {`${nloForPeriod}/${nextQual.nlo} PV`} value={nloForPeriod /nextQual.nlo * 100 }/>
+            <ProgressBar title="Накопительный объем, PV"  subtitle= {`${Math.round(nloForPeriod)}/${ nextQual.nlo} PV`} value={nloForPeriod /nextQual.nlo * 100 }/>
           </div>
         </div>
 
@@ -88,7 +88,7 @@ const NextQualification = ({currentPeriod, statsByStatId}:Props) => {
               return <div className={s.bottomProgressBarsItem} key={i}>
                 <div className={isOdd ? s.borderLeft : ''}>
                   {
-                    partner.first_name && <ProgressBar title={`${partner.first_name} ${partner.last_name}`} subtitle={`${partner.go} / ${nextQual.branch_go} `} value={nextQual.branch_go ? partner.go / nextQual.branch_go : 0 } disabled={true}/>
+                    partner.first_name && <ProgressBar title={`${partner.first_name} ${partner.last_name}`} subtitle={`${ Math.round(partner.go)} / ${Math.round(nextQual.branch_go)} `} value={nextQual.branch_go ? partner.go / nextQual.branch_go *100 : 0 } disabled={true}/>
                   }
                 </div>
               </div>
