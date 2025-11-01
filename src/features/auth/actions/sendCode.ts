@@ -2,7 +2,6 @@
 
 export const sendCode = async (id: string) => {
 
-  console.log("sendCode action")
 
   try {
     const response = await fetch(`${process.env.API_URL}/user/send-code/${id}`, {

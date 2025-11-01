@@ -42,10 +42,6 @@ const RegistrationFormStep2 = ({
   const [check1Error, setCheck1Error] = useState(false)
   const [check2Error, setCheck2Error] = useState(false)
 
-  console.log(check1Error)
-
-  console.log({check1isChecked, check2isChecked})
-
   return (
     <ModalContainer header={false}>
       <div className={s.scroll}>

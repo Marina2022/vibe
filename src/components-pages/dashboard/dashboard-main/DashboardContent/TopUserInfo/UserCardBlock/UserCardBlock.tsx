@@ -16,12 +16,9 @@ type Props = {
 
 const UserCardBlock = ({user, currentPeriod, selectedMonth, setSelectedMonth, periods}:Props) => {
 
-  // console.log('currentPeriod *******', currentPeriod)
-  // console.log('user *******', user)
-
 
   const color = qualCardColor[currentPeriod.qual_name]
-  console.log('color *******', color)
+
   let coloredStyle
 
   if (color === 'purple') coloredStyle = s.purple

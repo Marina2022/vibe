@@ -16,7 +16,7 @@ type Props = {
   periods: StatsPeriods;
   user: User;
   statsByStatId: StatByStatId;
-  statsByStatIdPrevValue: StatByStatId;
+  statsByStatIdPrevValue: StatByStatId | null;
 }
 
 const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Props) => {
@@ -25,8 +25,6 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
     const [statsByStatIdCurrent, setStatsByStatIdCurrent] = useState(statsByStatId);
     const [statsByStatIdPreviousCurrent, setStatsByStatIdPreviousCurrent] = useState<StatByStatId | null>(statsByStatIdPrevValue);
 
-    console.log('statsByStatId !!!', statsByStatIdCurrent)
-    console.log('previousPeriod ---', statsByStatIdPreviousCurrent)
 
     useEffect(() => {
 
@@ -35,7 +33,7 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
         const data = await getUserStatByPeriod(periods[selectedMonth].id, user.id)
         const values = Object.values(data);
         const periodData = values[0] as PeriodStatByUser;
-        const statsByStatId = await getStatByStatId(periodData.id)
+        const statsByStatId = await getStatByStatId(periodData?.id)
         setStatsByStatIdCurrent(statsByStatId)
       }
 
@@ -50,8 +48,13 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
 
         const values = Object.values(data);
         const periodData = values[0] as PeriodStatByUser;
-        const statsByStatId = await getStatByStatId(periodData.id)
-        setStatsByStatIdPreviousCurrent(statsByStatId)
+
+        let statsByStatId
+        if (periodData) {
+          statsByStatId = await getStatByStatId(periodData.id)
+          setStatsByStatIdPreviousCurrent(statsByStatId)
+        }
+
       }
 
       getCurrentPeriodData()
@@ -60,7 +63,7 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
 
     //Квалификация периода:
     let qualDynamic = ''
-    if (statsByStatIdPreviousCurrent) {
+    if (statsByStatIdPreviousCurrent && statsByStatIdCurrent) {
       if (statsByStatIdCurrent.qual > statsByStatIdPreviousCurrent.qual) {
         qualDynamic = 'Рост'
       } else if (statsByStatIdCurrent.qual < statsByStatIdPreviousCurrent.qual) {
@@ -71,7 +74,7 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
     // Личный доход за месяц:
     const personalIncome = statsByStatIdCurrent.premium + statsByStatIdCurrent.premium_gift
     let personalIncomeBadge = ''
-    if (statsByStatIdPreviousCurrent) {
+    if (statsByStatIdPreviousCurrent && statsByStatIdCurrent) {
       const personalIncomePrev = statsByStatIdPreviousCurrent.premium + statsByStatIdPreviousCurrent.premium_gift
 
       if (personalIncome > personalIncomePrev) {
@@ -84,7 +87,7 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
 
     // Количество партнеров в структуре total_count_partner
     let totalCountPartnerBadge = ''
-    if (statsByStatIdPreviousCurrent) {
+    if (statsByStatIdPreviousCurrent && statsByStatIdCurrent) {
       const totalCountPartner = statsByStatIdCurrent.total_count_partner
       const totalCountPartnerPrev = statsByStatIdPreviousCurrent.total_count_partner
 
@@ -100,7 +103,7 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
     let incomeStructureByPeriodBadge = ''
     const incomeStructureByPeriod = statsByStatIdCurrent.income_structure_period
 
-    if (statsByStatIdPreviousCurrent) {
+    if (statsByStatIdPreviousCurrent && statsByStatIdCurrent) {
       const incomeStructureByPeriodPrev = statsByStatIdPreviousCurrent.income_structure_period
       if (incomeStructureByPeriod > incomeStructureByPeriodPrev) {
         incomeStructureByPeriodBadge = `+${Math.round((incomeStructureByPeriod - incomeStructureByPeriodPrev) / incomeStructureByPeriodPrev * 100)}%`
@@ -128,17 +131,17 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
     const achivements = {
       personal: [
         {
-          title: abbrQualList[statsByStatIdCurrent.qual_name],
-          badge: qualDynamic,
+          title: statsByStatIdCurrent.qual_name ? abbrQualList[statsByStatIdCurrent.qual_name] : '-' ,
+          badge: qualDynamic ,
           description: 'Квалификация<br />периода',
         },
         {
-          title: `${personalIncome.toLocaleString('ru-RU')} ₽`,
+          title: `${ personalIncome  ? personalIncome.toLocaleString('ru-RU')  : 0 } ₽` ,
           badge: personalIncomeBadge,
           description: 'Личный доход<br />за месяц'
         },
         {
-          title: `${statsByStatIdCurrent.income_total.toLocaleString('ru-RU')} ₽`,
+          title: `${ statsByStatIdCurrent?.income_total ? statsByStatIdCurrent?.income_total?.toLocaleString('ru-RU') : 0} ₽`,
           badge: null,
           description: 'Суммарный доход<br />за всё время'
         },
@@ -146,17 +149,17 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
       team:
         [
           {
-            title: statsByStatIdCurrent.total_count_partner,
+            title: statsByStatIdCurrent?.total_count_partner ? statsByStatIdCurrent?.total_count_partner : 0,
             badge: totalCountPartnerBadge,
             description: 'Количество партнеров<br />в структуре'
           },
           {
-            title: `${incomeStructureByPeriod.toLocaleString('ru-RU')} ₽`,
+            title: `${ incomeStructureByPeriod ? incomeStructureByPeriod?.toLocaleString('ru-RU') : 0} ₽`,
             badge: incomeStructureByPeriodBadge,
             description: 'Доход команды<br />за месяц'
           },
           {
-            title: `${statsByStatIdCurrent.income_structure.toLocaleString('ru-RU')} ₽`,
+            title: `${ statsByStatIdCurrent?.income_structure ? statsByStatIdCurrent?.income_structure?.toLocaleString('ru-RU') : 0} ₽`,
             badge: null,
             description: 'Доход команды<br />за всё время'
           },
@@ -164,17 +167,17 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
       leadership:
         [
           {
-            title: newPartner,
+            title: newPartner ? newPartner : 0,
             badge: newPartnerBadge,
             description: 'Количество активированных<br />партнеров за месяц'
           },
           {
-            title: `${statsByStatIdCurrent.percent_diff_go}`,
+            title: `${statsByStatIdCurrent?.percent_diff_go ? statsByStatIdCurrent?.percent_diff_go : '0%'}`,
             badge: null,
             description: 'Процент прироста<br />товарооборота'
           },
           {
-            title: statsByStatIdCurrent.new_qual,
+            title: statsByStatIdCurrent?.new_qual ? statsByStatIdCurrent?.new_qual : 0,
             badge: null,
             description: 'Новые квалификации<br />в команде за месяц'
           }

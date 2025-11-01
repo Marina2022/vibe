@@ -19,7 +19,7 @@ type Props = {
   user: User;
   periods: StatsPeriods;
   statsByStatId: StatByStatId;
-  statsByStatIdPrevValue: StatByStatId;
+  statsByStatIdPrevValue: StatByStatId | null;
 }
 
 const DashboardContent = ({statsByStatIdPrevValue, statsByStatId, initialCurrentPeriod, periods, user}: Props) => {

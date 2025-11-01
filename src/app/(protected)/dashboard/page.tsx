@@ -4,6 +4,7 @@ import DashboardContent from "@/components-pages/dashboard/dashboard-main/Dashbo
 import {getUser} from "@/features/auth/lib/getUser";
 import {getPeriods} from "@/features/user/actions/getPeriods";
 import {PeriodStatByUser} from "@/features/user/types/PeriodStatByUser";
+import {logout} from "@/features/auth/actions/logout";
 
 const Page = async () => {
 
@@ -11,10 +12,10 @@ const Page = async () => {
 
   const periods = await getPeriods();
 
-  const resp2 = await fetch(`${process.env.API_URL}/period-stat?user=${user.id}&period=${periods[0].id}&&ext=1`);
+  const resp2 = await fetch(`${process.env.API_URL}/period-stat?user=${user.id}&period=${periods[0].id}&ext=1`);
   const initialCurrentPeriod = await resp2.json();
 
-  const resp2PrevValue = await fetch(`${process.env.API_URL}/period-stat?user=${user.id}&period=${periods[1].id}&&ext=1`);
+  const resp2PrevValue = await fetch(`${process.env.API_URL}/period-stat?user=${user.id}&period=${periods[1].id}&ext=1`);
   const initialCurrentPeriodPrevValue = await resp2PrevValue.json();
 
   const values = Object.values(initialCurrentPeriod);
@@ -23,11 +24,16 @@ const Page = async () => {
   const valuesPrevValue = Object.values(initialCurrentPeriodPrevValue);
   const periodDataPrevValue = valuesPrevValue[0] as PeriodStatByUser;
 
+
   const resp3 = await fetch(`${process.env.API_URL}/period-stat/${periodData.id}`);
   const statsByStatId = await resp3.json();
 
-  const resp3PrevValue = await fetch(`${process.env.API_URL}/period-stat/${periodDataPrevValue.id}`);
-  const statsByStatIdPrevValue = await resp3PrevValue.json();
+  let statsByStatIdPrevValue=null
+  if (periodDataPrevValue) {
+    const resp3PrevValue = await fetch(`${process.env.API_URL}/period-stat/${periodDataPrevValue.id}`);
+    statsByStatIdPrevValue = await resp3PrevValue.json();
+  }
+
 
   return (
     <div className="container">

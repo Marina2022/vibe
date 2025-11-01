@@ -24,8 +24,6 @@ const NextQualification = ({currentPeriod, statsByStatId}:Props) => {
   if (!nextQual) throw new Error('Не найдена следующая квалификация')
 
 
-  // console.log('nextQual', nextQual)
-  // console.log('statsByPeriod', statsByPeriod)
 
 
   // todo надо потестировать на ненулевых данных
