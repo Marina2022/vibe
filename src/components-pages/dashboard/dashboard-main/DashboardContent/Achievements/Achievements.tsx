@@ -154,7 +154,7 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
             description: 'Количество партнеров<br />в структуре'
           },
           {
-            title: `${ incomeStructureByPeriod ? Math.round(incomeStructureByPeriod).toLocaleString('ru-RU') : 0} ₽`,
+            title: `${ incomeStructureByPeriod ? Math.round(incomeStructureByPeriod *100).toLocaleString('ru-RU')  : 0} ₽`,
             badge: incomeStructureByPeriodBadge,
             description: 'Доход команды<br />за месяц'
           },
