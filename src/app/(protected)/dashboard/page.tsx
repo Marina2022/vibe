@@ -25,8 +25,18 @@ const Page = async () => {
   const valuesPrevValue = Object.values(initialCurrentPeriodPrevValue);
   const periodDataPrevValue = valuesPrevValue[0] as PeriodStatByUser;
 
-  const resp3 = await fetch(`${process.env.API_URL}/period-stat/${periodData.id}`);
-  const statsByStatId = await resp3.json();
+
+
+  if (!periodData) throw new Error(`Не существует статистики на запрос по user = ${user.login}, period = ${periods[0].name}`)
+
+
+  // например, не существует ответа (periodData) на запрос по user = admin, period = сентябрь
+  let statsByStatId
+  if (periodData){
+    const resp3 = await fetch(`${process.env.API_URL}/period-stat/${periodData.id}`);
+    statsByStatId = await resp3.json();
+  }
+
 
   let statsByStatIdPrevValue = null
   if (periodDataPrevValue) {

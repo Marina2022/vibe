@@ -12,9 +12,9 @@ const TableUserInfo = ({currentPeriod}:{currentPeriod:PeriodStatByUser}) => {
       </div>
 
       <div className={s.row + ' ' + s.row2}>
-        <div className={s.cell}>{currentPeriod.lo} PV</div>
-        <div className={s.cell + ' ' + s.centerCell}>{currentPeriod.nlo} PV</div>
-        <div className={s.cell}>{currentPeriod.go} PV</div>
+        <div className={s.cell}>{currentPeriod?.lo || 0} PV</div>
+        <div className={s.cell + ' ' + s.centerCell}>{currentPeriod?.nlo || 0} PV</div>
+        <div className={s.cell}>{currentPeriod?.go || 0} PV</div>
       </div>
 
     </div>

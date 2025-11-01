@@ -19,8 +19,8 @@ const NextQualification = ({currentPeriod, statsByStatId}:Props) => {
   const [isShow, setIsShow] = useState(false);
 
 
-  const nextQual = qualInfoList.find(item => item.name === nextQualList[currentPeriod.qual_name]);
-  if (!nextQual) throw new Error('Не найдена следующая квалификация')
+  const nextQual = qualInfoList.find(item => item.name === nextQualList[currentPeriod?.qual_name]);
+  //if (!nextQual) throw new Error('Не найдена следующая квалификация')
 
 
   // todo надо потестировать на ненулевых данных
