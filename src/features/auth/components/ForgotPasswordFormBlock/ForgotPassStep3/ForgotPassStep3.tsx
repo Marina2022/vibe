@@ -125,7 +125,7 @@ const ForgotPassStep3 = ({setStep, data, currentUser}: {
                 }}/>
 
               <button className={s.eyeIconBtn} type="button" onClick={() => setShowPassword1(prev => !prev)}>
-                <svg className={showPassword1 ? s.eyeIconMuted : ''} width="24" height="24" viewBox="0 0 24 24"
+                <svg className={showPassword1 ? s.eyeIconMuted : s.eyeIcon} width="24" height="24" viewBox="0 0 24 24"
                      fill="none"
                      xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -155,7 +155,7 @@ const ForgotPassStep3 = ({setStep, data, currentUser}: {
               />
 
               <button className={s.eyeIconBtn} type="button" onClick={() => setShowPassword2(prev => !prev)}>
-                <svg className={showPassword2 ? s.eyeIconMuted : ''} width="24" height="24" viewBox="0 0 24 24"
+                <svg className={showPassword2 ? s.eyeIconMuted : s.eyeIcon} width="24" height="24" viewBox="0 0 24 24"
                      fill="none"
                      xmlns="http://www.w3.org/2000/svg">
                   <path

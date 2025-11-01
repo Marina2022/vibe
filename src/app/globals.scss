@@ -1,196 +1,201 @@
 @use '@/assets/styles/mixins' as *;
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 h1, h2, h3, ul, ol, li {
-    margin: 0;
+  margin: 0;
 }
 
 img {
-    display: block;
+  display: block;
 }
 
 html {
-    //overflow-x: hidden;
-    margin: 0;
+  //overflow-x: hidden;
+  margin: 0;
 }
 
 body {
-    font-family: 'manrope', sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    color: var(--black);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  font-family: 'manrope', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--black);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 button {
-    border: none;
-    outline: none;
-    background: transparent;
-    font-family: inherit;
-    cursor: pointer;
-    user-select: none;
-    font-size: inherit;
-    font-weight: inherit;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+  user-select: none;
+  font-size: inherit;
+  font-weight: inherit;
 
-    appearance: none;
-    -webkit-appearance: none;
-    color: inherit;
-    -webkit-text-fill-color: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  color: inherit;
+  -webkit-text-fill-color: inherit;
 }
 
 a {
-    text-decoration: none;
-    font-family: inherit;
+  text-decoration: none;
+  font-family: inherit;
 }
 
 .container {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1340px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1340px;
 
-    @include t {
-        max-width: 100%;
-        //padding-inline: 16px;
-    }
+  @include t {
+    max-width: 100%;
+    //padding-inline: 16px;
+  }
 
-    @include m {
-        max-width: unset;
-    }
+  @include m {
+    max-width: unset;
+  }
 }
 
 
 :root {
-    --black: #252526;
-    --lime: #B8E05F;
-    --pink: #F555A8;
-    --grey-text: rgba(0 0 0/.4);
-    --light-green: #EDFFC4;
+  --black: #252526;
+  --lime: #B8E05F;
+  --pink: #F555A8;
+  --grey-text: rgba(0 0 0/.4);
+  --light-green: #EDFFC4;
 }
 
 
 /* Без фокуса — белый фон */
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px  rgba(248, 249, 250, 1) inset !important;
-    -webkit-text-fill-color: theme('colors.gray.900') !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(248, 249, 250, 1) inset !important;
+  -webkit-text-fill-color: theme('colors.gray.900') !important;
 }
 
 /* При фокусе — фон rgba(248, 249, 250, 1) */
 input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0px 1000px rgba(248, 249, 250, 1) inset !important;
-    -webkit-text-fill-color: theme('colors.gray.900') !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(248, 249, 250, 1) inset !important;
+  -webkit-text-fill-color: theme('colors.gray.900') !important;
 }
 
 
 .my-datepicker {
-    font-family: 'Manrope', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 16px 24px 16px 24px;
-    border-radius: 32px;
-    outline: none;
-    border: none;
-    width: 100%;
-    background: rgba(248, 249, 250, 1);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 16px 24px 16px 24px;
+  border-radius: 32px;
+  outline: none;
+  border: none;
+  width: 100%;
+  background: rgba(248, 249, 250, 1);
 
-    &::placeholder {
-        color: rgba(185, 185, 185, 1);
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-    }
+  &:focus {
+    border: 2px solid #B8E05F26;
+  }
+
+  &::placeholder {
+    color: rgba(185, 185, 185, 1);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
 }
 
 .my-datepicker-error {
-    font-family: 'Manrope', sans-serif;
-    font-weight: 500;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 16px 24px 16px 24px;
+  border-radius: 32px;
+  outline: none;
+  border: none;
+  width: 100%;
+  background: rgba(248, 249, 250, 1);
+
+  border: 2px solid rgba(247, 74, 63, 1);
+  background: rgba(248, 249, 250, 1);
+
+
+  &::placeholder {
+    color: rgba(185, 185, 185, 1);
     font-size: 16px;
+    font-weight: 400;
     line-height: 24px;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 16px 24px 16px 24px;
-    border-radius: 32px;
-    outline: none;
-    border: none;
-    width: 100%;
-    background: rgba(248, 249, 250, 1);
-
-    border: 2px solid rgba(247, 74, 63, 1) ;
-    background: rgba(248, 249, 250, 1) ;
-
-
-    &::placeholder {
-        color: rgba(185, 185, 185, 1);
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-    }
+  }
 }
 
 
-
-
 h2.react-datepicker__current-month {
-    margin-bottom: 4px!important;
+  margin-bottom: 4px !important;
 }
 
 
 .datepicker-wrapper {
-    width: 100%;
+  width: 100%;
 }
 
 
 .input {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 16px 24px 16px 24px;
+  border-radius: 32px;
+  outline: none;
+  border: none;
+  width: 100%;
+  background: rgba(248, 249, 250, 1);
+
+  &:focus {
+    border: 2px solid #B8E05F26;
+  }
+
+  &::placeholder {
+    color: rgba(185, 185, 185, 1);
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 24px;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 16px 24px 16px 24px;
-    border-radius: 32px;
-    outline: none;
-    border: none;
-    width: 100%;
-    background: rgba(248, 249, 250, 1);
-
-
-    &::placeholder {
-        color: rgba(185, 185, 185, 1);
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-    }
+  }
 }
 
 .errorMessage {
-    color: rgba(247, 74, 63, 1);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 19px;
-    padding-left: 12px;
-    margin-top: 4px;
+  color: rgba(247, 74, 63, 1);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+  padding-left: 12px;
+  margin-top: 4px;
 }
 
 .redBorder {
-    border: 2px solid rgba(247, 74, 63, 1);
-    background: rgba(248, 249, 250, 1);
+  border: 2px solid rgba(247, 74, 63, 1) !important;
+  background: rgba(248, 249, 250, 1) !important;
 }

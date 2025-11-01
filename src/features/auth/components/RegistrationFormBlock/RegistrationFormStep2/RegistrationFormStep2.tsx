@@ -90,7 +90,7 @@ const RegistrationFormStep2 = ({
                 onChange={(e) => {
                   clearErrors('email'); // убираем ошибку при вводе
                 }}
-                className={`${s.input}  ${errors.email ? 'redBorder' : ''}`}
+                className={`input  ${errors.email ? 'redBorder' : ''}`}
                 type="text" placeholder="E-mail"
               />
             </div>
@@ -121,7 +121,7 @@ const RegistrationFormStep2 = ({
                       delimiters: [' ', ' ', ' '],
                       numericOnly: true,
                     }}
-                    className={`${s.input} ${errors.phone ? 'redBorder' : ''}`}
+                    className={`input ${errors.phone ? 'redBorder' : ''}`}
                     placeholder="+7 000 000 00 00"
 
                     onChange={(e) => {
@@ -145,7 +145,7 @@ const RegistrationFormStep2 = ({
                 onChange={(e) => {
                   clearErrors('city'); // убираем ошибку при вводе
                 }}
-                className={`${s.input}  ${errors.city ? 'redBorder' : ''}`}
+                className={`input  ${errors.city ? 'redBorder' : ''}`}
                 type="text" placeholder="Введите город"
               />
             </div>
