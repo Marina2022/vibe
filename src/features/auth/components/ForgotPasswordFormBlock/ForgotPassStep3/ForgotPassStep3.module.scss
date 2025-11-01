@@ -225,7 +225,7 @@
 
 .controlWrapper {
   position: relative;
-  height: 89px;
+  //height: 89px;
 }
 
 .errorMessage {
@@ -275,4 +275,12 @@
 
 .submitBtn {
   width: 233px;
+}
+
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
 }

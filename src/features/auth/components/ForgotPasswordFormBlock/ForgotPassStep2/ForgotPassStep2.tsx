@@ -133,7 +133,7 @@ const ForgotPassStep2 = ({setStep, data, currentUser}: {
             }}
             numInputs={6}
             placeholder={'000000'}
-            inputStyle={`${s.otpInput} ${wrongCodeError || emptyError ? s.redBorder : ''} `}
+            inputStyle={`${s.otpInput} ${wrongCodeError || emptyError ? 'redBorder' : ''} `}
             containerStyle={s.containerStyle}
             renderInput={renderInputWithValidation}
           />

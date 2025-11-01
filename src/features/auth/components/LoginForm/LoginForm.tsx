@@ -85,13 +85,13 @@ const LoginForm = () => {
               onChange={(e) => {
                 clearErrors('login'); // убираем ошибку при вводе
               }}
-              className={`${s.input}  ${errors.login ? s.redBorder : ''}`}
+              className={`input  ${errors.login ? 'redBorder' : ''}`}
               type="text" placeholder="ID / Номер телефона / E-mail"
             />
           </div>
 
           {errors.login && (
-            <p className={s.errorMessage}>{errors.login.message}</p>
+            <p className="errorMessage">{errors.login.message}</p>
           )}
         </div>
 
@@ -104,7 +104,7 @@ const LoginForm = () => {
               onChange={(e) => {
                 clearErrors('password'); // убираем ошибку при вводе
               }}
-              className={`${s.input} ${s.passwordInput}  ${errors.password ? s.redBorder : ''}`}
+              className={`input ${s.passwordInput}  ${errors.password ? 'redBorder' : ''}`}
               type={showPassword ? "text" : "password"} placeholder="Пароль"
             />
 
@@ -118,7 +118,7 @@ const LoginForm = () => {
             </button>
           </div>
           {errors.password && (
-            <p className={s.errorMessage}>{errors.password.message}</p>
+            <p className="errorMessage">{errors.password.message}</p>
           )}
         </div>
 

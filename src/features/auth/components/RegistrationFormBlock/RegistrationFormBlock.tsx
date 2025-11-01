@@ -115,7 +115,6 @@ const RegistrationFormBlock = ({refLink, login}: Props) => {
             setStep(4)
           }
 
-
           if (result.error) {
             toast.error(result?.error)
           }

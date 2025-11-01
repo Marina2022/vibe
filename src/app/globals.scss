@@ -154,3 +154,43 @@ h2.react-datepicker__current-month {
 .datepicker-wrapper {
     width: 100%;
 }
+
+
+.input {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 16px 24px 16px 24px;
+    border-radius: 32px;
+    outline: none;
+    border: none;
+    width: 100%;
+    background: rgba(248, 249, 250, 1);
+
+
+    &::placeholder {
+        color: rgba(185, 185, 185, 1);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+    }
+}
+
+.errorMessage {
+    color: rgba(247, 74, 63, 1);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19px;
+    padding-left: 12px;
+    margin-top: 4px;
+}
+
+.redBorder {
+    border: 2px solid rgba(247, 74, 63, 1);
+    background: rgba(248, 249, 250, 1);
+}

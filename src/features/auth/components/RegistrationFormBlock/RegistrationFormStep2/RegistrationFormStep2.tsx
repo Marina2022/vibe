@@ -35,8 +35,8 @@ const RegistrationFormStep2 = ({
                                  clearErrors,
                                  trigger,
                                  mentor, setStep, register, errors, isValid, control,
-                                 check1isChecked,check2isChecked, setCheck1isChecked, setCheck2isChecked
-}: Props) => {
+                                 check1isChecked, check2isChecked, setCheck1isChecked, setCheck2isChecked
+                               }: Props) => {
 
 
   const [check1Error, setCheck1Error] = useState(false)
@@ -74,104 +74,118 @@ const RegistrationFormStep2 = ({
           <Badge className={s.idBadge}>ID {mentor.login}</Badge>
         </div>
 
-        <div className={s.controlWrapper}>
-          <div className={s.inputWrapper}>
-            <input
-              {...register('email', {
-                required: 'Введите e-mail',
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: 'Некорректный e-mail',
-                },
-              })}
-              onChange={(e) => {
-                clearErrors('email'); // убираем ошибку при вводе
-              }}
-              className={`${s.input}  ${errors.email ? s.redBorder : ''}`}
-              type="text" placeholder="E-mail"
-            />
+
+        <div className={s.inputs}>
+
+          <div className={s.controlWrapper}>
+            <div className={s.inputWrapper}>
+              <input
+                {...register('email', {
+                  required: 'Введите e-mail',
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: 'Некорректный e-mail',
+                  },
+                })}
+                onChange={(e) => {
+                  clearErrors('email'); // убираем ошибку при вводе
+                }}
+                className={`${s.input}  ${errors.email ? 'redBorder' : ''}`}
+                type="text" placeholder="E-mail"
+              />
+            </div>
+
+            {errors.email && (
+              <p className='errorMessage'>{errors.email.message}</p>
+            )}
           </div>
 
-          {errors.email && (
-            <p className={s.errorMessage}>{errors.email.message}</p>
-          )}
-        </div>
+          <div className={s.controlWrapper}>
+            <div className={s.inputWrapper}>
+              <Controller
+                name="phone"
+                control={control}
+                rules={{
+                  required: 'Введите номер телефона',
+                  minLength: {value: 10, message: 'Слишком короткий номер'},
+                }}
+                render={({field}) => (
+                  <Cleave
+                    {...field}
+                    options={{
+                      // prefix: '+7',
+                      phone: true,
+                      phoneRegionCode: 'RU',
 
-        <div className={s.controlWrapper}>
-          <div className={s.inputWrapper}>
-            <Controller
-              name="phone"
-              control={control}
-              rules={{
-                required: 'Введите номер телефона',
-                minLength: {value: 10, message: 'Слишком короткий номер'},
-              }}
-              render={({field}) => (
-                <Cleave
-                  {...field}
-                  options={{
-                    // prefix: '+7',
-                    phone: true,
-                    phoneRegionCode: 'RU',
+                      blocks: [1, 3, 3, 4],       // 1 цифра, затем 3-3-4
+                      delimiters: [' ', ' ', ' '],
+                      numericOnly: true,
+                    }}
+                    className={`${s.input} ${errors.phone ? 'redBorder' : ''}`}
+                    placeholder="+7 000 000 00 00"
 
-                    blocks: [1, 3, 3, 4],       // 1 цифра, затем 3-3-4
-                    delimiters: [' ', ' ', ' '],
-                    numericOnly: true,
-                  }}
-                  className={`${s.input} ${errors.phone ? s.redBorder : ''}`}
-                  placeholder="+7 000 000 00 00"
+                    onChange={(e) => {
+                      field.onChange(e.target.value)
+                      clearErrors('phone')
+                    }} // сохраняем "чистое" значение без маски
+                  />
+                )}
+              />
+            </div>
 
-                  onChange={(e) => {
-                    field.onChange(e.target.value)
-                    clearErrors('phone')
-                  }} // сохраняем "чистое" значение без маски
-                />
-              )}
-            />
+            {errors.phone && (
+              <p className='errorMessage'>{errors?.phone?.message}</p>
+            )}
           </div>
 
-          {errors.phone && (
-            <p className={s.errorMessage}>{errors?.phone?.message}</p>
-          )}
-        </div>
-
-        <div className={s.controlWrapper}>
-          <div className={s.inputWrapper}>
-            <input
-              {...register('city', {required: 'Введите город'})}
-              onChange={(e) => {
-                clearErrors('city'); // убираем ошибку при вводе
-              }}
-              className={`${s.input}  ${errors.city ? s.redBorder : ''}`}
-              type="text" placeholder="Введите город"
-            />
+          <div className={s.controlWrapper}>
+            <div className={s.inputWrapper}>
+              <input
+                {...register('city', {required: 'Введите город'})}
+                onChange={(e) => {
+                  clearErrors('city'); // убираем ошибку при вводе
+                }}
+                className={`${s.input}  ${errors.city ? 'redBorder' : ''}`}
+                type="text" placeholder="Введите город"
+              />
+            </div>
+            {errors.city && (
+              <p className='errorMessage'>{errors.city.message}</p>
+            )}
           </div>
 
-          {errors.city && (
-            <p className={s.errorMessage}>{errors.city.message}</p>
-          )}
         </div>
 
-        <div className={s.checkboxBlock} onClick={() => setCheck1isChecked(prev=>!prev)} >
-          <div className={check1isChecked ? s.checkboxChecked : check1Error ? `${s.checkbox} ${s.redBorder}` : s.checkbox}>
+        <div className={s.checkboxBlock} onClick={() => setCheck1isChecked(prev => !prev)}>
+          <div
+            className={check1isChecked ? s.checkboxChecked : check1Error ? `${s.checkbox} ${'redBorder'}` : s.checkbox}>
             <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="#252526" strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="black" strokeOpacity="0.2" strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="black" strokeOpacity="0.2" strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="black" strokeOpacity="0.2" strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="#252526" strokeWidth="1.5338"
+                    strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="black" strokeOpacity="0.2"
+                    strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="black" strokeOpacity="0.2"
+                    strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="black" strokeOpacity="0.2"
+                    strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
           <div className={s.checkboxText}>Принимаю условия <a href="">Правил дистанционной торговли</a></div>
         </div>
 
-        <div className={s.checkboxBlock} onClick={() => setCheck2isChecked(prev=>!prev)}>
+        <div className={s.checkboxBlock} onClick={() => setCheck2isChecked(prev => !prev)}>
 
-            <div className={check2isChecked ? s.checkboxChecked : check2Error ? `${s.checkbox} ${s.redBorder}` : s.checkbox}>
+          <div
+            className={check2isChecked ? s.checkboxChecked : check2Error ? `${s.checkbox} ${'redBorder'}` : s.checkbox}>
             <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="#252526" strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="black" strokeOpacity="0.2" strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="black" strokeOpacity="0.2" strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="black" strokeOpacity="0.2" strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="#252526" strokeWidth="1.5338"
+                    strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="black" strokeOpacity="0.2"
+                    strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="black" strokeOpacity="0.2"
+                    strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M0.766846 4.36685L3.30653 6.76685L8.76685 0.766846" stroke="black" strokeOpacity="0.2"
+                    strokeWidth="1.5338" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
           <div className={s.checkboxText}>Согласен с <a href="">Политикой конфиденциальности</a></div>
@@ -182,31 +196,29 @@ const RegistrationFormStep2 = ({
             if (!isValid) {
               trigger()
 
-              if (!check1isChecked ) {
+              if (!check1isChecked) {
                 setCheck1Error(true)
               }
 
-              if (!check2isChecked ) {
+              if (!check2isChecked) {
                 setCheck2Error(true)
               }
               return
             }
 
-            if (!check1isChecked ) {
+            if (!check1isChecked) {
               setCheck1Error(true)
               return
             }
 
-            if (!check2isChecked ) {
+            if (!check2isChecked) {
               setCheck2Error(true)
               return
             }
-
-
             setStep(3)
           }
 
-        } type="button" className={s.continueBtn} >
+        } type="button" className={s.continueBtn}>
           Продолжить
         </Button>
       </div>

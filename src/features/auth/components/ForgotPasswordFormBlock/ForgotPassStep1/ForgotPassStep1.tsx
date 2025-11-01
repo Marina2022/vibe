@@ -82,16 +82,16 @@ const ForgotPassStep1 = ({setStep, setData, data, setCurrentUser}: Props) => {
               }}
               value={data}
               id="data"
-              className={`${s.input}  ${emptyError ? s.redBorder : ''}`}
+              className={`input  ${emptyError ? 'redBorder' : ''}`}
               type="text" placeholder="ID / E-mail / Номер телефона"
             />
           </div>
 
           {emptyError && (
-            <p className={s.errorMessage}>Введите даные</p>
+            <p className='errorMessage'>Введите даные</p>
           )}
           {notFoundError && (
-            <p className={s.errorMessage}>Такого аккаунта не существует</p>
+            <p className='errorMessage'>Такого аккаунта не существует</p>
           )}
         </div>
 

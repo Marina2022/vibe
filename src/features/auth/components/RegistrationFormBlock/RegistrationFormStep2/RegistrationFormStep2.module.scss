@@ -69,7 +69,7 @@
 
 .controlWrapper {
   position: relative;
-  height: 89px;
+  //height: 89px;
 }
 
 .errorMessage {
@@ -177,4 +177,11 @@
 .redBorder {
   border: 2px solid rgba(247, 74, 63, 1);
   background: rgba(248, 249, 250, 1);
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
 }

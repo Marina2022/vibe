@@ -33,13 +33,18 @@ type Props =
 
   }
 
-
-
-
-const RegistrationForm = ({watch, trigger, mentor, setStep, register, errors, isValid, control, clearErrors}: Props) => {
-
+const RegistrationForm = ({
+                            watch,
+                            trigger,
+                            mentor,
+                            setStep,
+                            register,
+                            errors,
+                            isValid,
+                            control,
+                            clearErrors
+                          }: Props) => {
   const router = useRouter();
-
   const partialValid = !errors.first_name && !errors.last_name && !errors.pat_name && !errors.birthday;
 
   return (
@@ -74,108 +79,110 @@ const RegistrationForm = ({watch, trigger, mentor, setStep, register, errors, is
           <Badge className={s.idBadge}>ID {mentor.login}</Badge>
         </div>
 
-        {/*Введите фамилию*/}
-        <div className={s.controlWrapper}>
-          <div className={s.inputWrapper}>
-            <input
-              {...register('last_name', {required: 'Введите фамилию'})}
-              onChange={(e) => {
-                clearErrors('last_name'); // убираем ошибку при вводе
-              }}
-              className={`${s.input}  ${errors.last_name ? s.redBorder : ''}`}
-              type="text" placeholder="Введите фамилию"
 
-            />
+        <div className={s.inputs}>
+          {/*Введите фамилию*/}
+          <div className={s.controlWrapper}>
+            <div className={s.inputWrapper}>
+              <input
+                {...register('last_name', {required: 'Введите фамилию'})}
+                onChange={(e) => {
+                  clearErrors('last_name'); // убираем ошибку при вводе
+                }}
+                className={`input  ${errors.last_name ? 'redBorder' : ''}`}
+                type="text" placeholder="Введите фамилию"
+
+              />
+            </div>
+
+            {errors.last_name && (
+              <p className="errorMessage">{errors.last_name.message}</p>
+            )}
           </div>
 
-          {errors.last_name && (
-            <p className={s.errorMessage}>{errors.last_name.message}</p>
-          )}
-        </div>
+          {/*Введите имя*/}
+          <div className={s.controlWrapper}>
+            <div className={s.inputWrapper}>
+              <input
+                {...register('first_name', {required: 'Введите имя'})}
+                onChange={(e) => {
+                  clearErrors('first_name'); // убираем ошибку при вводе
+                }}
+                className={`input ${errors.first_name ? 'redBorder' : ''}`}
+                type="text" placeholder="Введите имя"
+              />
+            </div>
 
-        {/*Введите имя*/}
-        <div className={s.controlWrapper}>
-          <div className={s.inputWrapper}>
-            <input
-              {...register('first_name', {required: 'Введите имя'})}
-              onChange={(e) => {
-                clearErrors('first_name'); // убираем ошибку при вводе
-              }}
-              className={`${s.input}  ${errors.first_name ? s.redBorder : ''}`}
-              type="text" placeholder="Введите имя"
-            />
+            {errors.first_name && (
+              <p className="errorMessage">{errors.first_name.message}</p>
+            )}
           </div>
 
-          {errors.first_name && (
-            <p className={s.errorMessage}>{errors.first_name.message}</p>
-          )}
-        </div>
 
+          {/*Введите отчество*/}
+          <div className={s.controlWrapper}>
+            <div className={s.inputWrapper}>
+              <input
+                {...register('pat_name', {required: 'Введите отчество'})}
+                onChange={(e) => {
+                  clearErrors('pat_name'); // убираем ошибку при вводе
+                }}
+                className={`input ${errors.pat_name ? 'redBorder' : ''}`}
+                type="text" placeholder="Введите отчество"
+              />
+            </div>
 
-        {/*Введите отчество*/}
-        <div className={s.controlWrapper}>
-          <div className={s.inputWrapper}>
-            <input
-              {...register('pat_name', {required: 'Введите отчество'})}
-              onChange={(e) => {
-                clearErrors('pat_name'); // убираем ошибку при вводе
-              }}
-              className={`${s.input}  ${errors.pat_name ? s.redBorder : ''}`}
-              type="text" placeholder="Введите отчество"
-            />
+            {errors.pat_name && (
+              <p className="errorMessage">{errors.pat_name.message}</p>
+            )}
           </div>
 
-          {errors.pat_name && (
-            <p className={s.errorMessage}>{errors.pat_name.message}</p>
-          )}
-        </div>
+          {/*Введите дату рождения*/}
+          <div className={s.controlWrapper}>
+            <div className={s.inputWrapper}>
 
-        {/*Введите дату рождения*/}
-        <div className={s.controlWrapper}>
-          <div className={s.inputWrapper}>
+              <Controller
+                name="birthday"
+                control={control}
+                rules={{required: 'Выберите дату рождения'}}
+                render={({field, fieldState}) => (
+                  <>
+                    <DatePicker
+                      selected={field.value ? new Date(field.value) : null}
+                      onChange={(date) => {
+                        if (date) field.onChange(date.toISOString().split('T')[0])
+                        else field.onChange('')
+                      }}
+                      placeholderText="Дата рождения"
+                      dateFormat="dd.MM.yyyy"
+                      showMonthDropdown
+                      showYearDropdown
+                      dropdownMode="select"
+                      className={fieldState.error ? "my-datepicker-error" : "my-datepicker"}
+                      wrapperClassName="datepicker-wrapper"
 
-            <Controller
-              name="birthday"
-              control={control}
-              rules={{required: 'Выберите дату рождения'}}
-              render={({field, fieldState}) => (
-                <>
-                  <DatePicker
-                    selected={field.value ? new Date(field.value) : null}
-                    onChange={(date) => {
-                      if (date) field.onChange(date.toISOString().split('T')[0])
-                      else field.onChange('')
-                    }}
-                    placeholderText="Дата рождения"
-                    dateFormat="dd.MM.yyyy"
-                    showMonthDropdown
-                    showYearDropdown
-                    dropdownMode="select"
-                    className={ fieldState.error ? "my-datepicker-error" : "my-datepicker" }
-                    wrapperClassName="datepicker-wrapper"
-
-                    //onKeyDown={(e) => e.preventDefault()}   // блокируем клавиатуру
-                  />
-                  {fieldState.error && (
-                    <p className={s.errorMessage}>{fieldState.error.message}</p>
-                  )}
-                </>
-              )}
-            />
+                      //onKeyDown={(e) => e.preventDefault()}   // блокируем клавиатуру
+                    />
+                    {fieldState.error && (
+                      <p className="errorMessage">{fieldState.error.message}</p>
+                    )}
+                  </>
+                )}
+              />
+            </div>
           </div>
         </div>
-
 
         <Button
-          onClick={async() => {
+          onClick={async () => {
             await trigger(['first_name', 'last_name', 'birthday', 'pat_name']);
 
-            if (!watch('first_name') || !watch('last_name') || !watch('birthday') || !watch('pat_name') ) return
+            if (!watch('first_name') || !watch('last_name') || !watch('birthday') || !watch('pat_name')) return
 
             setStep(2)
           }}
 
-          type="button" className={s.continueBtn} >
+          type="button" className={s.continueBtn}>
           Продолжить
         </Button>
 
