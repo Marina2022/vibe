@@ -136,12 +136,12 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
           description: 'Квалификация<br />периода',
         },
         {
-          title: `${ personalIncome  ? Math.round(personalIncome).toLocaleString('ru-RU')  : 0 } ₽` ,
+          title: `${ personalIncome  ? Math.round(personalIncome * 100).toLocaleString('ru-RU')  : 0 } ₽` ,
           badge: personalIncomeBadge,
           description: 'Личный доход<br />за месяц'
         },
         {
-          title: `${ statsByStatIdCurrent?.income_total ? Math.round(statsByStatIdCurrent?.income_total).toLocaleString('ru-RU') : 0} ₽`,
+          title: `${ statsByStatIdCurrent?.income_total ? Math.round(statsByStatIdCurrent.income_total * 100).toLocaleString('ru-RU') : 0} ₽`,
           badge: null,
           description: 'Суммарный доход<br />за всё время'
         },
@@ -149,7 +149,7 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
       team:
         [
           {
-            title: statsByStatIdCurrent?.total_count_partner ? Math.round(statsByStatIdCurrent.total_count_partner) : 0,
+            title: statsByStatIdCurrent?.total_count_partner ? Math.round(statsByStatIdCurrent.total_count_partner).toLocaleString('ru-RU') : 0,
             badge: totalCountPartnerBadge,
             description: 'Количество партнеров<br />в структуре'
           },
@@ -159,7 +159,7 @@ const Achievements = ({statsByStatIdPrevValue, statsByStatId, periods, user}: Pr
             description: 'Доход команды<br />за месяц'
           },
           {
-            title: `${ statsByStatIdCurrent?.income_structure ? Math.round(statsByStatIdCurrent.income_structure).toLocaleString('ru-RU') : 0} ₽`,
+            title: `${ statsByStatIdCurrent?.income_structure ? Math.round(statsByStatIdCurrent.income_structure * 100).toLocaleString('ru-RU') : 0} ₽`,
             badge: null,
             description: 'Доход команды<br />за всё время'
           },
