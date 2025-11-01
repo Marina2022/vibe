@@ -39,6 +39,7 @@
   grid-template-columns: 1fr 1fr;
 
   @include m {
+    grid-template-columns: 1fr;
     flex-direction: column;
   }
 }

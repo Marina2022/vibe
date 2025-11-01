@@ -173,10 +173,11 @@
 .vibesNumber {
   font-weight: 600;
   font-size: 20px;
-  line-height: 24px;
+  line-height: 20px;
 
   @include m {
     font-size: 16px;
+    line-height: 16px;
   }
 }
 
@@ -184,7 +185,7 @@
   color: var(--grey-text);
   font-size: 16px;
   font-weight: 500;
-  line-height: 130%;
+  line-height: 100%;
 }
 
 .trigger {

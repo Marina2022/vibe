@@ -26,11 +26,10 @@ const Page = async () => {
   const periodDataPrevValue = valuesPrevValue[0] as PeriodStatByUser;
 
 
-
+  // !periodData - такое может случиться, например, не существует ответа (periodData) на запрос по user = admin, period = сентябрь
+  // выкидываем ошибку, в ЛК нечего грузить тогда будет
   if (!periodData) throw new Error(`Не существует статистики на запрос по user = ${user.login}, period = ${periods[0].name}`)
 
-
-  // например, не существует ответа (periodData) на запрос по user = admin, period = сентябрь
   let statsByStatId
   if (periodData){
     const resp3 = await fetch(`${process.env.API_URL}/period-stat/${periodData.id}`);

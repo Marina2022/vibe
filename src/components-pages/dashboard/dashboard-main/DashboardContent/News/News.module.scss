@@ -39,11 +39,14 @@
   grid-template-columns: 1fr 1fr;
 
   @include m {
+    grid-template-columns: 1fr;
     flex-direction: column;
   }
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 450px;
   margin-inline: auto;
@@ -51,6 +54,7 @@
   padding: 32px;
   background: #F2F6F6;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 214px;
 
   @media (hover: hover) {
     &:hover {
@@ -91,6 +95,7 @@
 }
 
 .bottomPart {
+  margin-top: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
