@@ -5,16 +5,17 @@ import {useState} from "react";
 import ProgressBar from "@/components-ui/ProgressBar/ProgressBar";
 import {PeriodStatByUser} from "@/features/user/types/PeriodStatByUser";
 import {nextQualList, qualInfoList} from "@/features/user/consts";
-import {StatByPeriodId} from "@/features/user/types/StatByPeriodId";
+
+import {StatByStatId} from "@/features/user/types/StatByStatId";
 
 
 
 type Props = {
   currentPeriod: PeriodStatByUser;
-  statsByPeriod: StatByPeriodId;
+  statsByStatId: StatByStatId;
 }
 
-const NextQualification = ({currentPeriod, statsByPeriod}:Props) => {
+const NextQualification = ({currentPeriod, statsByStatId}:Props) => {
 
   const [isShow, setIsShow] = useState(false);
 
@@ -23,23 +24,24 @@ const NextQualification = ({currentPeriod, statsByPeriod}:Props) => {
   if (!nextQual) throw new Error('Не найдена следующая квалификация')
 
 
-  console.log('nextQual', nextQual)
-  console.log('statsByPeriod', statsByPeriod)
+  // console.log('nextQual', nextQual)
+  // console.log('statsByPeriod', statsByPeriod)
 
 
   // todo надо потестировать на ненулевых данных
 
-  const branch_count = statsByPeriod.branch_count
+  const branch_count = statsByStatId.branch_count
   const completeBranches = branch_count[nextQual.branch_go]
 
   let percent = 0
   if (completeBranches) {
     if (nextQual.branch) {
       percent = completeBranches / (nextQual.branch || 1)  * 100
+      if (percent > 100) percent = 100
     }
   }
 
-  const kidsFromObject = Object.values(statsByPeriod.children_list)
+  const kidsFromObject = Object.values(statsByStatId.children_list)
   const kids = kidsFromObject.sort((a, b) => b.go - a.go).slice(0, 5);
 
   if (kids.length % 2 !== 0) kids.push(
@@ -51,6 +53,14 @@ const NextQualification = ({currentPeriod, statsByPeriod}:Props) => {
       go: 0
     })
 
+
+  // показываем 4/4, даже если партнеров по факту 10 ??
+  let activePartnersForPeriod = statsByStatId.active
+  if (statsByStatId.active > nextQual.active) activePartnersForPeriod = nextQual.active
+
+  let nloForPeriod = statsByStatId.nlo
+  if (statsByStatId.nlo > nextQual.nlo) nloForPeriod = nextQual.nlo
+
   return (
     <div className={s.nextQualification}>
       <div className={s.titleBlock}>
@@ -61,11 +71,11 @@ const NextQualification = ({currentPeriod, statsByPeriod}:Props) => {
       <div className={s.topProgressBars}>
         <div className={s.firstRow}>
           <div className={s.firstBar}>
-            <ProgressBar title="Активных партнеров на 1-м уровне" subtitle={`${statsByPeriod.active}/${nextQual.active} партнеров`} value={statsByPeriod.active / nextQual.active * 100 }/>
+            <ProgressBar title="Активных партнеров на 1-м уровне" subtitle={`${activePartnersForPeriod}/${nextQual.active} партнеров`} value={activePartnersForPeriod / nextQual.active * 100 }/>
           </div>
 
           <div className={s.secondBar}>
-            <ProgressBar title="Накопительный объем, PV"  subtitle= {`${statsByPeriod.nlo}/${nextQual.nlo} PV`} value={statsByPeriod.nlo /nextQual.nlo * 100 }/>
+            <ProgressBar title="Накопительный объем, PV"  subtitle= {`${nloForPeriod}/${nextQual.nlo} PV`} value={nloForPeriod /nextQual.nlo * 100 }/>
           </div>
         </div>
 

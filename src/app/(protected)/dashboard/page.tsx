@@ -14,18 +14,27 @@ const Page = async () => {
   const resp2 = await fetch(`${process.env.API_URL}/period-stat?user=${user.id}&period=${periods[0].id}&&ext=1`);
   const initialCurrentPeriod = await resp2.json();
 
+  const resp2PrevValue = await fetch(`${process.env.API_URL}/period-stat?user=${user.id}&period=${periods[1].id}&&ext=1`);
+  const initialCurrentPeriodPrevValue = await resp2PrevValue.json();
+
   const values = Object.values(initialCurrentPeriod);
   const periodData = values[0] as PeriodStatByUser;
 
+  const valuesPrevValue = Object.values(initialCurrentPeriodPrevValue);
+  const periodDataPrevValue = valuesPrevValue[0] as PeriodStatByUser;
+
   const resp3 = await fetch(`${process.env.API_URL}/period-stat/${periodData.id}`);
-  const statsByPeriod = await resp3.json();
+  const statsByStatId = await resp3.json();
+
+  const resp3PrevValue = await fetch(`${process.env.API_URL}/period-stat/${periodDataPrevValue.id}`);
+  const statsByStatIdPrevValue = await resp3PrevValue.json();
 
   return (
     <div className="container">
       <div className={s.dashboardPageWrapper}>
         <DashboardSidebar user={user} />
 
-        <DashboardContent statsByPeriod={statsByPeriod} initialCurrentPeriod={periodData} user={user} periods={periods} />
+        <DashboardContent statsByStatIdPrevValue={statsByStatIdPrevValue} statsByStatId={statsByStatId} initialCurrentPeriod={periodData} user={user} periods={periods} />
       </div>
     </div>
   );

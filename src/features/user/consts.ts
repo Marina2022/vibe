@@ -53,3 +53,21 @@ export const qualCardColor: Record<string, string> = {
   'Mentor II': 'blue',
   'Global Mentor': 'blue'
 };
+
+export const abbrQualList: Record<string, string> = {
+  'Beginner I': 'B1',
+  'Beginner II': 'B2',
+  'Beginner Max': 'BM',
+  'Ambassador I': 'A1',
+  'Ambassador II': 'A2',
+  'Ambassador Pro': 'AP',
+  'Master I': 'M1',
+  'Master II': 'M2',
+  'Grand Master': 'GM',
+  'Leader I': 'L1',
+  'Leader II': 'L2',
+  'Premier Leader': 'PL',
+  'Mentor I': 'MR1',
+  'Mentor II': 'MR2',
+  'Global Mentor': 'GLM',
+};

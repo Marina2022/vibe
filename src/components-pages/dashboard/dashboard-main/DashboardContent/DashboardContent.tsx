@@ -11,17 +11,18 @@ import {User} from "@/features/user/types/User";
 import {StatsPeriods} from "@/features/user/types/StatsPeriods";
 import {useEffect, useState} from "react";
 import {getUserStatByPeriod} from "@/features/user/actions/getUserStatByPeriod";
-import {StatByPeriodId} from "@/features/user/types/StatByPeriodId";
 import Achievements from "@/components-pages/dashboard/dashboard-main/DashboardContent/Achievements/Achievements";
+import {StatByStatId} from "@/features/user/types/StatByStatId";
 
 type Props = {
   initialCurrentPeriod: PeriodStatByUser;
   user: User;
   periods: StatsPeriods;
-  statsByPeriod: StatByPeriodId
+  statsByStatId: StatByStatId;
+  statsByStatIdPrevValue: StatByStatId;
 }
 
-const DashboardContent = ({statsByPeriod, initialCurrentPeriod, periods, user}: Props) => {
+const DashboardContent = ({statsByStatIdPrevValue, statsByStatId, initialCurrentPeriod, periods, user}: Props) => {
 
   const [selectedMonth, setSelectedMonth] = useState(0);
   const [currentPeriod, setCurrentPeriod] = useState(initialCurrentPeriod);
@@ -38,7 +39,8 @@ const DashboardContent = ({statsByPeriod, initialCurrentPeriod, periods, user}: 
       setCurrentPeriod(periodData)
     }
 
-    getCurrentPeriodData()
+     getCurrentPeriodData()
+
   }, [selectedMonth, user.id, periods]);
 
 
@@ -53,9 +55,9 @@ const DashboardContent = ({statsByPeriod, initialCurrentPeriod, periods, user}: 
         currentPeriod={currentPeriod}
       />
 
-      <NextQualification currentPeriod={initialCurrentPeriod} statsByPeriod={statsByPeriod} />
+      <NextQualification currentPeriod={initialCurrentPeriod} statsByStatId={statsByStatId} />
 
-      <Achievements initialCurrentPeriod={initialCurrentPeriod} periods={periods} />
+      <Achievements statsByStatIdPrevValue={statsByStatIdPrevValue} statsByStatId={statsByStatId} periods={periods} user={user} />
       <Events/>
       <News/>
     </div>
