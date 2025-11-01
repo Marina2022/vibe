@@ -17,7 +17,8 @@ type Props = {
 const UserCardBlock = ({user, currentPeriod, selectedMonth, setSelectedMonth, periods}:Props) => {
 
 
-  const color = qualCardColor[currentPeriod?.qual_name] || 'purple'
+  const color = qualCardColor[currentPeriod.qual_name]
+
   let coloredStyle
 
   if (color === 'purple') coloredStyle = s.purple
@@ -46,22 +47,22 @@ const UserCardBlock = ({user, currentPeriod, selectedMonth, setSelectedMonth, pe
               Денежный счет
             </div>
             <div className={s.cardAmount}>
-              {user.account_gift?.balance?.toLocaleString('ru-RU') || 0 }  ₽
+              {user.account_gift.balance.toLocaleString('ru-RU')} ₽
             </div>
           </div>
-          <div className={s.qualif}>{currentPeriod?.qual_name || '' }</div>
+          <div className={s.qualif}>{currentPeriod.qual_name}</div>
         </div>
       </div>
       <div className={s.userCardBottom}>
         <div>
           <div className={s.subtitle}>Подарочный счет</div>
-          <div className={s.amount}>{user?.account_bonus?.balance?.toLocaleString('ru-RU') || 0} ₽</div>
+          <div className={s.amount}>{user.account_bonus.balance.toLocaleString('ru-RU')} ₽</div>
         </div>
         <div className={s.vibes}>
           <img className={s.vibesIcon} src="/img/lk/lk-main/v-icon.png" alt="vibes icon"/>
           <div>
             <div className={s.vibesNumber}>
-              {currentPeriod?.premium || 0 + currentPeriod?.premium_gift || 0}</div>
+              {currentPeriod.premium + currentPeriod.premium_gift}</div>
             <div className={s.vibesText}>vibes</div>
           </div>
         </div>

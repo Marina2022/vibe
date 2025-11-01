@@ -8,9 +8,9 @@ const StatusUserInfo = ({currentPeriod}:{currentPeriod:PeriodStatByUser}) => {
     <div className={s.statusUserInfo}>
       <h3 className={s.text}>Статус</h3>
       <p className={s.title}>
-        <span>{currentPeriod?.user?.state_name || ''}</span>
+        <span>{currentPeriod.user.state_name}</span>
         {
-          currentPeriod?.active === 1 && <Badge>Активный</Badge>
+          currentPeriod.active === 1 && <Badge>Активный</Badge>
         }
       </p>
     </div>
